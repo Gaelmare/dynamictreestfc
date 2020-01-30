@@ -16,7 +16,9 @@ EARLY ALPHA, not suitable for anything but further development
 ## Current issues/todo
 * Create TFC Species Dynamic Trees
 * Add TFC Rooty Soil that reverts to correct dirt block on root death
-* Fix can generate to not generate on rock etc
-* Move Rooty Soil to y-1
- 
+* Passable leaves
+* Correct density generation
+* Fix lame FPS?
+* Fix chopping speed
+* Kill cascading worldgen 
 
