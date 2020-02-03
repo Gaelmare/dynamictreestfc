@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.ferreusveritas.dynamictrees.event.BiomeSuitabilityEvent;
-import net.dries007.tfc.api.util.TFCConstants;
+import net.dries007.tfc.TerraFirmaCraft;
 import org.labellum.mc.dynamictreestfc.proxy.CommonProxy;
 import org.labellum.mc.dynamictreestfc.proxy.ClientProxy;
 
@@ -33,7 +33,7 @@ public class DynamicTreesTFC
     public static final String DEPENDENCIES
             = REQAFTER + DYNAMICTREES_LATEST
             + NEXT
-            + REQAFTER + TFCConstants.MOD_ID;
+            + REQAFTER + TerraFirmaCraft.MOD_ID;
     //+ AT
     //        + "1.12.2-0.28.2" + ORGREATER; //TFC version is currently the string "${version}"
 
