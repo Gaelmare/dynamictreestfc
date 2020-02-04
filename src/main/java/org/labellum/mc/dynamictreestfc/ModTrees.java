@@ -51,6 +51,7 @@ public class ModTrees
             LeavesProperties prop = new LeavesProperties(leaf, kitMap.get(treeName));
 
             TreeFamily family = new TreeFamilyTFC(resLoc, prop);
+            prop.setTree(family);
             Species species = family.getCommonSpecies().setGrowthLogicKit(logicMap.get(treeName)).
                     setBasicGrowingParameters(paramMap.get(treeName)[0],paramMap.get(treeName)[0],(int)paramMap.get(treeName)[0],(int)paramMap.get(treeName)[0],paramMap.get(treeName)[0]);
 
