@@ -173,9 +173,7 @@ public class DynamicTreesTFC
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event)
         {
-           /*
-             event.getRegistry().register(new MySpecialBlock().setRegistryName(MOD_ID, "mySpecialBlock"));
-            */
+   			ModBlocks.register(event.getRegistry());
         }
     }
     /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files

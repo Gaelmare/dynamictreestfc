@@ -16,43 +16,26 @@ import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.types.DefaultTrees;
 import org.labellum.mc.dynamictreestfc.DTFCGenerator;
+import org.labellum.mc.dynamictreestfc.ModBlocks;
 import org.labellum.mc.dynamictreestfc.ModTrees;
 
 import static com.ferreusveritas.dynamictrees.ModTrees.*;
 
 public class CommonProxy
 {
-    public static ImmutableList<BlockRockVariant> allGrowableVariants;
-    public static ImmutableList<Species> allDTSpecies;
 
     public void preInit() {
-
+        buildMaps();
+        ModBlocks.preInit();
+        ModTrees.preInit();
     }
 
     public void init() {
-        buildMaps();
-        ModTrees.init();
         replaceGenerators();
     }
 
     public void buildMaps()
     {
-
-        ImmutableList.Builder<BlockRockVariant> rockBuild = ImmutableList.builder();
-        for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
-        {
-            if (BlocksTFC.isGrowableSoil(rock.getDefaultState())) {
-                rockBuild.add(rock);
-            }
-            allGrowableVariants = rockBuild.build();
-        }
-
-        ImmutableList.Builder<Species> specBuild = ImmutableList.builder();
-        for ( ResourceLocation loc : TreeRegistry.getSpeciesDirectory())
-        {
-            specBuild.add(TreeRegistry.findSpecies(loc));
-            allDTSpecies = specBuild.build();
-        }
 
     }
 

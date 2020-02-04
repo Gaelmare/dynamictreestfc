@@ -6,29 +6,29 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
-import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
-import com.ferreusveritas.dynamictrees.api.cells.ICellKit;
-import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKits;
 import com.ferreusveritas.dynamictrees.growthlogic.IGrowthLogicKit;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
-import org.labellum.mc.dynamictreestfc.proxy.CommonProxy;
+
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
+
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 
 public class ModTrees
 {
+    public static ArrayList<TreeFamily> tfcTrees = new ArrayList<>();
     public static Map<String, Species> tfcSpecies = new HashMap<>();
 
-    public static void init() {
+    public static void preInit() {
 
         //Set up a map of species and their sapling types
         Map<String, BlockSaplingTFC> saplingMap = new HashMap<>();
@@ -39,27 +39,29 @@ public class ModTrees
         BlocksTFC.getAllLeafBlocks().forEach(s -> leafMap.put(s.wood.toString(),s));
 
         Map<String, float[]> paramMap = new HashMap<>();
-        Map<String, ICellKit> kitMap = new HashMap<>();
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
-        fillMaps(paramMap,kitMap,logicMap);
+        fillMaps(paramMap,logicMap);
 
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
             ResourceLocation resLoc = new ResourceLocation(MOD_ID, treeName);
             IBlockState leaf = leafMap.get(treeName).getDefaultState();
 
-            LeavesProperties prop = new LeavesProperties(leaf, kitMap.get(treeName));
+            TreeFamily family = new TreeFamilyTFC(resLoc,t);
+            if(t.toString() == "sequoia" ||
+               t.toString() == "kapok" ) {
+                ((TreeFamilyTFC) family).setThick(true);
+            }
+            tfcTrees.add(family);
 
-            TreeFamily family = new TreeFamilyTFC(resLoc, prop);
-            prop.setTree(family);
+            ModBlocks.leafMap.get(treeName).setTree(family);
+
             Species species = family.getCommonSpecies().setGrowthLogicKit(logicMap.get(treeName)).
                     setBasicGrowingParameters(paramMap.get(treeName)[0],paramMap.get(treeName)[0],(int)paramMap.get(treeName)[0],(int)paramMap.get(treeName)[0],paramMap.get(treeName)[0]);
 
             species.clearAcceptableSoils();
             Block[] blocks = new Block[]{};
-            species.addAcceptableSoil(CommonProxy.allGrowableVariants.toArray(blocks));
-
-
+            species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
 
             tfcSpecies.put(treeName, species);
             Species.REGISTRY.register(species);
@@ -71,7 +73,7 @@ public class ModTrees
 
     }
 
-    private static void fillMaps(Map<String, float[]> paramMap, Map<String, ICellKit> kitMap, Map<String, IGrowthLogicKit> logicMap)
+    private static void fillMaps(Map<String, float[]> paramMap, Map<String, IGrowthLogicKit> logicMap)
     {
         paramMap.put("acacia",new float[]{0.10f,14f,6,6,0.90f});
         paramMap.put("ash",new float[]{0.25f,12f,4,3,1.00f});
@@ -92,26 +94,6 @@ public class ModTrees
         paramMap.put("sycamore",new float[]{0.20f,10f,4,3,0.90f});
         paramMap.put("white_cedar",new float[]{0.15f,20f,6,2,1.10f});
         paramMap.put("willow",new float[]{0.55f,8f,4,5,1.40f});
-
-        kitMap.put("acacia",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "acacia")));
-        kitMap.put("ash",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("aspen",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("birch",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("blackwood",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "darkoak")));
-        kitMap.put("chestnut",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("douglas_fir",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "conifer")));
-        kitMap.put("hickory",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("kapok",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("maple",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("oak",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("palm",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "palm")));
-        kitMap.put("pine",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "conifer")));
-        kitMap.put("rosewood",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("sequoia",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "conifer")));
-        kitMap.put("spruce",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "conifer")));
-        kitMap.put("sycamore",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("white_cedar",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
-        kitMap.put("willow",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
 
         logicMap.put("acacia",GrowthLogicKits.nullLogic);
         logicMap.put("ash",GrowthLogicKits.nullLogic);
