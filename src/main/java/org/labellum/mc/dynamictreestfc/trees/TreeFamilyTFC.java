@@ -1,27 +1,30 @@
 package org.labellum.mc.dynamictreestfc.trees;
 
-import java.util.List;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 
+import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import net.dries007.tfc.api.types.Tree;
 
 public class TreeFamilyTFC extends TreeFamily
 {
-    private Tree tree;
-
-    public TreeFamilyTFC(ResourceLocation resourceLocation) {
-        super(resourceLocation);
+    public TreeFamilyTFC(ResourceLocation name, LeavesProperties prop) {
+        super(name);
+        createSpecies(prop);
     }
 
-    //This mod registers all of the seeds externally so we'll only provide the dynamic branch block here
-    @Override
-    public List<Item> getRegisterableItems(List<Item> itemList) {
-        //Register an itemBlock for the branch block
-        itemList.add(new ItemBlock(getDynamicBranch()).setRegistryName(getDynamicBranch().getRegistryName()));
-        return itemList;
+    //Species need not be created as a nested class.  They can be created after the tree has already been constructed.
+    public class TreeTFCSpecies extends Species
+    {
+        public TreeTFCSpecies(TreeFamilyTFC treeFamily, LeavesProperties prop) {
+
+            super(treeFamily.getName(), treeFamily, prop);
+
+        }
+    }
+
+    public void createSpecies(LeavesProperties prop) {
+        setCommonSpecies(new TreeTFCSpecies(this,prop));
+        getCommonSpecies().generateSeed();
     }
 }
