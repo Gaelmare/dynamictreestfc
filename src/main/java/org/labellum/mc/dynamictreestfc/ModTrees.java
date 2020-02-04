@@ -28,15 +28,11 @@ public class ModTrees
     public static ArrayList<TreeFamily> tfcTrees = new ArrayList<>();
     public static Map<String, Species> tfcSpecies = new HashMap<>();
 
-    public static void preInit() {
+    public static void register() {
 
         //Set up a map of species and their sapling types
         Map<String, BlockSaplingTFC> saplingMap = new HashMap<>();
         BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.wood.toString(),s));
-
-        //Map of strings to leaves
-        Map<String, BlockLeavesTFC> leafMap = new HashMap<>();
-        BlocksTFC.getAllLeafBlocks().forEach(s -> leafMap.put(s.wood.toString(),s));
 
         Map<String, float[]> paramMap = new HashMap<>();
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
@@ -45,7 +41,6 @@ public class ModTrees
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
             ResourceLocation resLoc = new ResourceLocation(MOD_ID, treeName);
-            IBlockState leaf = leafMap.get(treeName).getDefaultState();
 
             TreeFamily family = new TreeFamilyTFC(resLoc,t);
             if(t.toString() == "sequoia" ||

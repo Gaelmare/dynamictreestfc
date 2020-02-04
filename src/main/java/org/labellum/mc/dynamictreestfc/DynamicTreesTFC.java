@@ -31,9 +31,11 @@ public class DynamicTreesTFC
     public static final String MOD_NAME = "DynamicTreesTFC";
     public static final String VERSION = "0.1";
     public static final String DEPENDENCIES
-            = REQAFTER + DYNAMICTREES_LATEST
-            + NEXT
-            + REQAFTER + TerraFirmaCraft.MOD_ID;
+            = REQAFTER + TerraFirmaCraft.MOD_ID +
+            NEXT +
+            REQAFTER + DYNAMICTREES_LATEST
+
+;
     //+ AT
     //        + "1.12.2-0.28.2" + ORGREATER; //TFC version is currently the string "${version}"
 
@@ -93,7 +95,6 @@ public class DynamicTreesTFC
     public void preinit(FMLPreInitializationEvent event)
     {
         System.out.println(MOD_NAME + " is loading");
-        proxy.preInit();
     }
 
     /**
@@ -174,6 +175,7 @@ public class DynamicTreesTFC
         public static void addBlocks(RegistryEvent.Register<Block> event)
         {
    			ModBlocks.register(event.getRegistry());
+   			ModTrees.register();
         }
     }
     /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files

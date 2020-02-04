@@ -33,7 +33,7 @@ public class ModBlocks
     public static Map<String, LeavesProperties> leafMap;
     public static BlockRooty blockRootyDirt;
 
-    public static void preInit()
+    public static void register(IForgeRegistry<Block> registry)
     {
         blockRootyDirt = (BlockRooty) new BlockRootyTFC();
 
@@ -45,9 +45,11 @@ public class ModBlocks
         tfcLeavesProperties = new LeavesProperties[BlocksTFC.getAllLeafBlocks().size()];
         leafMap = new HashMap<>();
         int i = 0; // DT wants an array of leafprops for some reason
-        BlocksTFC.getAllLeafBlocks().forEach(s -> {
-            tfcLeavesProperties[i] = leafMap.put(s.wood.toString(), new LeavesProperties(s.getDefaultState(), kitMap.get(s.wood.toString())));
-        });
+        for ( BlockLeavesTFC leaf : BlocksTFC.getAllLeafBlocks()) {
+            LeavesProperties prop = new LeavesProperties(leaf.getDefaultState(), kitMap.get(leaf.wood.toString()));
+            leafMap.put(leaf.wood.toString(), prop);
+            tfcLeavesProperties[i++] = prop;
+        }
 
         for (LeavesProperties lp : tfcLeavesProperties)
         {
@@ -64,10 +66,6 @@ public class ModBlocks
             allGrowableVariants = rockBuild.build();
         }
 
-    }
-
-    public static void register(IForgeRegistry<Block> registry)
-    {
         ArrayList<Block> treeBlocks = new ArrayList<>();
         ModTrees.tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 
