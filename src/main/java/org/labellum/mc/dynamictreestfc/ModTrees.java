@@ -52,7 +52,9 @@ public class ModTrees
             ModBlocks.leafMap.get(treeName).setTree(family);
 
             Species species = family.getCommonSpecies().setGrowthLogicKit(logicMap.get(treeName)).
-                    setBasicGrowingParameters(paramMap.get(treeName)[0],paramMap.get(treeName)[0],(int)paramMap.get(treeName)[0],(int)paramMap.get(treeName)[0],paramMap.get(treeName)[0]);
+                    setBasicGrowingParameters(paramMap.get(treeName)[0],paramMap.get(treeName)[1],(int)paramMap.get(treeName)[2],(int)paramMap.get(treeName)[3],paramMap.get(treeName)[4]);
+
+            species.setLeavesProperties(ModBlocks.leafMap.get(treeName));
 
             species.clearAcceptableSoils();
             Block[] blocks = new Block[]{};
