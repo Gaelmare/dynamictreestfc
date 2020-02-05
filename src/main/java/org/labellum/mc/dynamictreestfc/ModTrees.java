@@ -27,12 +27,9 @@ public class ModTrees
 {
     public static ArrayList<TreeFamily> tfcTrees = new ArrayList<>();
     public static Map<String, Species> tfcSpecies = new HashMap<>();
+    public static Map<String, BlockSaplingTFC> saplingMap;
 
-    public static void register() {
-
-        //Set up a map of species and their sapling types
-        Map<String, BlockSaplingTFC> saplingMap = new HashMap<>();
-        BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.wood.toString(),s));
+    public static void preInit() {
 
         Map<String, float[]> paramMap = new HashMap<>();
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
@@ -49,25 +46,33 @@ public class ModTrees
             }
             tfcTrees.add(family);
 
-            ModBlocks.leafMap.get(treeName).setTree(family);
-
             Species species = family.getCommonSpecies().setGrowthLogicKit(logicMap.get(treeName)).
                     setBasicGrowingParameters(paramMap.get(treeName)[0],paramMap.get(treeName)[1],(int)paramMap.get(treeName)[2],(int)paramMap.get(treeName)[3],paramMap.get(treeName)[4]);
-
-            species.setLeavesProperties(ModBlocks.leafMap.get(treeName));
-
-            species.clearAcceptableSoils();
-            Block[] blocks = new Block[]{};
-            species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
 
             tfcSpecies.put(treeName, species);
             Species.REGISTRY.register(species);
         });
 
+    }
+
+    public static void register() {
+        //Set up a map of species and their sapling types
+        saplingMap = new HashMap<>();
+        BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.wood.toString(),s));
+
         for(Map.Entry<String, Species> entry : tfcSpecies.entrySet()) {
             TreeRegistry.registerSaplingReplacer(saplingMap.get(entry.getKey()).getDefaultState(), entry.getValue());
         }
 
+        tfcTrees.forEach(t -> {
+            String treeName = t.getName().getPath();
+            ModBlocks.leafMap.get(treeName).setTree(t);
+            Species species = tfcSpecies.get(treeName);
+            species.setLeavesProperties(ModBlocks.leafMap.get(treeName));
+            species.clearAcceptableSoils();
+            Block[] blocks = new Block[]{};
+            species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
+        });
     }
 
     private static void fillMaps(Map<String, float[]> paramMap, Map<String, IGrowthLogicKit> logicMap)

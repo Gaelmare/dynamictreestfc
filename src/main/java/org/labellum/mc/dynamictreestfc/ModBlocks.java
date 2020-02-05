@@ -31,15 +31,28 @@ public class ModBlocks
     public static ImmutableList<BlockRockVariant> allGrowableVariants;
     public static LeavesProperties[] tfcLeavesProperties;
     public static Map<String, LeavesProperties> leafMap;
+    public static Map<String, ICellKit> kitMap;
     public static BlockRooty blockRootyDirt;
+
+    public static void preInit() {
+        blockRootyDirt = (BlockRooty) new BlockRootyTFC();
+
+        kitMap = new HashMap<>();
+        fillMaps(kitMap);
+
+    }
 
     public static void register(IForgeRegistry<Block> registry)
     {
-        blockRootyDirt = (BlockRooty) new BlockRootyTFC();
+        ImmutableList.Builder<BlockRockVariant> rockBuild = ImmutableList.builder();
+        for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
+        {
+            if (BlocksTFC.isGrowableSoil(rock.getDefaultState())) {
+                rockBuild.add(rock);
+            }
+            allGrowableVariants = rockBuild.build();
+        }
 
-        Map<String, ICellKit> kitMap = new HashMap<>();
-
-        fillMaps(kitMap);
         //For this mod it is vital that these are never reordered.  If a leaves properties is removed from the
         //mod then there should be a LeavesProperties.NULLPROPERTIES used as a placeholder.
         tfcLeavesProperties = new LeavesProperties[BlocksTFC.getAllLeafBlocks().size()];
@@ -54,16 +67,6 @@ public class ModBlocks
         for (LeavesProperties lp : tfcLeavesProperties)
         {
             LeavesPaging.getNextLeavesBlock(MOD_ID, lp);
-        }
-
-
-        ImmutableList.Builder<BlockRockVariant> rockBuild = ImmutableList.builder();
-        for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
-        {
-            if (BlocksTFC.isGrowableSoil(rock.getDefaultState())) {
-                rockBuild.add(rock);
-            }
-            allGrowableVariants = rockBuild.build();
         }
 
         ArrayList<Block> treeBlocks = new ArrayList<>();

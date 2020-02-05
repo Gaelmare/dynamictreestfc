@@ -98,6 +98,7 @@ public class DynamicTreesTFC
     public void preinit(FMLPreInitializationEvent event)
     {
         System.out.println(MOD_NAME + " is loading");
+        proxy.preInit();
     }
 
     /**
@@ -178,7 +179,7 @@ public class DynamicTreesTFC
         public static void addBlocks(RegistryEvent.Register<Block> event)
         {
    			ModBlocks.register(event.getRegistry());
-   			ModTrees.register();
+            ModTrees.register();
         }
 
         @SubscribeEvent
