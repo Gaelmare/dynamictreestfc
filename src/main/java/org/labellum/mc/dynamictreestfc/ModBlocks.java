@@ -69,7 +69,7 @@ public class ModBlocks
         ArrayList<Block> treeBlocks = new ArrayList<>();
         ModTrees.tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 
-        treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values());
+        treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
         registry.registerAll(treeBlocks.toArray(new Block[0]));
     }
 

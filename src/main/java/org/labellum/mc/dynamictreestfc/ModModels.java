@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import org.labellum.mc.dynamictreestfc.proxy.ModelHelperTFC;
 
 public class ModModels
 {
@@ -15,11 +16,11 @@ public class ModModels
 
         //Register Meshers for Branches
         for(TreeFamily tree: ModTrees.tfcTrees) {
-            ModelHelper.regModel(tree.getDynamicBranch());//Register Branch itemBlock
-            ModelHelper.regModel(tree);//Register custom state mapper for branch
+            ModelHelperTFC.regModel(tree.getDynamicBranch());//Register Branch itemBlock
+            ModelHelperTFC.regModel(tree);//Register custom state mapper for branch
         }
 
-        ModTrees.tfcSpecies.values().stream().filter(s -> s.getSeed() != Seed.NULLSEED).forEach(s -> ModelHelper.regModel(s.getSeed()));//Register Seed Item Models
+        ModTrees.tfcSpecies.values().stream().filter(s -> s.getSeed() != Seed.NULLSEED).forEach(s -> ModelHelperTFC.regModel(s.getSeed()));//Register Seed Item Models
     }
 
 }
