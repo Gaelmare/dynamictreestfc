@@ -79,7 +79,13 @@ public class TreeFamilyTFC extends TreeFamily
 
     @Override
     public BlockBranch createBranch() {
-        String branchName = getName().getPath();
+        String branchName = getName().toString();
         return isThick() ? new BlockBranchThick(branchName) : new BlockBranchBasic(branchName);
     }
+
+    @Override
+    public boolean autoCreateBranch() {
+        return true;
+    }
+
 }
