@@ -2,6 +2,7 @@ package org.labellum.mc.dynamictreestfc;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -10,6 +11,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.ferreusveritas.dynamictrees.event.BiomeSuitabilityEvent;
 import net.dries007.tfc.TerraFirmaCraft;
@@ -32,12 +35,12 @@ public class DynamicTreesTFC
     public static final String VERSION = "0.1";
     public static final String DEPENDENCIES
             = REQAFTER + TerraFirmaCraft.MOD_ID +
+            //AT + "0.28.2.115" + ORGREATER +
             NEXT +
             REQAFTER + DYNAMICTREES_LATEST
-
 ;
-    //+ AT
-    //        + "1.12.2-0.28.2" + ORGREATER; //TFC version is currently the string "${version}"
+
+    //TFC version in dev is the string "${version}" so not sure how this works.
 
     /*
     https://github.com/ferreusveritas/DynamicTrees/blob/f7edfc2d423b87bf6b7ebf2ad1b628a694114171/src/main/java/com/ferreusveritas/dynamictrees/trees/Species.java#L963
@@ -176,6 +179,12 @@ public class DynamicTreesTFC
         {
    			ModBlocks.register(event.getRegistry());
    			ModTrees.register();
+        }
+
+        @SubscribeEvent
+        @SideOnly(Side.CLIENT)
+        public static void registerModels(ModelRegistryEvent event) {
+            ModModels.register(event);
         }
     }
     /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files

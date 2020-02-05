@@ -24,8 +24,8 @@ public class DTFCGenerator implements ITreeGenerator
     {
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
-        dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, 8, bounds);
-        //dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
+        //dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, 8, bounds);
+        dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
     }
 
     @Override
