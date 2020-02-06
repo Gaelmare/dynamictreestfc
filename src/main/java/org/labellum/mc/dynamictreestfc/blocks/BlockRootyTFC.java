@@ -1,13 +1,11 @@
 package org.labellum.mc.dynamictreestfc.blocks;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
-import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
@@ -18,14 +16,7 @@ public class BlockRootyTFC extends BlockRootyDirt
 {
     public BlockRootyTFC()
     {
-        this("rootydirt", false);
-    }
-
-
-    public BlockRootyTFC(String name,  boolean isTileEntity)
-    {
-        super(name, isTileEntity);
-
+        super(false);
     }
 
     public IBlockState getDecayBlockState(IBlockAccess access, BlockPos pos) {
