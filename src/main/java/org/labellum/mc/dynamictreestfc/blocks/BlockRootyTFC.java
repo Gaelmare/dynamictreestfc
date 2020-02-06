@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
+import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
@@ -17,7 +18,7 @@ public class BlockRootyTFC extends BlockRooty
 {
     public BlockRootyTFC()
     {
-        this("",Material.GROUND , false);
+        this("rootydirt",Material.GROUND , false);
     }
 
 
