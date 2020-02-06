@@ -2,6 +2,7 @@ package org.labellum.mc.dynamictreestfc.trees;
 
 import java.util.List;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -36,9 +37,10 @@ public class TreeFamilyTFC extends TreeFamily
     public TreeFamilyTFC(ResourceLocation name, Tree tree)
     {
         super(name);
+    }
 
-        setPrimitiveLog(BlockLogTFC.get(tree).getDefaultState(),
-                new ItemStack(Item.getItemFromBlock(BlockLogTFC.get(tree)),1));
+    public TreeFamily setPrimitiveLog(IBlockState primLog) {
+        return super.setPrimitiveLog(primLog);
     }
 
     //Species need not be created as a nested class.  They can be created after the tree has already been constructed.
@@ -48,7 +50,6 @@ public class TreeFamilyTFC extends TreeFamily
         {
             super(treeFamily.getName(), treeFamily, prop);
             setupStandardSeedDropping();
-
         }
 
         @Override
@@ -71,7 +72,6 @@ public class TreeFamilyTFC extends TreeFamily
         getCommonSpecies().generateSeed();
     }
 
-    //This mod registers all of the seeds externally so we'll only provide the dynamic branch block here
     @Override
     public List<Item> getRegisterableItems(List<Item> itemList) {
         //Register an itemBlock for the branch block
@@ -81,7 +81,7 @@ public class TreeFamilyTFC extends TreeFamily
 
     @Override
     public BlockBranch createBranch() {
-        String branchName = getName().toString();
+        String branchName = "block/branch/" + getName().getPath();
         return isThick() ? new BlockBranchThick(branchName) : new BlockBranchBasic(branchName);
     }
 

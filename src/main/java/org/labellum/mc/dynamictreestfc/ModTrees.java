@@ -3,6 +3,8 @@ package org.labellum.mc.dynamictreestfc;
 import java.util.*;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.registries.IForgeRegistry;
@@ -17,6 +19,7 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
+import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
@@ -29,12 +32,12 @@ public class ModTrees
 {
     public static ArrayList<TreeFamily> tfcTrees = new ArrayList<>();
     public static Map<String, Species> tfcSpecies = new HashMap<>();
-    public static Map<String, BlockSaplingTFC> saplingMap;
 
-    public static void preInit() {
+    public static void preInit()
+    {
     }
 
-    public static void register(IForgeRegistry<Block> registry) {
+    public static void registerBlocks(IForgeRegistry<Block> registry) {
 
         Map<String, float[]> paramMap = new HashMap<>();
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
@@ -42,11 +45,13 @@ public class ModTrees
 
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
+
             ResourceLocation resLoc = new ResourceLocation(MOD_ID, treeName);
 
             TreeFamily family = new TreeFamilyTFC(resLoc,t);
             if(t.toString() == "sequoia" ||
-                    t.toString() == "kapok" ) {
+               t.toString() == "kapok" )
+            {
                 ((TreeFamilyTFC) family).setThick(true);
             }
             tfcTrees.add(family);
@@ -58,14 +63,8 @@ public class ModTrees
             Species.REGISTRY.register(species);
         });
 
-        ArrayList<Block> treeBlocks = new ArrayList<>();
-        ModTrees.tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
-
-        treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
-        registry.registerAll(treeBlocks.toArray(new Block[0]));
-
         //Set up a map of species and their sapling types
-        saplingMap = new HashMap<>();
+        Map<String, BlockSaplingTFC> saplingMap = new HashMap<>();
         BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.wood.toString(),s));
 
         for(Map.Entry<String, Species> entry : tfcSpecies.entrySet()) {
@@ -81,7 +80,23 @@ public class ModTrees
             Block[] blocks = new Block[]{};
             species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
         });
+
+        ArrayList<Block> treeBlocks = new ArrayList<>();
+        tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
+
+        treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
+        registry.registerAll(treeBlocks.toArray(new Block[0]));
     }
+
+
+    public static void registerItems(IForgeRegistry<Item> registry) //has to wait until TFC Items have been registered
+    {
+        TFCRegistries.TREES.getValuesCollection().forEach(t -> {
+            String treeName = t.toString();
+            ((TreeFamilyTFC)tfcSpecies.get(treeName).getFamily()).setPrimitiveLog(BlockLogTFC.get(t).getDefaultState());
+        });
+    }
+
 
     private static void fillMaps(Map<String, float[]> paramMap, Map<String, IGrowthLogicKit> logicMap)
     {

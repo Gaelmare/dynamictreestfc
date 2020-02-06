@@ -156,10 +156,8 @@ public class DynamicTreesTFC
         @SubscribeEvent
         public static void addItems(RegistryEvent.Register<Item> event)
         {
-           /*
-             event.getRegistry().register(new ItemBlock(Blocks.myBlock).setRegistryName(MOD_ID, "myBlock"));
-             event.getRegistry().register(new MySpecialItem().setRegistryName(MOD_ID, "mySpecialItem"));
-            */
+            ModItems.register(event.getRegistry());
+            ModTrees.registerItems(event.getRegistry());
         }
 
         /**
@@ -179,7 +177,7 @@ public class DynamicTreesTFC
         public static void addBlocks(RegistryEvent.Register<Block> event)
         {
    			ModBlocks.register(event.getRegistry());
-            ModTrees.register(event.getRegistry());
+            ModTrees.registerBlocks(event.getRegistry());
         }
 
         @SubscribeEvent

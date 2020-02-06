@@ -14,17 +14,17 @@ import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 
-public class BlockRootyTFC extends BlockRooty
+public class BlockRootyTFC extends BlockRootyDirt
 {
     public BlockRootyTFC()
     {
-        this("rootydirt",Material.GROUND , false);
+        this("rootydirt", false);
     }
 
 
-    public BlockRootyTFC(String name, Material material, boolean isTileEntity)
+    public BlockRootyTFC(String name,  boolean isTileEntity)
     {
-        super(name, material, isTileEntity);
+        super(name, isTileEntity);
 
     }
 
