@@ -3,10 +3,12 @@ package org.labellum.mc.dynamictreestfc;
 import java.util.*;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraftforge.registries.IForgeRegistry;
+
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKits;
 import com.ferreusveritas.dynamictrees.growthlogic.IGrowthLogicKit;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -30,6 +32,9 @@ public class ModTrees
     public static Map<String, BlockSaplingTFC> saplingMap;
 
     public static void preInit() {
+    }
+
+    public static void register(IForgeRegistry<Block> registry) {
 
         Map<String, float[]> paramMap = new HashMap<>();
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
@@ -41,7 +46,7 @@ public class ModTrees
 
             TreeFamily family = new TreeFamilyTFC(resLoc,t);
             if(t.toString() == "sequoia" ||
-               t.toString() == "kapok" ) {
+                    t.toString() == "kapok" ) {
                 ((TreeFamilyTFC) family).setThick(true);
             }
             tfcTrees.add(family);
@@ -53,9 +58,12 @@ public class ModTrees
             Species.REGISTRY.register(species);
         });
 
-    }
+        ArrayList<Block> treeBlocks = new ArrayList<>();
+        ModTrees.tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 
-    public static void register() {
+        treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
+        registry.registerAll(treeBlocks.toArray(new Block[0]));
+
         //Set up a map of species and their sapling types
         saplingMap = new HashMap<>();
         BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.wood.toString(),s));

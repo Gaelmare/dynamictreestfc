@@ -68,12 +68,7 @@ public class ModBlocks
         {
             LeavesPaging.getNextLeavesBlock(MOD_ID, lp);
         }
-
-        ArrayList<Block> treeBlocks = new ArrayList<>();
-        ModTrees.tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
-
-        treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
-        registry.registerAll(treeBlocks.toArray(new Block[0]));
+        registry.register(blockRootyDirt);
     }
 
     private static void fillMaps(Map<String, ICellKit> kitMap)

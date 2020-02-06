@@ -15,8 +15,8 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import org.labellum.mc.dynamictreestfc.ModBlocks;
-import org.labellum.mc.dynamictreestfc.ModTrees;
-import org.labellum.mc.dynamictreestfc.dropcreators.DropCreatorTFCLog;
+
+import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 public class TreeFamilyTFC extends TreeFamily
 {
@@ -36,7 +36,9 @@ public class TreeFamilyTFC extends TreeFamily
     public TreeFamilyTFC(ResourceLocation name, Tree tree)
     {
         super(name);
-        setPrimitiveLog(BlockLogTFC.get(tree).getDefaultState());
+
+        setPrimitiveLog(BlockLogTFC.get(tree).getDefaultState(),
+                new ItemStack(Item.getItemFromBlock(BlockLogTFC.get(tree)),1));
     }
 
     //Species need not be created as a nested class.  They can be created after the tree has already been constructed.
@@ -56,7 +58,7 @@ public class TreeFamilyTFC extends TreeFamily
 
         @Override
         public Species generateSeed() {
-            Seed seed = new Seed("seed." + getRegistryName());
+            Seed seed = new Seed(MOD_ID + ":seed/"+getRegistryName().getPath());
             setSeedStack(new ItemStack(seed));
             return this;
         }

@@ -179,7 +179,7 @@ public class DynamicTreesTFC
         public static void addBlocks(RegistryEvent.Register<Block> event)
         {
    			ModBlocks.register(event.getRegistry());
-            ModTrees.register();
+            ModTrees.register(event.getRegistry());
         }
 
         @SubscribeEvent
