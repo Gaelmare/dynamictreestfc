@@ -45,8 +45,9 @@ public class ClientProxy extends CommonProxy
 
     public void registerColorHandlers() {
 
+ /*     //not sure what this code actually accomplishes
         try {
-            ResourceLocation loc = new ResourceLocation(MOD_ID, "models/item/seedcolors.json");
+            ResourceLocation loc = new ResourceLocation(MOD_ID, "models/item/seed/colors.json");
             InputStream in;
             in = Minecraft.getMinecraft().getResourceManager().getResource(loc).getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -76,15 +77,16 @@ public class ClientProxy extends CommonProxy
         catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
         final int magenta = 0x00FF00FF;//for errors.. because magenta sucks.
 
         //Register GrowingLeavesBlocks Colorizers
-        for(BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values()) {
+        for(BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(MOD_ID).values()) {
             ModelHelper.regColorHandler(leaves, new IBlockColor() {
                 @Override
                 public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
                     Block block = state.getBlock();
+
                     if(TreeHelper.isLeaves(block)) {
                         return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
                     }

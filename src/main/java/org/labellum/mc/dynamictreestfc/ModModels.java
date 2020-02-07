@@ -6,10 +6,13 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+
+import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.Tree;
+import org.labellum.mc.dynamictreestfc.blocks.BlockLogDTTFC;
 import org.labellum.mc.dynamictreestfc.proxy.ModelHelperTFC;
 
 public class ModModels
@@ -22,6 +25,12 @@ public class ModModels
             ModelHelperTFC.regModel(tree.getDynamicBranch());//Register Branch itemBlock
             ModelHelperTFC.regModel(tree);//Register custom state mapper for branch
         }
+
+        for (Tree tree: TFCRegistries.TREES.getValuesCollection())
+        {
+            ModelHelperTFC.regModel(BlockLogDTTFC.get(tree));
+        }
+
 
         ModelLoader.setCustomStateMapper(ModBlocks.blockRootyDirt, new StateMap.Builder().ignore(BlockRooty.LIFE).build());
 

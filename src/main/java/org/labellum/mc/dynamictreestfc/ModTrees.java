@@ -4,7 +4,6 @@ import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.registries.IForgeRegistry;
@@ -18,11 +17,11 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
-import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
+import org.labellum.mc.dynamictreestfc.blocks.BlockLogDTTFC;
 
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
@@ -38,6 +37,8 @@ public class ModTrees
     }
 
     public static void registerBlocks(IForgeRegistry<Block> registry) {
+
+        ArrayList<Block> treeBlocks = new ArrayList<>();
 
         Map<String, float[]> paramMap = new HashMap<>();
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
@@ -61,6 +62,7 @@ public class ModTrees
 
             tfcSpecies.put(treeName, species);
             Species.REGISTRY.register(species);
+            treeBlocks.add(new BlockLogDTTFC(t).setRegistryName(MOD_ID,"block/log/"+treeName));
         });
 
         //Set up a map of species and their sapling types
@@ -81,7 +83,6 @@ public class ModTrees
             species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
         });
 
-        ArrayList<Block> treeBlocks = new ArrayList<>();
         tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 
         treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
@@ -93,7 +94,7 @@ public class ModTrees
     {
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
-            ((TreeFamilyTFC)tfcSpecies.get(treeName).getFamily()).setPrimitiveLog(BlockLogTFC.get(t).getDefaultState());
+            ((TreeFamilyTFC)tfcSpecies.get(treeName).getFamily()).setPrimitiveLog(BlockLogDTTFC.get(t).getDefaultState());
         });
     }
 
