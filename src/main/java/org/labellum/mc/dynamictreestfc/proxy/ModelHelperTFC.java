@@ -5,7 +5,10 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchThick;
@@ -16,9 +19,10 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 /**
- * Copied from DT, uses TFC asset naming standard.
- * Would have only overridden 2 methods, but they were private
+ * Copied from DT, uses TFC asset naming standard for manual branch models.
+ * Would have only overridden 1 method, but it's private
  */
+@SideOnly(Side.CLIENT)
 public class ModelHelperTFC extends ModelHelper
 {
     /**
@@ -49,7 +53,7 @@ public class ModelHelperTFC extends ModelHelper
 
     private static ModelResourceLocation getCreateBranchModelAuto(BlockBranch blockBranch) {
         ResourceLocation family = blockBranch.getFamily().getName();
-        return new ModelResourceLocationWrapped(new ResourceLocation(family.getNamespace(), "block/branch/" + family.getPath()), blockBranch.getDefaultState());
+        return new ModelResourceLocationWrapped(new ResourceLocation(ModConstants.MODID, "branch"), blockBranch.getDefaultState());
     }
 
     private static ModelResourceLocation getCreateBranchModelManual(BlockBranch blockBranch) {
