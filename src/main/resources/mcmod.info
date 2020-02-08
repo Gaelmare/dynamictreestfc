@@ -2,7 +2,7 @@
   {
     "modid": "DynamicTreesTFC",
     "name": "DynamicTreesTFC",
-    "description": "Dynamic Trees addon for TFC",
+    "description": "Dynamic Trees add-on for TFC",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "",
