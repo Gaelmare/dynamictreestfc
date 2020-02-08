@@ -1,6 +1,8 @@
 package org.labellum.mc.dynamictreestfc;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -15,6 +17,8 @@ import net.dries007.tfc.api.types.Tree;
 import org.labellum.mc.dynamictreestfc.blocks.BlockLogDTTFC;
 import org.labellum.mc.dynamictreestfc.proxy.ModelHelperTFC;
 
+import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
+
 public class ModModels
 {
     @SideOnly(Side.CLIENT)
@@ -25,12 +29,6 @@ public class ModModels
             ModelHelperTFC.regModel(tree.getDynamicBranch());//Register Branch itemBlock
             ModelHelperTFC.regModel(tree);//Register custom state mapper for branch
         }
-
-        for (Tree tree: TFCRegistries.TREES.getValuesCollection())
-        {
-            ModelHelperTFC.regModel(BlockLogDTTFC.get(tree));
-        }
-
 
         ModelLoader.setCustomStateMapper(ModBlocks.blockRootyDirt, new StateMap.Builder().ignore(BlockRooty.LIFE).build());
 
