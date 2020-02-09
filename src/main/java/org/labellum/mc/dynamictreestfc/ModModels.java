@@ -32,6 +32,10 @@ public class ModModels
 
         ModelLoader.setCustomStateMapper(ModBlocks.blockRootyDirt, new StateMap.Builder().ignore(BlockRooty.LIFE).build());
 
+        TFCRegistries.TREES.getValuesCollection().forEach(t -> {
+            ModelHelperTFC.regModel(BlockLogDTTFC.get(t));
+        });
+
         ModTrees.tfcSpecies.values().stream().filter(s -> s.getSeed() != Seed.NULLSEED).forEach(s -> ModelHelperTFC.regModel(s.getSeed()));//Register Seed Item Models
     }
 

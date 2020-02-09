@@ -95,6 +95,7 @@ public class ModTrees
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
             ((TreeFamilyTFC)tfcSpecies.get(treeName).getFamily()).setPrimitiveLog(BlockLogDTTFC.get(t).getDefaultState());
+            registry.register(Item.getItemFromBlock(BlockLogDTTFC.get(t)));
         });
     }
 

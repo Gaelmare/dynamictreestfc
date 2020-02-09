@@ -10,11 +10,9 @@ import net.minecraft.util.ResourceLocation;
 
 import com.ferreusveritas.dynamictrees.blocks.*;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import net.dries007.tfc.api.types.Tree;
-import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import org.labellum.mc.dynamictreestfc.ModBlocks;
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
@@ -89,5 +87,6 @@ public class TreeFamilyTFC extends TreeFamily
     public boolean autoCreateBranch() {
         return true;
     }
+
 
 }

@@ -29,6 +29,7 @@ public class BlockLogDTTFC extends BlockLog
                 this.setSoundType(SoundType.WOOD);
                 this.setHardness(15.0F).setResistance(5.0F);
                 this.setHarvestLevel("axe", 0);
+                this.setCreativeTab(null);
                 Blocks.FIRE.setFireInfo(this, 5, 5);
             }
         }

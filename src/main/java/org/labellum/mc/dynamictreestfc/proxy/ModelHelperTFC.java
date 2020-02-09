@@ -16,8 +16,6 @@ import com.ferreusveritas.dynamictrees.blocks.BlockSurfaceRoot;
 import com.ferreusveritas.dynamictrees.models.ModelResourceLocationWrapped;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
-import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
-
 /**
  * Copied from DT, uses TFC asset naming standard for manual branch models.
  * Would have only overridden 1 method, but it's private
