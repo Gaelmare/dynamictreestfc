@@ -14,6 +14,9 @@ import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 
 public class BlockRootyTFC extends BlockRootyDirt
 {
+
+    static String name = "rootydirttfc";
+
     public BlockRootyTFC()
     {
         super(false);

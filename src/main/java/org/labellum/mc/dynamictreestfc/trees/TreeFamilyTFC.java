@@ -79,12 +79,11 @@ public class TreeFamilyTFC extends TreeFamily
         getCommonSpecies().generateSeed();
     }
 
+/* //comment out for now
     @Override
     public List<Item> getRegisterableItems(List<Item> itemList) {
-        //Register an itemBlock for the branch block
-   //     itemList.add(new ItemBlock(getDynamicBranch()).setRegistryName(getDynamicBranch().getRegistryName()));
         return itemList;
-    }
+    }*/
 
     @Override
     public BlockBranch createBranch() {
@@ -96,6 +95,5 @@ public class TreeFamilyTFC extends TreeFamily
     public boolean autoCreateBranch() {
         return true;
     }
-
 
 }

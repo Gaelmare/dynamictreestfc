@@ -30,7 +30,7 @@ import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 public class ModTrees
 {
-    public static ArrayList<TreeFamily> tfcTrees = new ArrayList<>();
+    public static ArrayList<TreeFamilyTFC> tfcTrees = new ArrayList<>();
     public static Map<String, Species> tfcSpecies = new HashMap<>();
 
     public static void preInit()
@@ -50,11 +50,11 @@ public class ModTrees
 
             ResourceLocation resLoc = new ResourceLocation(MOD_ID, treeName);
 
-            TreeFamily family = new TreeFamilyTFC(resLoc,t);
+            TreeFamilyTFC family = new TreeFamilyTFC(resLoc,t);
             if(t.toString() == "sequoia" ||
                t.toString() == "kapok" )
             {
-                ((TreeFamilyTFC) family).setThick(true);
+                family.setThick(true);
             }
             tfcTrees.add(family);
 
@@ -96,7 +96,6 @@ public class ModTrees
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
             ((TreeFamilyTFC)tfcSpecies.get(treeName).getFamily()).setPrimitiveLog(BlockLogDTTFC.get(t).getDefaultState());
-            registry.register(new ItemBlock(BlockLogDTTFC.get(t)).setRegistryName(BlockLogDTTFC.get(t).getRegistryName()));
         });
     }
 
