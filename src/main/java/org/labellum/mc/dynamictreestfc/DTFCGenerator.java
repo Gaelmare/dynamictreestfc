@@ -23,7 +23,7 @@ public class DTFCGenerator implements ITreeGenerator
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean b)
     {
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
-        SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
+        SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos()); //figure out how to cache these?
         dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, 8, bounds);
         //dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
     }

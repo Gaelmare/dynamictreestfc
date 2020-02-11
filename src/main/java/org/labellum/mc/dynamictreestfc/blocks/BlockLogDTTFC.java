@@ -5,12 +5,14 @@ import java.util.Map;
 
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 
 import net.dries007.tfc.api.types.Tree;
-import net.dries007.tfc.util.OreDictionaryHelper;
 
+import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
+// The only purpose of this block is to avoid calling getBlockHardness on a BlockLogTFC with a
+// DynamicTrees branch blockstate, which doesn't have the needed properties to compute it.
+// This block just holds the textures, really.
 public class BlockLogDTTFC extends BlockLog
 {
         private static final Map<Tree, BlockLogDTTFC> MAP = new HashMap();
@@ -26,10 +28,10 @@ public class BlockLogDTTFC extends BlockLog
                 throw new IllegalStateException("There can only be one.");
             } else {
                 this.wood = wood;
-                this.setSoundType(SoundType.WOOD);
-                this.setHardness(15.0F).setResistance(5.0F);
-                this.setHarvestLevel("axe", 0);
-                this.setCreativeTab(null);
+                setSoundType(SoundType.WOOD);
+                setHardness(15.0F).setResistance(5.0F);
+                setHarvestLevel("axe", 0);
+                setCreativeTab(null);
                 Blocks.FIRE.setFireInfo(this, 5, 5);
             }
         }
