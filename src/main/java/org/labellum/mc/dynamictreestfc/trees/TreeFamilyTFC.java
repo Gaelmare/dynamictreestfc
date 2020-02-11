@@ -73,13 +73,13 @@ public class TreeFamilyTFC extends TreeFamily
     @Override
     public List<Item> getRegisterableItems(List<Item> itemList) {
         //Register an itemBlock for the branch block
-        itemList.add(new ItemBlock(getDynamicBranch()).setRegistryName(getDynamicBranch().getRegistryName()));
+   //     itemList.add(new ItemBlock(getDynamicBranch()).setRegistryName(getDynamicBranch().getRegistryName()));
         return itemList;
     }
 
     @Override
     public BlockBranch createBranch() {
-        String branchName = "block/branch/" + getName().getPath();
+        String branchName = "branch/" + getName().getPath();
         return isThick() ? new BlockBranchThick(branchName) : new BlockBranchBasic(branchName);
     }
 

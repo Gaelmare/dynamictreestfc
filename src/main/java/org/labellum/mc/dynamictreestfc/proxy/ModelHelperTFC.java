@@ -56,7 +56,7 @@ public class ModelHelperTFC extends ModelHelper
 
     private static ModelResourceLocation getCreateBranchModelManual(BlockBranch blockBranch) {
         ResourceLocation family = blockBranch.getFamily().getName();
-        ResourceLocation resloc = new ResourceLocation(family.getNamespace(), "block/branch/" + family.getPath() );
+        ResourceLocation resloc = new ResourceLocation(family.getNamespace(), "branch/" + family.getPath() );
         return new ModelResourceLocation(resloc , null);
     }
 }

@@ -4,6 +4,7 @@ import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.registries.IForgeRegistry;
@@ -95,7 +96,7 @@ public class ModTrees
         TFCRegistries.TREES.getValuesCollection().forEach(t -> {
             String treeName = t.toString();
             ((TreeFamilyTFC)tfcSpecies.get(treeName).getFamily()).setPrimitiveLog(BlockLogDTTFC.get(t).getDefaultState());
-            registry.register(Item.getItemFromBlock(BlockLogDTTFC.get(t)));
+            registry.register(new ItemBlock(BlockLogDTTFC.get(t)).setRegistryName(BlockLogDTTFC.get(t).getRegistryName()));
         });
     }
 

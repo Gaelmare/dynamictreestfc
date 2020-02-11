@@ -1,6 +1,6 @@
 [
   {
-    "modid": "DynamicTreesTFC",
+    "modid": "dynamictreestfc",
     "name": "DynamicTreesTFC",
     "description": "Dynamic Trees add-on for TFC",
     "version": "${version}",
