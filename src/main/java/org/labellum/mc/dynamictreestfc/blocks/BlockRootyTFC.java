@@ -23,6 +23,6 @@ public class BlockRootyTFC extends BlockRootyDirt
         Chunk chunk = ((World)access).getChunk(pos); //puerile cast of interface
         ChunkDataTFC chunkData = chunk.getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
         if (chunkData == null) throw new IllegalStateException("ChunkData capability is missing.");
-        return BlockRockVariant.get(chunkData.getRock1(pos), Rock.Type.DIRT).getDefaultState();
+        return BlockRockVariant.get(chunkData.getRockHeight(pos), Rock.Type.DIRT).getDefaultState();
     }
 }
