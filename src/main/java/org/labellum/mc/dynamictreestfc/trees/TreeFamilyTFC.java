@@ -78,6 +78,12 @@ public class TreeFamilyTFC extends TreeFamily
             setSeedStack(new ItemStack(seed));
             return this;
         }
+
+        //TFC style.
+        @Override
+        public boolean canBoneMeal() {
+            return false;
+        }
     }
 
     @Override
