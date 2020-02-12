@@ -37,6 +37,14 @@ public class TreeFamilyTFC extends TreeFamily
     public TreeFamilyTFC(ResourceLocation name, Tree tree)
     {
         super(name);
+
+        if (getName().getPath() == "sequoia" ||
+            getName().getPath() == "kapok")
+        {
+            setThick(true);
+            //redo this after setting Thick, so get the right branch
+            setDynamicBranch(createBranch());
+        }
     }
 
     // need to have ItemStack be BlockLogTFC, but have the tree log be
@@ -56,7 +64,7 @@ public class TreeFamilyTFC extends TreeFamily
             super(treeFamily.getName(), treeFamily, prop);
             setupStandardSeedDropping();
 
-            //addDropCreator(new DropCreatorTFCLog(treeFamily));
+            //addDropCreator(new DropCreatorTFCLog(treeFamily)); // don't need this because setting log stack correctly
         }
 
         @Override

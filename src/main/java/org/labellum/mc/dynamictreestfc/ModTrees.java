@@ -17,6 +17,7 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
@@ -45,26 +46,25 @@ public class ModTrees
         Map<String, IGrowthLogicKit> logicMap = new HashMap<>();
         fillMaps(paramMap,logicMap);
 
-        TFCRegistries.TREES.getValuesCollection().forEach(t -> {
-            String treeName = t.toString();
+        for (Tree t1 : TFCRegistries.TREES.getValuesCollection())
+        {
+            String treeName = t1.toString();
 
             ResourceLocation resLoc = new ResourceLocation(MOD_ID, treeName);
 
-            TreeFamilyTFC family = new TreeFamilyTFC(resLoc,t);
-            if(t.toString() == "sequoia" ||
-               t.toString() == "kapok" )
-            {
-                family.setThick(true);
-            }
+            TreeFamilyTFC family = new TreeFamilyTFC(resLoc, t1);
+
             tfcTrees.add(family);
 
-            Species species = family.getCommonSpecies().setGrowthLogicKit(logicMap.get(treeName)).
-                    setBasicGrowingParameters(paramMap.get(treeName)[0],paramMap.get(treeName)[1],(int)paramMap.get(treeName)[2],(int)paramMap.get(treeName)[3],paramMap.get(treeName)[4]);
+            float[] map = paramMap.get(treeName) == null ? new float[]{0.20f,10f,3,3,1.00f} : paramMap.get(treeName);
+
+            Species species = family.getCommonSpecies().setGrowthLogicKit(logicMap.get(treeName) == null ? GrowthLogicKits.nullLogic : logicMap.get(treeName)).
+                    setBasicGrowingParameters(map[0], map[1], (int) map[2], (int) map[3], map[4]);
 
             tfcSpecies.put(treeName, species);
             Species.REGISTRY.register(species);
-            treeBlocks.add(new BlockLogDTTFC(t).setRegistryName(MOD_ID,"block/log/"+treeName));
-        });
+            treeBlocks.add(new BlockLogDTTFC(t1).setRegistryName(MOD_ID, "block/log/" + treeName));
+        }
 
         //Set up a map of species and their sapling types
         Map<String, BlockSaplingTFC> saplingMap = new HashMap<>();
@@ -121,6 +121,8 @@ public class ModTrees
         paramMap.put("sycamore",new float[]{0.20f,10f,4,3,0.90f});
         paramMap.put("white_cedar",new float[]{0.15f,20f,6,2,1.10f});
         paramMap.put("willow",new float[]{0.55f,8f,4,5,1.40f});
+        //TFCTech
+        paramMap.put("hevea",new float[]{0.2f,8,3,3,1});
 
         logicMap.put("acacia",GrowthLogicKits.nullLogic);
         logicMap.put("ash",GrowthLogicKits.nullLogic);
@@ -141,6 +143,8 @@ public class ModTrees
         logicMap.put("sycamore",GrowthLogicKits.nullLogic);
         logicMap.put("white_cedar",TreeRegistry.findGrowthLogicKit("Conifer"));
         logicMap.put("willow",TreeRegistry.findGrowthLogicKit("DarkOak"));
+        //TFCTech
+        logicMap.put("hevea",TreeRegistry.findGrowthLogicKit("DarkOak"));
     }
 
 }

@@ -92,5 +92,7 @@ public class ModBlocks
         kitMap.put("sycamore", TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
         kitMap.put("white_cedar", TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
         kitMap.put("willow", TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
+        //TFCTech
+        kitMap.put("hevea",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
     }
 }
