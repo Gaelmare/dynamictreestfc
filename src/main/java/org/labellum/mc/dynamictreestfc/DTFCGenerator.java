@@ -35,7 +35,7 @@ public class DTFCGenerator implements ITreeGenerator
         ChunkDataTFC chunkData = world.getChunk(pos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
         if (chunkData != null)
         {
-            if ((chunkData.getFloraDensity() * 100) % 10 == 0) {
+            if (((int)(chunkData.getFloraDensity() * 100)) % 10 == 0) {
                 return false;
             }
         }

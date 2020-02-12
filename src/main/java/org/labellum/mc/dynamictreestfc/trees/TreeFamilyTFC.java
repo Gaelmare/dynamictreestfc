@@ -66,7 +66,7 @@ public class TreeFamilyTFC extends TreeFamily
 
         @Override
         public Species generateSeed() {
-            Seed seed = new Seed(MOD_ID + ":seed/"+getRegistryName().getPath());
+            Seed seed = new Seed("seed/"+getRegistryName().getPath());
             setSeedStack(new ItemStack(seed));
             return this;
         }
