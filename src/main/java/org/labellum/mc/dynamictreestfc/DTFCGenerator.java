@@ -39,6 +39,10 @@ public class DTFCGenerator implements ITreeGenerator
                 return false;
             }
         }
+        if (world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
+        {
+            return false;
+        }
 
         return ITreeGenerator.super.canGenerateTree(world, pos, treeType);
     }
