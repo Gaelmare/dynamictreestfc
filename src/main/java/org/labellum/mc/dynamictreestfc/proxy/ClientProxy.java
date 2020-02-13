@@ -16,8 +16,10 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -27,10 +29,13 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
+import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import org.labellum.mc.dynamictreestfc.ModBlocks;
 import org.labellum.mc.dynamictreestfc.ModTrees;
+import org.labellum.mc.dynamictreestfc.blocks.BlockRootyTFC;
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
@@ -94,5 +99,20 @@ public class ClientProxy extends CommonProxy
                 }
             });
         }
+
+        final int white = 0xFFFFFFFF;
+
+        final BlockColors blockColors = Minecraft.getMinecraft().getBlockColors();
+
+        //Register Rooty Colorizers
+        blockColors.registerBlockColorHandler((state, world, pos, tintIndex) -> {
+            switch(tintIndex) {
+                case 0: return blockColors.colorMultiplier(Blocks.GRASS.getDefaultState(), world, pos, tintIndex);
+                case 1: return state.getBlock() instanceof BlockRootyTFC ? ((BlockRootyTFC) state.getBlock()).rootColor(state, world, pos) : white;
+                default: return white;
+            }
+        },
+        new Block[] { ModBlocks.blockRootyDirt});
+
     }
 }

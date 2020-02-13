@@ -2,16 +2,21 @@ package org.labellum.mc.dynamictreestfc;
 
 import java.util.Random;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
 
+import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.api.util.ITreeGenerator;
+import net.dries007.tfc.objects.blocks.BlocksTFC;
+import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 
@@ -22,6 +27,21 @@ public class DTFCGenerator implements ITreeGenerator
     @Override
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean b)
     {
+//        if (world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
+//        {
+//            return;
+//        } else
+        {
+            //experimental plains?
+            ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
+            if (chunkData != null)
+            {
+                if (((int)(chunkData.getFloraDensity() * 100)) % 10 == 0) {
+                    return;
+                }
+            }
+        }
+
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos()); //figure out how to cache these?
         dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, 8, bounds);
@@ -31,20 +51,38 @@ public class DTFCGenerator implements ITreeGenerator
     @Override
     public boolean canGenerateTree(World world, BlockPos pos, Tree treeType)
     {
-        //experimental plains?
-        ChunkDataTFC chunkData = world.getChunk(pos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
-        if (chunkData != null)
-        {
-            if (((int)(chunkData.getFloraDensity() * 100)) % 10 == 0) {
+        int radius = 4; //treeType.getMaxGrowthRadius();
+                //ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius()/2;
+
+        int x;
+        int y;
+        for(x = -radius; x <= radius; ++x) {
+            for(y = -radius; y <= radius; ++y) {
+                if ((x != 0 || y != 0) &&
+                     !world.getBlockState(pos.add(x, 0, y)).getMaterial().isReplaceable() &&
+                     (x <= 1 && y <= 1 || (!world.getBlockState(pos.add(x, 1, y)).getMaterial().isReplaceable() ||
+                      world.getBlockState(pos.add(x, 1, y)).getBlock() instanceof BlockBranch))) {
+                    return false;
+                }
+            }
+        }
+
+        x = treeType.getMaxHeight();
+
+        for(y = 1; y <= x; ++y) {
+            IBlockState state = world.getBlockState(pos.up(y));
+            if ((!state.getMaterial().isReplaceable() && state.getMaterial() != Material.LEAVES) ||
+                (world.getBlockState(pos.add(x, 1, y)).getBlock() instanceof BlockBranch)) {
                 return false;
             }
         }
-        if (world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
-        {
-            return false;
-        }
 
-        return ITreeGenerator.super.canGenerateTree(world, pos, treeType);
+        if (!BlocksTFC.isGrowableSoil(world.getBlockState(pos.down()))) {
+            return false;
+        } else {
+            IBlockState stateAt = world.getBlockState(pos);
+            return !stateAt.getMaterial().isLiquid() && (stateAt.getMaterial().isReplaceable() || stateAt.getBlock() instanceof BlockSaplingTFC);
+        }
     }
 }
     /*

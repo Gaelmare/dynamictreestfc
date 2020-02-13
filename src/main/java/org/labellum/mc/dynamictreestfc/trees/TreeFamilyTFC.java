@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.blocks.*;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -63,8 +64,8 @@ public class TreeFamilyTFC extends TreeFamily
         {
             super(treeFamily.getName(), treeFamily, prop);
             setupStandardSeedDropping();
-
-            //addDropCreator(new DropCreatorTFCLog(treeFamily)); // don't need this because setting log stack correctly
+            remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
+            addDropCreator(new DropCreatorTFCLog(treeFamily.getName().getPath())); // need our own because stacksize
         }
 
         @Override
