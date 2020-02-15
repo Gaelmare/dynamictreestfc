@@ -43,7 +43,7 @@ public class DTFCGenerator implements ITreeGenerator
         }
 
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
-        SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos()); //figure out how to cache these?
+        SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
         dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, 8, bounds);
         //dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
     }
@@ -51,19 +51,19 @@ public class DTFCGenerator implements ITreeGenerator
     @Override
     public boolean canGenerateTree(World world, BlockPos pos, Tree treeType)
     {
-        int radius = 4; //treeType.getMaxGrowthRadius();
-                //ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius()/2;
+        int radius = //treeType.getMaxGrowthRadius();
+                Math.min(4,ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius());
 
+        //check on ground and nearby trees
         int x;
         int y;
+        SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(pos).getPos());
         for(x = -radius; x <= radius; ++x) {
             for(y = -radius; y <= radius; ++y) {
-                if ((x != 0 || y != 0) &&
-                     !world.getBlockState(pos.add(x, 0, y)).getMaterial().isReplaceable() &&
-                     (x <= 1 && y <= 1 || (!world.getBlockState(pos.add(x, 1, y)).getMaterial().isReplaceable() ||
-                      world.getBlockState(pos.add(x, 1, y)).getBlock() instanceof BlockBranch))) {
-                    return false;
+                if (openRadius(world, pos, x, y, bounds)) {
+                    continue;
                 }
+                return false;
             }
         }
 
@@ -72,7 +72,7 @@ public class DTFCGenerator implements ITreeGenerator
         for(y = 1; y <= x; ++y) {
             IBlockState state = world.getBlockState(pos.up(y));
             if ((!state.getMaterial().isReplaceable() && state.getMaterial() != Material.LEAVES) ||
-                (world.getBlockState(pos.add(x, 1, y)).getBlock() instanceof BlockBranch)) {
+                (isBranch(state))) {
                 return false;
             }
         }
@@ -80,10 +80,31 @@ public class DTFCGenerator implements ITreeGenerator
         if (!BlocksTFC.isGrowableSoil(world.getBlockState(pos.down()))) {
             return false;
         } else {
-            IBlockState stateAt = world.getBlockState(pos);
-            return !stateAt.getMaterial().isLiquid() && (stateAt.getMaterial().isReplaceable() || stateAt.getBlock() instanceof BlockSaplingTFC);
+            IBlockState state = world.getBlockState(pos);
+            return !state.getMaterial().isLiquid() && (state.getMaterial().isReplaceable() || state.getBlock() instanceof BlockSaplingTFC);
         }
     }
+
+    private boolean openRadius(World world, BlockPos pos, int x, int y, SafeChunkBounds bounds)
+    {
+        boolean origin = x == 0 && y == 0;
+        return origin || !bounds.inBounds(pos.add(x,0,y), false) || //either tree origin, or it's not generated,
+                isReplaceable(world, pos, x, 0, y) ||                    //or ground level block is replaceable,
+                ((x > 1 || y > 1) && isReplaceable(world, pos, x, 2, y));//or block at y+1 is replaceable when >1 away from origin
+
+    }
+
+    private boolean isBranch(IBlockState state)
+    {
+        return state.getBlock() instanceof BlockBranch;
+    }
+
+    private boolean isReplaceable(World world, BlockPos pos, int x, int y, int z)
+    {
+        IBlockState state = world.getBlockState(pos.add(x, y, z));
+        return state.getMaterial().isReplaceable() && !isBranch(state);
+    }
+
 }
     /*
 
