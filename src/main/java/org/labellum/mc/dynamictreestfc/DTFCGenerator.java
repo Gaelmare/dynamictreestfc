@@ -26,6 +26,7 @@ import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 public class DTFCGenerator implements ITreeGenerator
 {
     private static Map<BlockPos, Integer> radiiMap;
+    private int dtRadius;
 
     public DTFCGenerator()
     {
@@ -78,13 +79,13 @@ public class DTFCGenerator implements ITreeGenerator
         }
 
         // need to search for trees around us to find our max radius
-        int dtRadius = ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius();
-        BlockPos dtPos = pos.add(0,3,0); //go searching for dt trunks
+        dtRadius = ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius();
+        BlockPos dtPos = pos.add(0,1,0); //go searching for dt trunks
         for(int i = 0; i <= dtRadius; ++i) { //check cardinal directions
             if (!openRadius(world, dtPos, i, 0, bounds) || !openRadius(world, dtPos, -i, 0, bounds) ||
                 !openRadius(world, dtPos, 0, i, bounds) || !openRadius(world, dtPos,0,  -i, bounds)) {
-                        radiiMap.put(pos,i-1);
-                        break;
+                    dtRadius = i-2;
+                    break;
             }
         }
 
