@@ -1,5 +1,7 @@
 package org.labellum.mc.dynamictreestfc;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
@@ -23,6 +25,12 @@ import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 
 public class DTFCGenerator implements ITreeGenerator
 {
+    private static Map<BlockPos, Integer> radiiMap;
+
+    public DTFCGenerator()
+    {
+        radiiMap = new HashMap<>();
+    }
 
     @Override
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean b)
@@ -44,19 +52,21 @@ public class DTFCGenerator implements ITreeGenerator
 
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
-        dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, 8, bounds);
+        dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random,
+                radiiMap.get(blockPos) == null ? dtSpecies.maxBranchRadius() : radiiMap.get(blockPos),
+                bounds);
         //dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
     }
 
     @Override
     public boolean canGenerateTree(World world, BlockPos pos, Tree treeType)
     {
-        int radius = //treeType.getMaxGrowthRadius();
-                Math.min(4,ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius());
+        int radius = treeType.getMaxGrowthRadius(); //a safe proxy for how big our DT versions get around the trunk
 
         //check on ground and nearby trees
         int x;
         int y;
+
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(pos).getPos());
         for(x = -radius; x <= radius; ++x) {
             for(y = -radius; y <= radius; ++y) {
@@ -64,6 +74,17 @@ public class DTFCGenerator implements ITreeGenerator
                     continue;
                 }
                 return false;
+            }
+        }
+
+        // need to search for trees around us to find our max radius
+        int dtRadius = ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius();
+        BlockPos dtPos = pos.add(0,3,0); //go searching for dt trunks
+        for(int i = 0; i <= dtRadius; ++i) { //check cardinal directions
+            if (!openRadius(world, dtPos, i, 0, bounds) || !openRadius(world, dtPos, -i, 0, bounds) ||
+                !openRadius(world, dtPos, 0, i, bounds) || !openRadius(world, dtPos,0,  -i, bounds)) {
+                        radiiMap.put(pos,i-1);
+                        break;
             }
         }
 
@@ -81,7 +102,11 @@ public class DTFCGenerator implements ITreeGenerator
             return false;
         } else {
             IBlockState state = world.getBlockState(pos);
-            return !state.getMaterial().isLiquid() && (state.getMaterial().isReplaceable() || state.getBlock() instanceof BlockSaplingTFC);
+            if (!state.getMaterial().isLiquid() && (state.getMaterial().isReplaceable() || state.getBlock() instanceof BlockSaplingTFC))
+            {
+                return true;
+            }
+            else return false;
         }
     }
 
@@ -90,7 +115,7 @@ public class DTFCGenerator implements ITreeGenerator
         boolean origin = x == 0 && y == 0;
         return origin || !bounds.inBounds(pos.add(x,0,y), false) || //either tree origin, or it's not generated,
                 isReplaceable(world, pos, x, 0, y) ||                    //or ground level block is replaceable,
-                ((x > 1 || y > 1) && isReplaceable(world, pos, x, 2, y));//or block at y+1 is replaceable when >1 away from origin
+                ((x > 1 || y > 1) && isReplaceable(world, pos, x, 1, y));//or block at y+1 is replaceable when >1 away from origin
 
     }
 
