@@ -25,21 +25,20 @@ import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 
 public class DTFCGenerator implements ITreeGenerator
 {
-    private static Map<BlockPos, Integer> radiiMap;
-    private int dtRadius;
+    private int dtRadius; //used to store useful radius between canGenerate and Generate
 
     public DTFCGenerator()
     {
-        radiiMap = new HashMap<>();
+        dtRadius = 0;
     }
 
     @Override
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean b)
     {
-//        if (world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
-//        {
-//            return;
-//        } else
+        if (world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
+        {
+            return;
+        } else
         {
             //experimental plains?
             ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
@@ -54,7 +53,7 @@ public class DTFCGenerator implements ITreeGenerator
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
         dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random,
-                radiiMap.get(blockPos) == null ? dtSpecies.maxBranchRadius() : radiiMap.get(blockPos),
+                dtRadius <= 0 ? dtSpecies.maxBranchRadius()/3 : dtRadius,
                 bounds);
         //dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
     }
@@ -80,12 +79,16 @@ public class DTFCGenerator implements ITreeGenerator
 
         // need to search for trees around us to find our max radius
         dtRadius = ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius();
-        BlockPos dtPos = pos.add(0,1,0); //go searching for dt trunks
-        for(int i = 0; i <= dtRadius; ++i) { //check cardinal directions
+        int ht = ModTrees.tfcSpecies.get(treeType.toString()).getLowestBranchHeight();
+        BlockPos dtPos = pos.add(0,ht-1,0); //go searching for dt trunks
+        for(int i = 1; i <= dtRadius; ++i) { //check cardinal directions and 45s
             if (!openRadius(world, dtPos, i, 0, bounds) || !openRadius(world, dtPos, -i, 0, bounds) ||
-                !openRadius(world, dtPos, 0, i, bounds) || !openRadius(world, dtPos,0,  -i, bounds)) {
-                    dtRadius = i-2;
-                    break;
+                !openRadius(world, dtPos, 0, i, bounds) || !openRadius(world, dtPos,0,  -i, bounds) ||
+                !openRadius(world, dtPos, i/2,  i/2, bounds) || !openRadius(world, dtPos,  i/2, -i/2, bounds) ||
+                !openRadius(world, dtPos, -i/2, i/2, bounds) || !openRadius(world, dtPos, -i/2, -i/2, bounds))
+            {
+                dtRadius = i-2;
+                break;
             }
         }
 
