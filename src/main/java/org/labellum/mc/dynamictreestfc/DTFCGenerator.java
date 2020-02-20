@@ -35,18 +35,17 @@ public class DTFCGenerator implements ITreeGenerator
     }
 
     @Override
-    public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean b)
+    public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean isWorldGen)
     {
-        if (world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
+        if (isWorldGen && world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
         {
             return;
-        } else
-        {
-            //experimental plains?
+        } else {
+            //experimental plains, terrible misuse of noisegen
             ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
             if (chunkData != null)
             {
-                if (((int)(chunkData.getFloraDensity() * 100)) % 10 == 0) {
+                if (isWorldGen && (int)(chunkData.getFloraDensity() + chunkData.getFloraDiversity() * 100) % 10 == 0 ) {
                     return;
                 }
             }
@@ -93,7 +92,7 @@ public class DTFCGenerator implements ITreeGenerator
         dtRadius = ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius();
         int ht = ModTrees.tfcSpecies.get(treeType.toString()).getLowestBranchHeight();
         BlockPos dtPos = pos.add(0,ht,0); //go searching for dt blocks etc.
-        for(int i = 1; i <= dtRadius; ++i) { //check cardinal directions and 45s
+        for(int i = 1; i <= dtRadius; ++i) { //check cardinal directions and manhattan diags
             if (!openRadius(world, dtPos, i, 0, bounds) || !openRadius(world, dtPos, -i, 0, bounds) ||
                 !openRadius(world, dtPos, 0, i, bounds) || !openRadius(world, dtPos,0,  -i, bounds) ||
                 !openRadius(world, dtPos, i/2,  i/2, bounds) || !openRadius(world, dtPos,  i/2, -i/2, bounds) ||
@@ -122,7 +121,6 @@ public class DTFCGenerator implements ITreeGenerator
         return origin || !bounds.inBounds(pos.add(x,0,y), false) || //either tree origin, or it's not generated,
                 isReplaceable(world, pos, x, 0, y) ||                    //or ground level block is replaceable,
                 ((x > 1 || y > 1) && isReplaceable(world, pos, x, 1, y));//or block at y+1 is replaceable when >1 away from origin
-
     }
 
     private boolean isDTBranch(IBlockState state)

@@ -32,10 +32,10 @@ public class DynamicTreesTFC
 
     public static final String MOD_ID = "dynamictreestfc";
     public static final String MOD_NAME = "DynamicTreesTFC";
-    public static final String VERSION = "0.9.4";
+    public static final String VERSION = "0.9.5";
     public static final String DEPENDENCIES
             = REQAFTER + TerraFirmaCraft.MOD_ID +
-            //AT + "0.28.2.115" + ORGREATER +
+            AT + "0.29.3.118" + ORGREATER +
             NEXT +
             REQAFTER + DYNAMICTREES_LATEST
 ;
