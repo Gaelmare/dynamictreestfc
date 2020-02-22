@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "dynamictreestfc:log/hevea"
+    },
+    "axis=z": {
+      "model": "dynamictreestfc:log/hevea",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "dynamictreestfc:log/hevea",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
