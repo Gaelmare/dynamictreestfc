@@ -11,8 +11,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
+import com.ferreusveritas.dynamictrees.growthlogic.ConiferLogic;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKits;
 import com.ferreusveritas.dynamictrees.growthlogic.IGrowthLogicKit;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
@@ -82,6 +84,16 @@ public class ModTrees
             species.clearAcceptableSoils();
             Block[] blocks = new Block[]{};
             species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
+
+            switch (treeName)
+            {
+                case "douglas_fir":
+                case "spruce":
+                case "pine":
+                case "sequoia":
+                case "white_cedar":
+                    species.addGenFeature(new FeatureGenConiferTopper(ModBlocks.leafMap.get(treeName)));
+            }
         });
 
         tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
@@ -138,7 +150,7 @@ public class ModTrees
         logicMap.put("palm",TreeRegistry.findGrowthLogicKit("Jungle"));
         logicMap.put("pine",TreeRegistry.findGrowthLogicKit("Conifer"));
         logicMap.put("rosewood",GrowthLogicKits.nullLogic);
-        logicMap.put("sequoia",TreeRegistry.findGrowthLogicKit("Conifer"));
+        logicMap.put("sequoia",new ConiferLogic(5.0f));
         logicMap.put("spruce",TreeRegistry.findGrowthLogicKit("Conifer"));
         logicMap.put("sycamore",GrowthLogicKits.nullLogic);
         logicMap.put("white_cedar",TreeRegistry.findGrowthLogicKit("Conifer"));

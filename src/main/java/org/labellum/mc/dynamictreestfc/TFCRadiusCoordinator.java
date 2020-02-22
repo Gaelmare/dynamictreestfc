@@ -29,8 +29,7 @@ public class TFCRadiusCoordinator implements IRadiusCoordinator
     public int getRadiusAtCoords(int x, int z) {
 
         double scale = 128;//Effectively scales up the noisemap
-        double noiseDensity = (noiseGenerator.getValue(x / scale, z / scale) + 1D) / 2.0D;//Gives 0.0 to 1.0
-        //double density = treeGenerator.getBiomeDataBase(world).getDensity(biome).getDensity(world.rand, noiseDensity);
+        double noiseDensity = noiseGenerator.getValue(x / scale, z / scale);//Gives -1.0 to 1.0
         Chunk chunk = world.getChunk(new BlockPos(x + 8, 0, z + 8));
         ChunkDataTFC chunkData = (ChunkDataTFC)chunk.getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
         double density;
@@ -42,6 +41,7 @@ public class TFCRadiusCoordinator implements IRadiusCoordinator
         {
             density = 0.5;
         }
+        density += world.rand.nextFloat()*noiseDensity;
 
         double size = ((1.0 - density) * 9);//Size is the inverse of density(Gives 0 to 9)
 

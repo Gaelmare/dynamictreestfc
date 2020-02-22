@@ -39,12 +39,13 @@ public class TreeFamilyTFC extends TreeFamily
     {
         super(name);
 
-        if (getName().getPath() == "sequoia" ||
-            getName().getPath() == "kapok")
+        switch (getName().getPath())
         {
-            setThick(true);
-            //redo this after setting Thick, so get the right branch
-            setDynamicBranch(createBranch());
+            case "sequoia":
+            case "kapok":
+                setThick(true);
+                //redo this after setting Thick, so get the right branch
+                setDynamicBranch(createBranch());
         }
     }
 
@@ -66,11 +67,23 @@ public class TreeFamilyTFC extends TreeFamily
             setupStandardSeedDropping();
             remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
             addDropCreator(new DropCreatorTFCLog(treeFamily.getName().getPath())); // need our own because stacksize
+
+            switch (treeFamily.getName().getPath())
+            {
+                case "sequoia":
+                case "kapok":
+                    setSoilLongevity(16);//Grows for a while so it can actually get tall
+            }
         }
 
         @Override
         public BlockRooty getRootyBlock() {
             return ModBlocks.blockRootyDirt;
+        }
+
+        public float getSignalEnergy()
+        {
+            return signalEnergy;
         }
 
         @Override

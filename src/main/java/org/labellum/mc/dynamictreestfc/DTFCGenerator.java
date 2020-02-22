@@ -23,11 +23,13 @@ import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
+import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
 
 
 public class DTFCGenerator implements ITreeGenerator
 {
     private int dtRadius; //used to store useful radius between canGenerate and Generate
+    private static TFCRadiusCoordinator radiusCoordinator = null;
 
     public DTFCGenerator()
     {
@@ -37,7 +39,8 @@ public class DTFCGenerator implements ITreeGenerator
     @Override
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean isWorldGen)
     {
-        if (isWorldGen && world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
+        if (isWorldGen
+            && world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
         {
             return;
         } else {
@@ -45,7 +48,8 @@ public class DTFCGenerator implements ITreeGenerator
             ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
             if (chunkData != null)
             {
-                if (isWorldGen && (int)(chunkData.getFloraDensity() + chunkData.getFloraDiversity() * 100) % 10 == 0 ) {
+                if (isWorldGen && (int)(chunkData.getFloraDensity() * chunkData.getFloraDiversity() * 100) % 10 < 2 &&
+                    world.rand.nextInt(100) >3 ) {
                     return;
                 }
             }
@@ -62,54 +66,49 @@ public class DTFCGenerator implements ITreeGenerator
     @Override
     public boolean canGenerateTree(World world, BlockPos pos, Tree treeType)
     {
+        if (!BlocksTFC.isGrowableSoil(world.getBlockState(pos.down()))) {
+            return false;
+        }
+
         IBlockState locState = world.getBlockState(pos);
         if (locState.getMaterial().isLiquid() || (!locState.getMaterial().isReplaceable() && !(locState.getBlock() instanceof BlockSaplingTFC)))
         {
             return false;
         }
 
-        if (!BlocksTFC.isGrowableSoil(world.getBlockState(pos.down()))) {
-            return false;
+        if (radiusCoordinator == null)
+        {
+            radiusCoordinator = new TFCRadiusCoordinator(null,world);
         }
 
-        int radius = treeType.getMaxGrowthRadius(); //a safe proxy for how big our DT versions get around the trunk
+        dtRadius = radiusCoordinator.getRadiusAtCoords(pos.getX(),pos.getZ());
 
         //check on ground and nearby trees
         int x;
-        int y;
+        int z;
+        Species dTree = ModTrees.tfcSpecies.get(treeType.toString());
+        int nht = dTree.getLowestBranchHeight();
+        int xht = (int)((TreeFamilyTFC.TreeTFCSpecies)dTree).getSignalEnergy();
 
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(pos).getPos());
-        for(x = -radius; x <= radius; ++x) {
-            for(y = -radius; y <= radius; ++y) {
-                if (openRadius(world, pos, x, y, bounds)) {
-                    continue;
-                }
-                return false;
-            }
-        }
-
-        // need to search for trees around us to find our max radius
-        dtRadius = ModTrees.tfcSpecies.get(treeType.toString()).maxBranchRadius();
-        int ht = ModTrees.tfcSpecies.get(treeType.toString()).getLowestBranchHeight();
-        BlockPos dtPos = pos.add(0,ht,0); //go searching for dt blocks etc.
-        for(int i = 1; i <= dtRadius; ++i) { //check cardinal directions and manhattan diags
-            if (!openRadius(world, dtPos, i, 0, bounds) || !openRadius(world, dtPos, -i, 0, bounds) ||
-                !openRadius(world, dtPos, 0, i, bounds) || !openRadius(world, dtPos,0,  -i, bounds) ||
-                !openRadius(world, dtPos, i/2,  i/2, bounds) || !openRadius(world, dtPos,  i/2, -i/2, bounds) ||
-                !openRadius(world, dtPos, -i/2, i/2, bounds) || !openRadius(world, dtPos, -i/2, -i/2, bounds))
+        for ( int y = 0; y <= nht; y++) {
+            if (openRadius(world,pos.up(y),0,0, bounds))
             {
-                dtRadius = i-2;
-                break;
+                continue;
             }
+            return false;
         }
 
-        x = treeType.getMaxHeight(); //used as proxy for DT tree for now
-
-        for(y = 1; y <= x; ++y) {
-            IBlockState state = world.getBlockState(pos.up(y));
-            if ((!state.getMaterial().isReplaceable() && state.getMaterial() != Material.LEAVES) ||
-                 isDTBranch(state)) {
-                return false;
+        for(x = -dtRadius; x <= dtRadius; ++x) {
+            for(z = -dtRadius; z <= dtRadius; ++z) {
+                for ( int y = nht; y < xht; ++y)
+                {
+                    if (openRadius(world, pos.up(y), x, z, bounds))
+                    {
+                        continue;
+                    }
+                    return false;
+                }
             }
         }
         return true;

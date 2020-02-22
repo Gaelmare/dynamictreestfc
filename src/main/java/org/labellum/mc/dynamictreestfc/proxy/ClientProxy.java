@@ -101,7 +101,6 @@ public class ClientProxy extends CommonProxy
         }
 
         final int white = 0xFFFFFFFF;
-
         final BlockColors blockColors = Minecraft.getMinecraft().getBlockColors();
 
         //Register Rooty Colorizers
