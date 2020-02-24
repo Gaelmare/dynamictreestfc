@@ -93,6 +93,7 @@ public class ModTrees
                 case "sequoia":
                 case "white_cedar":
                     species.addGenFeature(new FeatureGenConiferTopper(ModBlocks.leafMap.get(treeName)));
+                    t.hasConiferVariants = true;
             }
         });
 
@@ -116,25 +117,25 @@ public class ModTrees
     {
         paramMap.put("acacia",new float[]{0.10f,14f,6,6,0.90f});
         paramMap.put("ash",new float[]{0.25f,12f,4,3,1.00f});
-        paramMap.put("aspen",new float[]{0.30f,16f,8,3,1.00f});
-        paramMap.put("birch",new float[]{0.25f,12f,5,4,1.15f});
+        paramMap.put("aspen",new float[]{0.30f,16f,8,2,1.50f});
+        paramMap.put("birch",new float[]{0.25f,12f,5,5,1.15f});
         paramMap.put("blackwood",new float[]{0.20f,13f,3,4,0.90f});
         paramMap.put("chestnut",new float[]{0.20f,10f,3,3,1.00f});
-        paramMap.put("douglas_fir",new float[]{0.15f,15f,5,3,1.15f});
+        paramMap.put("douglas_fir",new float[]{0.15f,20f,5,3,1.15f});
         paramMap.put("hickory",new float[]{0.20f,14f,5,3,0.80f});
-        paramMap.put("kapok",new float[]{0.10f,24f,7,4,0.85f});
+        paramMap.put("kapok",new float[]{0.10f,30f,7,4,0.85f});
         paramMap.put("maple",new float[]{0.15f,15f,6,3,0.95f});
         paramMap.put("oak",new float[]{0.30f,16f,3,3,0.85f});
         paramMap.put("palm",new float[]{0.05f,16f,5,4,1.10f});
         paramMap.put("pine",new float[]{0.20f,18f,6,2,1.20f});
         paramMap.put("rosewood",new float[]{0.35f,15f,7,3,1.00f});
-        paramMap.put("sequoia",new float[]{0.20f,28f,9,4,0.70f});
+        paramMap.put("sequoia",new float[]{0.20f,36f,9,4,0.70f});
         paramMap.put("spruce",new float[]{0.15f,12f,6,3,1.10f});
         paramMap.put("sycamore",new float[]{0.20f,10f,4,3,0.90f});
         paramMap.put("white_cedar",new float[]{0.15f,20f,6,2,1.10f});
-        paramMap.put("willow",new float[]{0.55f,8f,4,5,1.40f});
+        paramMap.put("willow",new float[]{0.55f,15f,2,2,1.40f});
         //TFCTech
-        paramMap.put("hevea",new float[]{0.2f,8,3,3,1});
+        paramMap.put("hevea",new float[]{0.20f,13f,3,7,1.25f});
 
         logicMap.put("acacia",GrowthLogicKits.nullLogic);
         logicMap.put("ash",GrowthLogicKits.nullLogic);

@@ -1,13 +1,10 @@
 package org.labellum.mc.dynamictreestfc;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.template.TemplateManager;
@@ -39,19 +36,14 @@ public class DTFCGenerator implements ITreeGenerator
     @Override
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean isWorldGen)
     {
-        if (isWorldGen
-            && world.rand.nextInt(5)<2) //generate only 60% of the trees for now. Need to figure out better way
+        //experimental plains, terrible misuse of noisegen
+        ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
+        if (chunkData != null)
         {
-            return;
-        } else {
-            //experimental plains, terrible misuse of noisegen
-            ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
-            if (chunkData != null)
+            if (isWorldGen && (int) (chunkData.getFloraDensity() * chunkData.getFloraDiversity() * 100) % 10 < 2 &&
+                world.rand.nextInt(100) > 3)
             {
-                if (isWorldGen && (int)(chunkData.getFloraDensity() * chunkData.getFloraDiversity() * 100) % 10 < 2 &&
-                    world.rand.nextInt(100) >3 ) {
-                    return;
-                }
+                return;
             }
         }
 
@@ -88,7 +80,7 @@ public class DTFCGenerator implements ITreeGenerator
         int z;
         Species dTree = ModTrees.tfcSpecies.get(treeType.toString());
         int nht = dTree.getLowestBranchHeight();
-        int xht = (int)((TreeFamilyTFC.TreeTFCSpecies)dTree).getSignalEnergy();
+        int xht = (int)((TreeFamilyTFC.TreeTFCSpecies)dTree).getSignalEnergy(); //signal energy access problem so need to cast
 
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(pos).getPos());
         for ( int y = 0; y <= nht; y++) {
@@ -99,9 +91,9 @@ public class DTFCGenerator implements ITreeGenerator
             return false;
         }
 
-        for(x = -dtRadius; x <= dtRadius; ++x) {
-            for(z = -dtRadius; z <= dtRadius; ++z) {
-                for ( int y = nht; y < xht; ++y)
+        for(x = -dtRadius-1; x <= dtRadius+1; ++x) {
+            for(z = -dtRadius-1; z <= dtRadius+1; ++z) {
+                for ( int y = nht-1; y < xht; ++y)
                 {
                     if (openRadius(world, pos.up(y), x, z, bounds))
                     {

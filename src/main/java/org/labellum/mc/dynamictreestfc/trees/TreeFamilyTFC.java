@@ -10,10 +10,13 @@ import net.minecraft.util.ResourceLocation;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.blocks.*;
 import com.ferreusveritas.dynamictrees.items.Seed;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFlareBottom;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
+import org.labellum.mc.dynamictreestfc.FeatureGenMoundTFC;
 import org.labellum.mc.dynamictreestfc.ModBlocks;
 import org.labellum.mc.dynamictreestfc.blocks.BlockLogDTTFC;
 import org.labellum.mc.dynamictreestfc.dropcreators.DropCreatorTFCLog;
@@ -22,6 +25,7 @@ import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 public class TreeFamilyTFC extends TreeFamily
 {
+    public boolean hasConiferVariants = false;
     private boolean thick = false;
 
     @Override
@@ -70,9 +74,14 @@ public class TreeFamilyTFC extends TreeFamily
 
             switch (treeFamily.getName().getPath())
             {
-                case "sequoia":
                 case "kapok":
-                    setSoilLongevity(16);//Grows for a while so it can actually get tall
+                    addGenFeature(new FeatureGenVine().setQuantity(8).setMaxLength(32).setRayDistance(32));//Generate Vines
+                    //intentional fall through to set thick parameters for kapok too
+                case "sequoia":
+                    addGenFeature(new FeatureGenMoundTFC(2));//Place a 3x3 of dirt under thick trees
+                    setSoilLongevity(36);//Grows for a while so it can actually get tall
+                    addGenFeature(new FeatureGenFlareBottom());//Flare the bottom
+
             }
         }
 
