@@ -37,7 +37,7 @@ public class DTFCGenerator implements ITreeGenerator
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean isWorldGen)
     {
         //experimental plains, terrible misuse of noisegen
-        ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
+        /*//ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
         if (chunkData != null)
         {
             if (isWorldGen && (int) (chunkData.getFloraDensity() * chunkData.getFloraDiversity() * 100) % 10 < 2 &&
@@ -45,7 +45,7 @@ public class DTFCGenerator implements ITreeGenerator
             {
                 return;
             }
-        }
+        }*/ //commented out while we see how the vanilla TFC plains work out.
 
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
@@ -117,7 +117,7 @@ public class DTFCGenerator implements ITreeGenerator
     private boolean isDTBranch(IBlockState state)
     {
         Block block = state.getBlock();
-        return block instanceof BlockBranch || block instanceof BlockDynamicLeaves;
+        return block instanceof BlockBranch ;//|| block instanceof BlockDynamicLeaves;
     }
 
     private boolean isReplaceable(World world, BlockPos pos, int x, int y, int z)

@@ -70,7 +70,7 @@ public class ModTrees
 
         //Set up a map of species and their sapling types
         Map<String, BlockSaplingTFC> saplingMap = new HashMap<>();
-        BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.wood.toString(),s));
+        BlocksTFC.getAllSaplingBlocks().forEach(s -> saplingMap.put(s.getWood().toString(),s));
 
         for(Map.Entry<String, Species> entry : tfcSpecies.entrySet()) {
             TreeRegistry.registerSaplingReplacer(saplingMap.get(entry.getKey()).getDefaultState(), entry.getValue());
