@@ -35,7 +35,7 @@ public class DynamicTreesTFC
     public static final String VERSION = "0.9.8";
     public static final String DEPENDENCIES
             = REQAFTER + TerraFirmaCraft.MOD_ID +
-            AT + "1.0.1.128" + ORGREATER +
+            AT + "1.2.1.144" + ORGREATER +
             NEXT +
             REQAFTER + DYNAMICTREES_LATEST
 ;
