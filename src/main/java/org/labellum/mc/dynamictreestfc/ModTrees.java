@@ -81,9 +81,6 @@ public class ModTrees
             ModBlocks.leafMap.get(treeName).setTree(t);
             Species species = tfcSpecies.get(treeName);
             species.setLeavesProperties(ModBlocks.leafMap.get(treeName));
-            species.clearAcceptableSoils();
-            Block[] blocks = new Block[]{};
-            species.addAcceptableSoil(ModBlocks.allGrowableVariants.toArray(blocks));
 
             switch (treeName)
             {
@@ -96,6 +93,9 @@ public class ModTrees
                     t.hasConiferVariants = true;
             }
         });
+
+        Block[] soilBlocks = ModBlocks.allGrowableVariants.toArray(new Block[]{});
+        Species.REGISTRY.forEach(species -> species.addAcceptableSoil(soilBlocks)); //allow all DT trees on TFC soils. No guarantees on rooty soil behavior!
 
         tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 
