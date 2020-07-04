@@ -11,10 +11,9 @@ Translations and textures welcome.
 
 ## Status
 
-EARLY ALPHA, not suitable for anything but further development
+LATE BETA, needs help with tree placement and density, as well as TFC specific JoCode library.
 
 ## Current issues/todo
-* Create TFC Species Dynamic Trees
 * Add TFC Rooty Soil that reverts to correct dirt block on root death
 * Passable leaves
 * Correct density generation
