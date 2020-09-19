@@ -10,14 +10,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.ferreusveritas.dynamictrees.event.BiomeSuitabilityEvent;
 import net.dries007.tfc.TerraFirmaCraft;
 import org.labellum.mc.dynamictreestfc.proxy.CommonProxy;
-import org.labellum.mc.dynamictreestfc.proxy.ClientProxy;
 
 import static com.ferreusveritas.dynamictrees.ModConstants.*;
 
@@ -32,10 +30,10 @@ public class DynamicTreesTFC
 
     public static final String MOD_ID = "dynamictreestfc";
     public static final String MOD_NAME = "DynamicTreesTFC";
-    public static final String VERSION = "0.9.12";
+    public static final String VERSION = "0.9.13";
     public static final String DEPENDENCIES
             = REQAFTER + TerraFirmaCraft.MOD_ID +
-            AT + "1.5.3.153" + ORGREATER +
+            AT + "1.7.3.161" + ORGREATER +
             NEXT +
             REQAFTER + DYNAMICTREES_LATEST
 ;
@@ -79,7 +77,7 @@ public class DynamicTreesTFC
     @Mod.EventHandler
     public void postinit(FMLPostInitializationEvent event)
     {
-
+        ModTrees.postInit();
     }
 
 

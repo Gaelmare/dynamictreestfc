@@ -1,7 +1,5 @@
 package org.labellum.mc.dynamictreestfc.trees;
 
-import java.util.List;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,10 +16,10 @@ import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import org.labellum.mc.dynamictreestfc.FeatureGenMoundTFC;
 import org.labellum.mc.dynamictreestfc.ModBlocks;
+import org.labellum.mc.dynamictreestfc.blocks.BlockBranchBasicTFC;
+import org.labellum.mc.dynamictreestfc.blocks.BlockBranchThickTFC;
 import org.labellum.mc.dynamictreestfc.blocks.BlockLogDTTFC;
 import org.labellum.mc.dynamictreestfc.dropcreators.DropCreatorTFCLog;
-
-import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 public class TreeFamilyTFC extends TreeFamily
 {
@@ -125,12 +123,6 @@ public class TreeFamilyTFC extends TreeFamily
     @Override
     public BlockBranch createBranch() {
         String branchName = "branch/" + getName().getPath();
-        return isThick() ? new BlockBranchThick(branchName) : new BlockBranchBasic(branchName);
+        return isThick() ? new BlockBranchThickTFC(branchName) : new BlockBranchBasicTFC(branchName);
     }
-
-    @Override
-    public boolean autoCreateBranch() {
-        return true;
-    }
-
 }

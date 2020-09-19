@@ -5,12 +5,9 @@ import java.util.Map;
 
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
 import net.dries007.tfc.api.types.Tree;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 // The only purpose of this block is to avoid calling getBlockHardness on a BlockLogTFC with a
@@ -32,7 +29,7 @@ public class BlockLogDTTFC extends BlockLog
         } else {
             this.wood = wood;
             setSoundType(SoundType.WOOD);
-            setHardness(5.0F).setResistance(5.0F);
+            setHardness(2.0F).setResistance(5.0F);
             setHarvestLevel("axe", 0);
             setCreativeTab(null);
             Blocks.FIRE.setFireInfo(this, 5, 5);

@@ -4,7 +4,6 @@ import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.registries.IForgeRegistry;
@@ -16,12 +15,10 @@ import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKits;
 import com.ferreusveritas.dynamictrees.growthlogic.IGrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
-import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
@@ -94,9 +91,6 @@ public class ModTrees
             }
         });
 
-        Block[] soilBlocks = ModBlocks.allGrowableVariants.toArray(new Block[]{});
-        Species.REGISTRY.forEach(species -> species.addAcceptableSoil(soilBlocks)); //allow all DT trees on TFC soils. No guarantees on rooty soil behavior!
-
         tfcTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 
         treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(MOD_ID).values());
@@ -112,6 +106,11 @@ public class ModTrees
         });
     }
 
+    public static void postInit()
+    {
+        Block[] soilBlocks = ModBlocks.allGrowableVariants.toArray(new Block[]{});
+        Species.REGISTRY.forEach(species -> species.addAcceptableSoil(soilBlocks)); //allow all DT trees on TFC soils. No guarantees on rooty soil behavior!
+    }
 
     private static void fillMaps(Map<String, float[]> paramMap, Map<String, IGrowthLogicKit> logicMap)
     {
