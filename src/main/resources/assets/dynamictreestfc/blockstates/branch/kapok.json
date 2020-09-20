@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "dynamictreestfc:branch/kapok#dynamictree" }
+    "normal": { "model": "dynamictreestfc:branch/kapok#dynamicthick" }
   }
 }

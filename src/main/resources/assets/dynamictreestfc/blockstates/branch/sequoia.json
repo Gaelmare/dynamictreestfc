@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "dynamictreestfc:branch/sequoia#dynamictree" }
+    "normal": { "model": "dynamictreestfc:branch/sequoia#dynamicthick" }
   }
 }
