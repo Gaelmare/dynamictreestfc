@@ -2,7 +2,9 @@ package org.labellum.mc.dynamictreestfc;
 
 import java.util.*;
 
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,12 +15,14 @@ import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.growthlogic.ConiferLogic;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKits;
 import com.ferreusveritas.dynamictrees.growthlogic.IGrowthLogicKit;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
+import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
@@ -81,6 +85,9 @@ public class ModTrees
 
             switch (treeName)
             {
+                case "acacia":
+                    species.addAcceptableSoils(DirtHelper.HARDCLAYLIKE); //match base DT
+                    break;
                 case "douglas_fir":
                 case "spruce":
                 case "pine":
@@ -108,8 +115,23 @@ public class ModTrees
 
     public static void postInit()
     {
-        Block[] soilBlocks = ModBlocks.allGrowableVariants.toArray(new Block[]{});
-        Species.REGISTRY.forEach(species -> species.addAcceptableSoil(soilBlocks)); //allow all DT trees on TFC soils. No guarantees on rooty soil behavior!
+        for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
+        {
+            IBlockState def = rock.getDefaultState();
+            if (BlocksTFC.isGrowableSoil(def))
+            {
+                DirtHelper.registerSoil(def.getBlock(),DirtHelper.DIRTLIKE);
+            } else if (BlocksTFC.isSand(def))
+            {
+                DirtHelper.registerSoil(def.getBlock(),DirtHelper.SANDLIKE);
+            } else if (BlocksTFC.isSoilOrGravel(def)) // soil caught above
+            {
+                DirtHelper.registerSoil(def.getBlock(),DirtHelper.GRAVELLIKE);
+            }
+        }
+        DirtHelper.registerSoil(FluidsTFC.FRESH_WATER.get().getBlock(),DirtHelper.WATERLIKE);
+        DirtHelper.registerSoil(FluidsTFC.SALT_WATER.get().getBlock(),DirtHelper.WATERLIKE); // maybe?
+        // "hot spring water" won't grow trees, I expect
     }
 
     private static void fillMaps(Map<String, float[]> paramMap, Map<String, IGrowthLogicKit> logicMap)
