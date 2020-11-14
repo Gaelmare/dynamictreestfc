@@ -2,6 +2,7 @@ package org.labellum.mc.dynamictreestfc;
 
 import java.util.Random;
 
+import net.dries007.tfc.types.DefaultTrees;
 import net.minecraft.block.Block;
 
 import net.minecraft.block.state.IBlockState;
@@ -11,17 +12,13 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 
 
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.api.util.ITreeGenerator;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
-import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
-import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
-
 
 public class DTFCGenerator implements ITreeGenerator
 {
@@ -74,6 +71,15 @@ public class DTFCGenerator implements ITreeGenerator
         }
 
         dtRadius = radiusCoordinator.getRadiusAtCoords(pos.getX(),pos.getZ());
+
+        // Only checks to change radius of smaller trees
+        if (!treeType.isConifer()
+                && treeType.getMaxHeight() <= 16
+                && treeType.getRegistryName() != DefaultTrees.DOUGLAS_FIR
+        )
+        {
+             dtRadius *= DTTFCConfig.General.radiusMultiplier;
+        }
 
         //check on ground and nearby trees
         int x;
