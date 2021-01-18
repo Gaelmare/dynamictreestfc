@@ -3,7 +3,6 @@ package org.labellum.mc.dynamictreestfc;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -15,14 +14,12 @@ import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
-import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
 public class ModBlocks
 {
-    public static ImmutableList<BlockRockVariant> allGrowableVariants;
     public static LeavesProperties[] tfcLeavesProperties;
     public static Map<String, LeavesProperties> leafMap;
     public static Map<String, ICellKit> kitMap;
@@ -38,16 +35,6 @@ public class ModBlocks
 
     public static void register(IForgeRegistry<Block> registry)
     {
-        ImmutableList.Builder<BlockRockVariant> rockBuild = ImmutableList.builder();
-        for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
-        {
-            if (BlocksTFC.isGrowableSoil(rock.getDefaultState()))
-            {
-                rockBuild.add(rock);
-            }
-            allGrowableVariants = rockBuild.build();
-        }
-
         //For this mod it is vital that these are never reordered.  If a leaves properties is removed from the
         //mod then there should be a LeavesProperties.NULLPROPERTIES used as a placeholder.
         tfcLeavesProperties = new LeavesProperties[BlocksTFC.getAllLeafBlocks().size()];
