@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -20,6 +22,7 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
+import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
 import org.labellum.mc.dynamictreestfc.blocks.BlockLogDTTFC;
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
@@ -82,6 +85,9 @@ public class ModTrees
 
             switch (treeName)
             {
+                case "acacia":
+                    species.addAcceptableSoils(DirtHelper.HARDCLAYLIKE); //match base DT
+                    break;
                 case "douglas_fir":
                 case "spruce":
                 case "pine":
@@ -109,7 +115,23 @@ public class ModTrees
 
     public static void postInit()
     {
-        ModBlocks.allGrowableVariants.forEach(soil -> DirtHelper.registerSoil(soil, "dirtlike"));
+        for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
+        {
+            IBlockState def = rock.getDefaultState();
+            if (BlocksTFC.isGrowableSoil(def))
+            {
+                DirtHelper.registerSoil(def.getBlock(),DirtHelper.DIRTLIKE);
+            } else if (BlocksTFC.isSand(def))
+            {
+                DirtHelper.registerSoil(def.getBlock(),DirtHelper.SANDLIKE);
+            } else if (BlocksTFC.isSoilOrGravel(def)) // soil caught above
+            {
+                DirtHelper.registerSoil(def.getBlock(),DirtHelper.GRAVELLIKE);
+            }
+        }
+        DirtHelper.registerSoil(FluidsTFC.FRESH_WATER.get().getBlock(),DirtHelper.WATERLIKE);
+        DirtHelper.registerSoil(FluidsTFC.SALT_WATER.get().getBlock(),DirtHelper.WATERLIKE); // maybe?
+        // "hot spring water" won't grow trees, I expect
     }
 
     private static void fillMaps(Map<String, float[]> paramMap, Map<String, IGrowthLogicKit> logicMap)
