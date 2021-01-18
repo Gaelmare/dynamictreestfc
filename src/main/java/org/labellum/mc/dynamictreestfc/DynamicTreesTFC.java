@@ -1,42 +1,41 @@
 package org.labellum.mc.dynamictreestfc;
 
+import org.apache.logging.log4j.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.event.BiomeSuitabilityEvent;
+import com.ferreusveritas.dynamictrees.seasons.SeasonHelper;
 import net.dries007.tfc.TerraFirmaCraft;
 import org.labellum.mc.dynamictreestfc.proxy.CommonProxy;
 
 import static com.ferreusveritas.dynamictrees.ModConstants.*;
 
 @Mod(
-        modid = DynamicTreesTFC.MOD_ID,
-        name = DynamicTreesTFC.MOD_NAME,
-        version = DynamicTreesTFC.VERSION,
-        dependencies = DynamicTreesTFC.DEPENDENCIES
+    modid = DynamicTreesTFC.MOD_ID,
+    name = DynamicTreesTFC.MOD_NAME,
+    version = DynamicTreesTFC.VERSION,
+    dependencies = DynamicTreesTFC.DEPENDENCIES
 )
 public class DynamicTreesTFC
 {
 
     public static final String MOD_ID = "dynamictreestfc";
     public static final String MOD_NAME = "DynamicTreesTFC";
-    public static final String VERSION = "0.9.14";
+    public static final String VERSION = "0.9.21";
     public static final String DEPENDENCIES
-            = REQAFTER + TerraFirmaCraft.MOD_ID +
-            AT + "1.7.3.161" + ORGREATER +
-            NEXT +
-            REQAFTER + DYNAMICTREES_LATEST
-;
+        = REQAFTER + TerraFirmaCraft.MOD_ID +
+        AT + "1.7.3.161" + ORGREATER +
+        NEXT +
+        REQAFTER + DYNAMICTREES_LATEST;
 
     //TFC version in dev is the string "${version}" so not sure how this works.
 
@@ -48,8 +47,10 @@ public class DynamicTreesTFC
 
 
     @SidedProxy(clientSide = "org.labellum.mc.dynamictreestfc.proxy.ClientProxy",
-                serverSide = "org.labellum.mc.dynamictreestfc.proxy.CommonProxy")
+        serverSide = "org.labellum.mc.dynamictreestfc.proxy.CommonProxy")
     public static CommonProxy proxy;
+
+    public static Logger logger;
 
     /**
      * This is the first initialization event. Register tile entities here.
@@ -60,6 +61,8 @@ public class DynamicTreesTFC
     {
         System.out.println(MOD_NAME + " is loading");
         proxy.preInit();
+        SeasonHelper.setSeasonManager(TFCSeasonManager.INSTANCE);
+        logger = event.getModLog();
     }
 
     /**
@@ -78,6 +81,7 @@ public class DynamicTreesTFC
     public void postinit(FMLPostInitializationEvent event)
     {
         ModTrees.postInit();
+        TreeHelper.setCustomRootBlockDecay(TFCRootDecay.INSTANCE);
     }
 
 
@@ -115,14 +119,8 @@ public class DynamicTreesTFC
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event)
         {
-   			ModBlocks.register(event.getRegistry());
+            ModBlocks.register(event.getRegistry());
             ModTrees.registerBlocks(event.getRegistry());
-        }
-
-        @SubscribeEvent
-        @SideOnly(Side.CLIENT)
-        public static void registerModels(ModelRegistryEvent event) {
-            ModModels.register(event);
         }
     }
 }

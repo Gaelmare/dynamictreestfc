@@ -3,62 +3,45 @@ package org.labellum.mc.dynamictreestfc;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
-
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import net.dries007.tfc.api.types.Tree;
 import net.dries007.tfc.api.util.ITreeGenerator;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockSaplingTFC;
-import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
 import org.labellum.mc.dynamictreestfc.trees.TreeFamilyTFC;
 
 
-public class DTFCGenerator implements ITreeGenerator
+public class DTTFCGenerator implements ITreeGenerator
 {
-    private int dtRadius; //used to store useful radius between canGenerate and Generate
-    private static TFCRadiusCoordinator radiusCoordinator = null;
+    private int leavesRadius; //used to store useful radius between canGenerate and Generate
 
-    public DTFCGenerator()
+    public DTTFCGenerator()
     {
-        dtRadius = 0;
+        leavesRadius = 0;
     }
 
     @Override
     public void generateTree(TemplateManager templateManager, World world, BlockPos blockPos, Tree tree, Random random, boolean isWorldGen)
     {
-        //experimental plains, terrible misuse of noisegen
-        /*//ChunkDataTFC chunkData = world.getChunk(blockPos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
-        if (chunkData != null)
-        {
-            if (isWorldGen && (int) (chunkData.getFloraDensity() * chunkData.getFloraDiversity() * 100) % 10 < 2 &&
-                world.rand.nextInt(100) > 3)
-            {
-                return;
-            }
-        }*/ //commented out while we see how the vanilla TFC plains work out.
-
         Species dtSpecies = ModTrees.tfcSpecies.get(tree.toString());
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(blockPos).getPos());
-        dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random,
-                dtRadius <= 0 ? dtSpecies.maxBranchRadius()/3 : dtRadius,
-                bounds);
+        dtSpecies.generate(world, blockPos.down(), world.getBiome(blockPos), random, leavesRadius <= 0 ? dtSpecies.maxBranchRadius() / 3 : leavesRadius, bounds);
         //dtSpecies.getJoCode("JP").setCareful(true).generate(world, dtSpecies, blockPos, world.getBiome(blockPos), EnumFacing.SOUTH, 8, SafeChunkBounds.ANY);
     }
 
     @Override
     public boolean canGenerateTree(World world, BlockPos pos, Tree treeType)
     {
-        if (!BlocksTFC.isGrowableSoil(world.getBlockState(pos.down()))) {
+        if (!BlocksTFC.isGrowableSoil(world.getBlockState(pos.down())))
+        {
             return false;
         }
 
@@ -68,56 +51,49 @@ public class DTFCGenerator implements ITreeGenerator
             return false;
         }
 
-        if (radiusCoordinator == null)
-        {
-            radiusCoordinator = new TFCRadiusCoordinator(null,world);
-        }
-
-        dtRadius = radiusCoordinator.getRadiusAtCoords(pos.getX(),pos.getZ());
-
-        //check on ground and nearby trees
-        int x;
-        int z;
         Species dTree = ModTrees.tfcSpecies.get(treeType.toString());
-        int nht = dTree.getLowestBranchHeight();
-        int xht = (int)((TreeFamilyTFC.TreeTFCSpecies)dTree).getSignalEnergy(); //signal energy access problem so need to cast
+        int lowestBranchHeight = dTree.getLowestBranchHeight();
+        int maxTreeHeight = (int) ((TreeFamilyTFC.TreeTFCSpecies) dTree).getSignalEnergy(); //signal energy access problem so need to cast
 
         SafeChunkBounds bounds = new SafeChunkBounds(world, world.getChunk(pos).getPos());
-        for ( int y = 0; y <= nht; y++) {
-            if (openRadius(world,pos.up(y),0,0, bounds))
-            {
-                continue;
-            }
-            return false;
+        for (int y = 0; y <= lowestBranchHeight; y++)
+        {
+            if (!isValidLocation(world, pos.up(y), 0, 0, bounds))
+                return false; // ensure proper column space for the trunk
         }
+        leavesRadius = (int) Math.ceil((1 - ChunkDataTFC.get(world, pos).getFloraDensity()) * 5) + 2; // what's a good proxy for a noise map? TFC gen data!
+        int radiusSquared = leavesRadius * leavesRadius;
+        int groundToCenter = (int) ((maxTreeHeight - lowestBranchHeight) / 2.0F) + lowestBranchHeight;
 
-        for(x = -dtRadius-1; x <= dtRadius+1; ++x) {
-            for(z = -dtRadius-1; z <= dtRadius+1; ++z) {
-                for ( int y = nht-1; y < xht; ++y)
+        for (int x = -leavesRadius - 1; x <= leavesRadius + 1; ++x) // verifying there's space for the canopy
+        {
+            for (int z = -leavesRadius - 1; z <= leavesRadius + 1; ++z)
+            {
+                for (int y = lowestBranchHeight - 1; y < maxTreeHeight; ++y)
                 {
-                    if (openRadius(world, pos.up(y), x, z, bounds))
+                    int yDistance = groundToCenter - y;
+                    if (x * x + yDistance * yDistance + z * z <= radiusSquared) // only perform the check if the radius is within a sphere around the epicenter there
                     {
-                        continue;
+                        if (!isValidLocation(world, pos.up(y), x, z, bounds)) return false;
                     }
-                    return false;
                 }
             }
         }
         return true;
     }
 
-    private boolean openRadius(World world, BlockPos pos, int x, int y, SafeChunkBounds bounds)
+    private boolean isValidLocation(World world, BlockPos pos, int x, int y, SafeChunkBounds bounds)
     {
         boolean origin = x == 0 && y == 0;
-        return origin || !bounds.inBounds(pos.add(x,0,y), false) || //either tree origin, or it's not generated,
-                isReplaceable(world, pos, x, 0, y) ||                    //or ground level block is replaceable,
-                ((x > 1 || y > 1) && isReplaceable(world, pos, x, 1, y));//or block at y+1 is replaceable when >1 away from origin
+        return origin || !bounds.inBounds(pos.add(x, 0, y), false) || //either tree origin, or it's not generated,
+            isReplaceable(world, pos, x, 0, y) ||                    //or ground level block is replaceable,
+            ((x > 1 || y > 1) && isReplaceable(world, pos, x, 1, y));//or block at y+1 is replaceable when >1 away from origin
     }
 
     private boolean isDTBranch(IBlockState state)
     {
         Block block = state.getBlock();
-        return block instanceof BlockBranch ;//|| block instanceof BlockDynamicLeaves;
+        return block instanceof BlockBranch;//|| block instanceof BlockDynamicLeaves;
     }
 
     private boolean isReplaceable(World world, BlockPos pos, int x, int y, int z)

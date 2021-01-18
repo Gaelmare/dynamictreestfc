@@ -30,15 +30,17 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+// set project.depsDirectory in build.gradle to change where the DT dependency is expected
 repositories {
-    flatDir {
-        dirs "../deps"
-    }
+        flatDir {
+            dirs project.depsDirectory
+        }
+
     mavenCentral()
 }
 
 dependencies {
-    deobfCompile 'com.ferreusveritas.dynamictrees:dynamictrees:0.9.14'
+    deobfCompile 'com.ferreusveritas.dynamictrees:dynamictrees:0.9.21'
 }
 
 processResources {

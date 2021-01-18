@@ -1,28 +1,22 @@
 package org.labellum.mc.dynamictreestfc;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.cells.ICellKit;
-import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
+import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
-import org.labellum.mc.dynamictreestfc.blocks.BlockRootyTFC;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
@@ -32,14 +26,14 @@ public class ModBlocks
     public static LeavesProperties[] tfcLeavesProperties;
     public static Map<String, LeavesProperties> leafMap;
     public static Map<String, ICellKit> kitMap;
-    public static BlockRooty blockRootyDirt;
+    public static BlockRootyDirt blockRootyDirt;
 
-    public static void preInit() {
-        blockRootyDirt = (BlockRooty) new BlockRootyTFC();
+    public static void preInit()
+    {
+        blockRootyDirt = new BlockRootyDirt(false);
 
         kitMap = new HashMap<>();
         fillMaps(kitMap);
-
     }
 
     public static void register(IForgeRegistry<Block> registry)
@@ -47,7 +41,8 @@ public class ModBlocks
         ImmutableList.Builder<BlockRockVariant> rockBuild = ImmutableList.builder();
         for (BlockRockVariant rock : BlocksTFC.getAllBlockRockVariants())
         {
-            if (BlocksTFC.isGrowableSoil(rock.getDefaultState())) {
+            if (BlocksTFC.isGrowableSoil(rock.getDefaultState()))
+            {
                 rockBuild.add(rock);
             }
             allGrowableVariants = rockBuild.build();
@@ -58,7 +53,8 @@ public class ModBlocks
         tfcLeavesProperties = new LeavesProperties[BlocksTFC.getAllLeafBlocks().size()];
         leafMap = new HashMap<>();
         int i = 0; // DT wants an array of leafprops for some reason
-        for ( BlockLeavesTFC leaf : BlocksTFC.getAllLeafBlocks()) {
+        for (BlockLeavesTFC leaf : BlocksTFC.getAllLeafBlocks())
+        {
             LeavesProperties prop = new LeavesProperties(leaf.getDefaultState(), kitMap.get(leaf.wood.toString()));
             leafMap.put(leaf.wood.toString(), prop);
             tfcLeavesProperties[i++] = prop;
@@ -93,6 +89,6 @@ public class ModBlocks
         kitMap.put("white_cedar", TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
         kitMap.put("willow", TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
         //TFCTech
-        kitMap.put("hevea",TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
+        kitMap.put("hevea", TreeRegistry.findCellKit(new ResourceLocation(ModConstants.MODID, "deciduous")));
     }
 }
