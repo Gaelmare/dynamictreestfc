@@ -26,12 +26,9 @@ public class BlockBranchBasicTFC extends BlockBranchBasic
         ItemStack tool = player.getHeldItemMainhand();
         // after BlockLogTFC#harvestBlock
         final Set<String> toolClasses = tool.getItem().getToolClasses(tool);
-        if (toolClasses.contains("axe") || toolClasses.contains("saw"))
+        if (toolClasses.contains("axe") || toolClasses.contains("saw") || player.isCreative())
         {
-            if (OreDictionaryHelper.doesStackMatchOre(tool, "axeStone") && Constants.RNG.nextDouble() > ConfigTFC.General.TREE.stoneAxeReturnRate)
-            {
-                return false; // stone axe failure rate (default 40% of logs don't drop)
-            }
+            // success!
         }
         else if (toolClasses.contains("hammer") && ConfigTFC.General.TREE.enableHammerSticks)
         {
