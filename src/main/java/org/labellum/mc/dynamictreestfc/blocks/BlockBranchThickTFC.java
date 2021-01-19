@@ -24,7 +24,7 @@ public class BlockBranchThickTFC extends BlockBranchThick
         ItemStack tool = player.getHeldItemMainhand();
         // after BlockLogTFC#harvestBlock
         final Set<String> toolClasses = tool.getItem().getToolClasses(tool);
-        if (toolClasses.contains("axe") || toolClasses.contains("saw"))
+        if (toolClasses.contains("axe") || toolClasses.contains("saw") || player.isCreative())
         {
             // success!
         }
@@ -39,11 +39,6 @@ public class BlockBranchThickTFC extends BlockBranchThick
             // Here, there was no valid tool used. Deny spawning any drops since logs require axes
             return false; //Also no wood for you!
         }
-        else
-        {
-            // or no tool, but handle normally
-        }
-
         return super.removedByPlayer(state, world, cutPos, player, canHarvest);
     }
 }
