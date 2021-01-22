@@ -10,11 +10,11 @@ import net.minecraftforge.registries.IForgeRegistry;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.cells.ICellKit;
-import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import net.dries007.tfc.objects.blocks.BlocksTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockLeavesTFC;
+import org.labellum.mc.dynamictreestfc.blocks.BlockRootyDirtTFC;
 
 import static org.labellum.mc.dynamictreestfc.DynamicTreesTFC.MOD_ID;
 
@@ -23,11 +23,11 @@ public class ModBlocks
     public static LeavesProperties[] tfcLeavesProperties;
     public static Map<String, LeavesProperties> leafMap;
     public static Map<String, ICellKit> kitMap;
-    public static BlockRootyDirt blockRootyDirt;
+    public static BlockRootyDirtTFC blockRootyDirt;
 
     public static void preInit()
     {
-        blockRootyDirt = new BlockRootyDirt(false);
+        blockRootyDirt = new BlockRootyDirtTFC();
 
         kitMap = new HashMap<>();
         fillMaps(kitMap);
