@@ -24,10 +24,15 @@ public class ForgeEventHandler
             ItemStack held = player.getHeldItemMainhand();
             if (OreDictionaryHelper.doesStackMatchOre(held, "axeStone"))
             {
-                event.setDropChance(((float) ConfigTFC.General.TREE.stoneAxeReturnRate));
+                for (ItemStack s: event.getDrops())
+                {
+                    if (OreDictionaryHelper.doesStackMatchOre(s,"logWood"))
+                    {
+                        s.setCount((int) (s.getCount() * ConfigTFC.General.TREE.stoneAxeReturnRate));
+                        //not consolidating partial item stacks on ground
+                    }
+                }
             }
-            if (!player.isCreative())
-                held.damageItem(event.getDrops().size(), player);
         }
     }
 }
