@@ -5,9 +5,9 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import net.dries007.tfc.world.classic.chunkdata.ChunkDataProvider;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -15,15 +15,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import net.minecraftforge.common.property.IExtendedBlockState;
 
-import com.ferreusveritas.dynamictrees.api.ICustomRootDecay;
 import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
-import com.ferreusveritas.dynamictrees.blocks.MimicProperty;
 import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.world.classic.chunkdata.ChunkDataTFC;
-import org.labellum.mc.dynamictreestfc.TFCRootDecay;
 
 @ParametersAreNonnullByDefault
 public class BlockRootyDirtTFC extends BlockRootyDirt
@@ -63,11 +59,21 @@ public class BlockRootyDirtTFC extends BlockRootyDirt
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
+        drops.clear();
+        drops.add(new ItemStack(getDecayBlockState(world, pos).getBlock()));
+    }
+
+    @Override
+    public IBlockState getDecayBlockState(IBlockAccess world, BlockPos pos)
+    {
         if (world instanceof World) //lol
         {
-            Rock rock = ChunkDataTFC.get((World) world, pos).getRockHeight(pos);
-            drops.clear();
-            drops.add(new ItemStack(BlockRockVariant.get(rock, Rock.Type.DIRT)));
+            ChunkDataTFC chunkData = ((World) world).getChunk(pos).getCapability(ChunkDataProvider.CHUNK_DATA_CAPABILITY, null);
+            if (chunkData != null) {
+                Rock rock = chunkData.getRockHeight(pos);
+                return BlockRockVariant.get(rock, Rock.Type.DIRT).getDefaultState();
+            }
         }
+        return super.getDecayBlockState(world, pos);
     }
 }
