@@ -1,10 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "item/generated",
+  "parent": "dynamictrees:item/standard_seed",
   "textures": {
-    "layer0": {
-      "layer0": "dttfc:item/seed/oak"
-    },
-    "layer1": "dynamictrees:item/standard_seed"
+    "layer0": "dttfc:item/seed/oak"
   }
 }

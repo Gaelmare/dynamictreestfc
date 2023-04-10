@@ -14,9 +14,11 @@ def generate(rm: ResourceManager):
 
 def basic_tree_assets(rm: ResourceManager, name: str):
     branch = rm.blockstate('%s_branch' % name).with_lang(lang('%s branch', name))
+    strip = rm.blockstate('stripped_%s_branch' % name).with_lang(lang('stripped %s branch', name))
     leaf = rm.blockstate('%s_leaves' % name).with_lang(lang('%s leaves', name))
     sap = rm.blockstate('%s_sapling' % name).with_lang(lang('%s sapling', name))
 
+    leaf.with_block_model(parent='tfc:wood/leaves/%s' % name)
     sap.with_block_model(parent='dynamictrees:block/smartmodel/sapling', textures={
         'particle': 'tfc:block/wood/leaves/%s' % name,
         'log': 'tfc:block/wood/log/%s' % name,
@@ -26,16 +28,26 @@ def basic_tree_assets(rm: ResourceManager, name: str):
         'bark': 'tfc:block/wood/log/%s' % name,
         'rings': 'tfc:block/wood/log_top/%s' % name,
     }})
+    rm.custom_block_model('stripped_%s_branch' % name, 'dynamictrees:branch', {'textures': {
+        'bark': 'tfc:block/wood/stripped_log/%s' % name,
+        'rings': 'tfc:block/wood/stripped_log_top/%s' % name,
+    }})
     rm.item_model('%s_branch' % name, {
         'bark': 'tfc:block/wood/log/%s' % name,
         'rings': 'tfc:block/wood/log_top/%s' % name,
     }, parent='dynamictrees:item/branch')
-    rm.item_model('%s_seed' % name, {'layer0': 'dttfc:item/seed/%s' % name}, 'dynamictrees:item/standard_seed')
+    rm.item_model('%s_seed' % name, {'layer0': 'dttfc:item/seed/%s' % name}, parent='dynamictrees:item/standard_seed').with_lang(lang('%s seed', name))
 
     branch.with_tag('dynamictrees:branches_that_burn')
+    strip.with_tag('dynamictrees:branches_that_burn')
     branch.with_tag('dynamictrees:branches')
+    strip.with_tag('dynamictrees:branches')
     leaf.with_tag('dynamictrees:leaves')
     sap.with_tag('dynamictrees:saplings')
+
+    branch.with_block_loot()
+    sap.with_block_loot()
+    leaf.with_block_loot()
 
     rm.block_tag('dynamictrees:foliage', '#tfc:plants')
 

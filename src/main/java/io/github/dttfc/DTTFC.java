@@ -1,13 +1,12 @@
 package io.github.dttfc;
 
-
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-@Mod(io.github.dttfc.DTTFC.MOD_ID)
+@Mod(DTTFC.MOD_ID)
 public class DTTFC
 {
     public static final String MOD_ID = "dttfc";
@@ -15,7 +14,7 @@ public class DTTFC
     public DTTFC()
     {
         RegistryHandler.setup(MOD_ID);
-        io.github.dttfc.ModEvents.init();
+        ModEvents.init();
 
         if (FMLEnvironment.dist == Dist.CLIENT)
         {
@@ -24,7 +23,7 @@ public class DTTFC
 
     public static ResourceLocation identifier(String path)
     {
-        return new ResourceLocation(io.github.dttfc.DTTFC.MOD_ID, path);
+        return new ResourceLocation(DTTFC.MOD_ID, path);
     }
 
 }

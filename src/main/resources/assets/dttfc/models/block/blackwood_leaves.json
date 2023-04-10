@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "dynamictrees:item/standard_seed",
+  "parent": "tfc:wood/leaves/blackwood",
   "textures": {
-    "layer0": "dttfc:item/seed/pine"
+    "all": "dttfc:block/blackwood_leaves"
   }
 }

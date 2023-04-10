@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "loader": "dynamictrees:branch",
   "textures": {
-    "bark": "tfc:block/wood/log/blackwood",
-    "rings": "tfc:block/wood/log_top/blackwood"
+    "bark": "tfc:block/wood/stripped_log/oak",
+    "rings": "tfc:block/wood/stripped_log_top/oak"
   }
 }

@@ -3,7 +3,10 @@
   "replace": false,
   "values": [
     "dttfc:pine_branch",
+    "dttfc:stripped_pine_branch",
     "dttfc:oak_branch",
-    "dttfc:blackwood_branch"
+    "dttfc:stripped_oak_branch",
+    "dttfc:blackwood_branch",
+    "dttfc:stripped_blackwood_branch"
   ]
 }

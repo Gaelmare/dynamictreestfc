@@ -10,8 +10,14 @@ displayName="Dynamic Trees TFC" #mandatory
 logoFile="dttfc.png" #optional
 authors="EERussianguy" #optional
 description='''
-An addon for TFC.
+An addon for TFC and Dynamic Trees.
 '''
+[[dependencies.dttfc]]
+    modId="dynamictrees"
+    mandatory=true
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
 [[dependencies.dttfc]] #optional
     modId="tfc" #mandatory
     mandatory=true #mandatory
