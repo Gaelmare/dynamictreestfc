@@ -4,7 +4,7 @@ license="MIT"
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 [[mods]] #mandatory
 # The modid of the mod
-modId= "DynamicTreesTFC" #mandatory
+modId= "dttfc" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Dynamic Trees TFC" #mandatory
 logoFile="dttfc.png" #optional

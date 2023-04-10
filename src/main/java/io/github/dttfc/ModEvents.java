@@ -24,13 +24,13 @@ public final class ModEvents
         bus.addGenericListener(LeavesProperties.class, ModEvents::registerLeafProperties);
     }
 
-    public static final FeatureCanceller FOREST_CANCELLER = new TFCForestCanceller(dttfc.identifier("forest"));
+    public static final FeatureCanceller FOREST_CANCELLER = new TFCForestCanceller(DTTFC.identifier("forest"));
 
     public static void registerFamilies(TypeRegistryEvent<Family> event)
     {
         for (Wood wood : Wood.VALUES)
         {
-            event.registerType(Dynamictreest.identifier(wood.getSerializedName()), Family.TYPE);
+            event.registerType(DTTFC.identifier(wood.getSerializedName()), Family.TYPE);
         }
     }
 
@@ -38,7 +38,7 @@ public final class ModEvents
     {
         for (Wood wood : Wood.VALUES)
         {
-            event.registerType(dttfc.identifier(wood.getSerializedName()), SolidLeavesProperties.TYPE);
+            event.registerType(DTTFC.identifier(wood.getSerializedName()), SolidLeavesProperties.TYPE);
         }
     }
 
