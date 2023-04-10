@@ -2,8 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "dynamictreestfc:pine_branch",
-    "dynamictreestfc:oak_branch",
-    "dynamictreestfc:blackwood_branch"
+    "dttfc:pine_branch",
+    "dttfc:oak_branch",
+    "dttfc:blackwood_branch"
   ]
 }

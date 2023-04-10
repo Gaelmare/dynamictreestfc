@@ -22,7 +22,7 @@ class ModificationLoggingResourceManager(ResourceManager):
 
 def main():
     parser = argparse.ArgumentParser(description='Generate resources for Dynamic Trees TFC')
-    rm = ResourceManager('dynamictreestfc', resource_dir='../src/main/resources')
+    rm = ResourceManager('dttfc', resource_dir='../src/main/resources')
     parser.add_argument('--clean', action='store_true', dest='clean', help='Clean all auto generated resources')
     args = parser.parse_args()
 

@@ -1,4 +1,4 @@
-package io.github.dynamictreestfc.util;
+package io.github.dttfc.util;
 
 import java.util.Set;
 import com.ferreusveritas.dynamictrees.api.worldgen.FeatureCanceller;

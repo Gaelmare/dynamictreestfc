@@ -2,8 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "dynamictreestfc:pine_sapling",
-    "dynamictreestfc:oak_sapling",
-    "dynamictreestfc:blackwood_sapling"
+    "dttfc:pine_sapling",
+    "dttfc:oak_sapling",
+    "dttfc:blackwood_sapling"
   ]
 }

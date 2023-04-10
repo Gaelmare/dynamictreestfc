@@ -4,27 +4,27 @@ license="MIT"
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 [[mods]] #mandatory
 # The modid of the mod
-modId="dynamictreestfc" #mandatory
+modId= "DynamicTreesTFC" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Dynamic Trees TFC" #mandatory
-logoFile="dynamictreestfc.png" #optional
+logoFile="dttfc.png" #optional
 authors="EERussianguy" #optional
 description='''
 An addon for TFC.
 '''
-[[dependencies.dynamictreestfc]] #optional
+[[dependencies.dttfc]] #optional
     modId="tfc" #mandatory
     mandatory=true #mandatory
     versionRange="[0,)" #mandatory
     ordering="NONE"
     side="BOTH"
-[[dependencies.dynamictreestfc]] #optional
+[[dependencies.dttfc]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="[39,)" #mandatory
     ordering="NONE"
     side="BOTH"
-[[dependencies.dynamictreestfc]]
+[[dependencies.dttfc]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.18.1,1.19)"

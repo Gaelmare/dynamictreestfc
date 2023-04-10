@@ -1,4 +1,4 @@
-package io.github.dynamictreestfc;
+package io.github.dttfc;
 
 import com.ferreusveritas.dynamictrees.api.registry.Registry;
 import com.ferreusveritas.dynamictrees.api.registry.RegistryEvent;
@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.api.worldgen.FeatureCanceller;
 import com.ferreusveritas.dynamictrees.block.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.block.leaves.SolidLeavesProperties;
 import com.ferreusveritas.dynamictrees.tree.family.Family;
-import io.github.dynamictreestfc.util.TFCForestCanceller;
+import io.github.dttfc.util.TFCForestCanceller;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -24,13 +24,13 @@ public final class ModEvents
         bus.addGenericListener(LeavesProperties.class, ModEvents::registerLeafProperties);
     }
 
-    public static final FeatureCanceller FOREST_CANCELLER = new TFCForestCanceller(DynamicTreesTFC.identifier("forest"));
+    public static final FeatureCanceller FOREST_CANCELLER = new TFCForestCanceller(dttfc.identifier("forest"));
 
     public static void registerFamilies(TypeRegistryEvent<Family> event)
     {
         for (Wood wood : Wood.VALUES)
         {
-            event.registerType(DynamicTreesTFC.identifier(wood.getSerializedName()), Family.TYPE);
+            event.registerType(Dynamictreest.identifier(wood.getSerializedName()), Family.TYPE);
         }
     }
 
@@ -38,7 +38,7 @@ public final class ModEvents
     {
         for (Wood wood : Wood.VALUES)
         {
-            event.registerType(DynamicTreesTFC.identifier(wood.getSerializedName()), SolidLeavesProperties.TYPE);
+            event.registerType(dttfc.identifier(wood.getSerializedName()), SolidLeavesProperties.TYPE);
         }
     }
 

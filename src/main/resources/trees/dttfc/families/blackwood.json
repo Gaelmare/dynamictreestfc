@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "common_species": "dynamictreestfc:blackwood",
-  "common_leaves": "dynamictreestfc:blackwood",
+  "common_species": "dttfc:blackwood",
+  "common_leaves": "dttfc:blackwood",
   "primitive_log": "tfc:wood/log/blackwood",
   "primitive_stripped_log": "tfc:wood/stripped_log/blackwood"
 }

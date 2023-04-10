@@ -2,7 +2,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
-package io.github.dynamictreestfc;
+package io.github.dttfc;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

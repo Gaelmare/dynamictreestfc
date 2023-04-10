@@ -29,8 +29,8 @@ apply plugin: 'org.spongepowered.mixin'
 
 
 version = '1.0.0'
-group = 'io.github.dynamictreestfc' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'dynamictreestfc'
+group = 'io.github.dttfc' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'dttfc'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -45,7 +45,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            args '-mixin.config=dynamictreestfc.mixins.json'
+            args '-mixin.config=dttfc.mixins.json'
 
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
@@ -53,7 +53,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                dynamictreestfc {
+                dttfc {
                     source sourceSets.main
                 }
             }
@@ -61,7 +61,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            args '-mixin.config=dynamictreestfc.mixins.json', '--nogui'
+            args '-mixin.config=dttfc.mixins.json', '--nogui'
 
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
@@ -69,7 +69,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                dynamictreestfc {
+                dttfc {
                     source sourceSets.main
                 }
             }
@@ -82,10 +82,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'dynamictreestfc', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'dttfc', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                dynamictreestfc {
+                dttfc {
                     source sourceSets.main
                 }
             }
@@ -143,14 +143,14 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "dynamictreestfc",
+                "Specification-Title"     : "dttfc",
                 "Specification-Vendor"    : "gaelmare",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "gaelmare",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "dynamictreestfc.mixins.json"
+                "MixinConfigs": "dttfc.mixins.json"
         ])
     }
 }
@@ -162,7 +162,7 @@ idea {
 }
 
 mixin {
-    add sourceSets.main, "dynamictreestfc.refmap.json"
+    add sourceSets.main, "dttfc.refmap.json"
 }
 
 jar.finalizedBy('reobfJar')

@@ -1,4 +1,4 @@
-package io.github.dynamictreestfc.util;
+package io.github.dttfc.util;
 
 import java.util.Random;
 import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors;

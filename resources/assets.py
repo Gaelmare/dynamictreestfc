@@ -30,7 +30,7 @@ def basic_tree_assets(rm: ResourceManager, name: str):
         'bark': 'tfc:block/wood/log/%s' % name,
         'rings': 'tfc:block/wood/log_top/%s' % name,
     }, parent='dynamictrees:item/branch')
-    rm.item_model('%s_seed' % name, {'layer0': 'dynamictreestfc:item/seed/%s' % name}, 'dynamictrees:item/standard_seed')
+    rm.item_model('%s_seed' % name, {'layer0': 'dttfc:item/seed/%s' % name}, 'dynamictrees:item/standard_seed')
 
     branch.with_tag('dynamictrees:branches_that_burn')
     branch.with_tag('dynamictrees:branches')
@@ -96,7 +96,7 @@ def write(rm: ResourceManager, folder: str, path: str, data):
 
 
 def ident(path: str) -> str:
-    return utils.resource_location('dynamictreestfc', path).join()
+    return utils.resource_location('dttfc', path).join()
 
 
 def on_error(error: str, e: Exception):

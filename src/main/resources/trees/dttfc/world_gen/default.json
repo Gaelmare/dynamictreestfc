@@ -6,7 +6,7 @@
       ]
     },
     "cancellers": {
-      "type": "dynamictreestfc:forest"
+      "type": "dttfc:forest"
     }
   },
   {
