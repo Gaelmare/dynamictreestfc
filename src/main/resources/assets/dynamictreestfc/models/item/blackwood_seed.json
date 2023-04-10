@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "item/generated",
+  "textures": {
+    "layer0": {
+      "layer0": "dynamictreestfc:item/seed/blackwood"
+    },
+    "layer1": "dynamictrees:item/standard_seed"
+  }
+}

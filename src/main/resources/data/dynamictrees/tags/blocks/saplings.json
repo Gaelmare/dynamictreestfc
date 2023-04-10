@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "dynamictreestfc:pine_sapling",
+    "dynamictreestfc:oak_sapling",
+    "dynamictreestfc:blackwood_sapling"
+  ]
+}
