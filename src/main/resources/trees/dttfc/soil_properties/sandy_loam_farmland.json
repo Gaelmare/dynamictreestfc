@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "primitive_soil": "tfc:grass/sandy_loam",
+  "primitive_soil": "tfc:farmland/sandy_loam",
   "acceptable_soils": [
     "dirt_like"
   ],

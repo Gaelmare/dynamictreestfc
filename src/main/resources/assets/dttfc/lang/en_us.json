@@ -17,14 +17,10 @@
   "item.dttfc.blackwood_seed": "Blackwood Seed",
   "block.dttfc.rooty_sandy_loam_mud": "Rooty Sandy Loam Mud",
   "block.dttfc.rooty_sandy_loam_dirt": "Rooty Sandy Loam Dirt",
-  "block.dttfc.rooty_sandy_loam_farmland": "Rooty Sandy Loam Farmland",
   "block.dttfc.rooty_loam_mud": "Rooty Loam Mud",
   "block.dttfc.rooty_loam_dirt": "Rooty Loam Dirt",
-  "block.dttfc.rooty_loam_farmland": "Rooty Loam Farmland",
   "block.dttfc.rooty_silty_loam_mud": "Rooty Silty Loam Mud",
   "block.dttfc.rooty_silty_loam_dirt": "Rooty Silty Loam Dirt",
-  "block.dttfc.rooty_silty_loam_farmland": "Rooty Silty Loam Farmland",
   "block.dttfc.rooty_silt_mud": "Rooty Silt Mud",
-  "block.dttfc.rooty_silt_dirt": "Rooty Silt Dirt",
-  "block.dttfc.rooty_silt_farmland": "Rooty Silt Farmland"
+  "block.dttfc.rooty_silt_dirt": "Rooty Silt Dirt"
 }

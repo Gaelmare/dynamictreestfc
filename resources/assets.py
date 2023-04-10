@@ -15,6 +15,8 @@ def generate(rm: ResourceManager):
         soil_properties(rm, soil, 'mud')
         soil_properties(rm, soil, 'dirt')
         soil_properties(rm, soil, 'farmland', ident('%s_dirt' % soil))
+        soil_properties(rm, soil, 'rooted_dirt', ident('%s_dirt' % soil))
+        soil_properties(rm, soil, 'grass', ident('%s_dirt' % soil))
 
 
 def basic_tree_assets(rm: ResourceManager, name: str):
@@ -57,8 +59,9 @@ def basic_tree_assets(rm: ResourceManager, name: str):
 
 
 def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None):
-    block = rm.blockstate('rooty_%s_%s' % (name, tfc_soil)).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_model().with_block_loot('tfc:%s/%s' % (tfc_soil, name)).with_item_model()
-    write(rm, 'soil_properties', name, {
+    if sub is None:
+        block = rm.blockstate('rooty_%s_%s' % (name, tfc_soil)).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_model().with_block_loot('tfc:%s/%s' % (tfc_soil, name)).with_item_model()
+    write(rm, 'soil_properties', name + '_' + tfc_soil, {
         'primitive_soil': 'tfc:%s/%s' % (tfc_soil, name),
         'acceptable_soils': ['dirt_like'],
         'substitute_soil': sub
