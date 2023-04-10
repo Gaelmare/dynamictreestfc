@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:wood/leaves/pine",
+  "parent": "block/cube_all",
   "textures": {
-    "all": "dttfc:block/pine_leaves"
+    "all": "dttfc:block/rooty_silt_farmland"
   }
 }

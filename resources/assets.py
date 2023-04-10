@@ -11,14 +11,18 @@ def generate(rm: ResourceManager):
         leaves_properties(rm, name)
         basic_tree_assets(rm, name)
 
+    for soil in DIRT_TYPES:
+        soil_properties(rm, soil, 'mud')
+        soil_properties(rm, soil, 'dirt')
+        soil_properties(rm, soil, 'farmland', ident('%s_dirt' % soil))
+
 
 def basic_tree_assets(rm: ResourceManager, name: str):
     branch = rm.blockstate('%s_branch' % name).with_lang(lang('%s branch', name))
     strip = rm.blockstate('stripped_%s_branch' % name).with_lang(lang('stripped %s branch', name))
-    leaf = rm.blockstate('%s_leaves' % name).with_lang(lang('%s leaves', name))
+    leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % name).with_lang(lang('%s leaves', name))
     sap = rm.blockstate('%s_sapling' % name).with_lang(lang('%s sapling', name))
 
-    leaf.with_block_model(parent='tfc:wood/leaves/%s' % name)
     sap.with_block_model(parent='dynamictrees:block/smartmodel/sapling', textures={
         'particle': 'tfc:block/wood/leaves/%s' % name,
         'log': 'tfc:block/wood/log/%s' % name,
@@ -50,6 +54,15 @@ def basic_tree_assets(rm: ResourceManager, name: str):
     leaf.with_block_loot()
 
     rm.block_tag('dynamictrees:foliage', '#tfc:plants')
+
+
+def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None):
+    block = rm.blockstate('rooty_%s_%s' % (name, tfc_soil)).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_model().with_block_loot('tfc:%s/%s' % (tfc_soil, name)).with_item_model()
+    write(rm, 'soil_properties', name, {
+        'primitive_soil': 'tfc:%s/%s' % (tfc_soil, name),
+        'acceptable_soils': ['dirt_like'],
+        'substitute_soil': sub
+    })
 
 
 def species(rm: ResourceManager, name: str):
@@ -122,3 +135,4 @@ def lang(key: str, *args) -> str:
 
 ALL_SPECIES = ['pine', 'oak', 'blackwood']
 LAND_BIOMES = ['plains', 'hills', 'lowlands', 'low_canyons', 'rolling_hills', 'badlands', 'inverted_badlands', 'plateau', 'canyons', 'mountains', 'old_mountains', 'oceanic_mountains', 'volcanic_mountains', 'volcanic_oceanic_mountains']
+DIRT_TYPES = ['sandy_loam', 'loam', 'silty_loam', 'silt']

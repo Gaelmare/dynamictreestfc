@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:wood/leaves/blackwood",
+  "parent": "block/cube_all",
   "textures": {
-    "all": "dttfc:block/blackwood_leaves"
+    "all": "dttfc:block/rooty_sandy_loam_farmland"
   }
 }

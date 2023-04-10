@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "variants": {
     "": {
-      "model": "dttfc:block/pine_leaves"
+      "model": "tfc:block/wood/leaves/pine"
     }
   }
 }
