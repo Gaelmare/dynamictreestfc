@@ -1,0 +1,42 @@
+[
+  {
+    "select": {
+      "names_or": [
+        "tfc:.*"
+      ]
+    },
+    "cancellers": {
+      "type": "dynamictreestfc:forest"
+    }
+  },
+  {
+    "select": {
+      "names_or": [
+        "tfc:plains",
+        "tfc:hills",
+        "tfc:lowlands",
+        "tfc:low_canyons",
+        "tfc:rolling_hills",
+        "tfc:badlands",
+        "tfc:inverted_badlands",
+        "tfc:plateau",
+        "tfc:canyons",
+        "tfc:mountains",
+        "tfc:old_mountains",
+        "tfc:oceanic_mountains",
+        "tfc:volcanic_mountains",
+        "tfc:volcanic_oceanic_mountains"
+      ],
+      "apply": {
+        "species": {
+          "method": "replace",
+          "random": {
+            "pine": 1,
+            "oak": 1,
+            "blackwood": 1
+          }
+        }
+      }
+    }
+  }
+]

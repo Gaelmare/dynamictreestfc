@@ -1,9 +1,0 @@
-{
-  "parent": "block/cube_bottom_top",
-  "textures": {
-    "particle": "tfc:blocks/stonetypes/dirt/andesite",
-    "bottom": "tfc:blocks/stonetypes/dirt/andesite",
-    "top": "tfc:blocks/stonetypes/dirt/andesite",
-    "side": "dynamictreestfc:blocks/rooty/andesite"
-  }
-}

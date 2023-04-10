@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "tfc:blocks/wood/top/acacia",
-    "side": "tfc:blocks/wood/log/acacia"
-  }
-}

@@ -1,0 +1,32 @@
+modLoader="javafml" #mandatory
+loaderVersion="[40,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="MIT"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+[[mods]] #mandatory
+# The modid of the mod
+modId="dynamictreestfc" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Dynamic Trees TFC" #mandatory
+logoFile="dynamictreestfc.png" #optional
+authors="EERussianguy" #optional
+description='''
+An addon for TFC.
+'''
+[[dependencies.dynamictreestfc]] #optional
+    modId="tfc" #mandatory
+    mandatory=true #mandatory
+    versionRange="[0,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.dynamictreestfc]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[39,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.dynamictreestfc]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.1,1.19)"
+    ordering="NONE"
+    side="BOTH"

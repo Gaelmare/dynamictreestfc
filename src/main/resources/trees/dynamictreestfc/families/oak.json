@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "common_species": "dynamictreestfc:oak",
+  "common_leaves": "dynamictreestfc:oak",
+  "primitive_log": "tfc:wood/log/oak",
+  "primitive_stripped_log": "tfc:wood/stripped_log/oak"
+}
