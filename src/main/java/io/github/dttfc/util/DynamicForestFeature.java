@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.ferreusveritas.dynamictrees.api.worldgen.GroundFinder;
 import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
 import com.ferreusveritas.dynamictrees.systems.poissondisc.PoissonDisc;
@@ -65,10 +66,11 @@ public class DynamicForestFeature extends Feature<ForestConfig>
             return false;
         }
 
-        final int trees = forestTypeConfig.treeCount().sample(rand);
+        final AtomicInteger trees = new AtomicInteger(forestTypeConfig.treeCount().sample(rand));
 
         final AtomicBoolean gen = new AtomicBoolean(false);
         DISC_PROVIDER.getPoissonDiscs(levelContext, chunkPos).forEach(disc -> {
+            if (trees.get() < 0) return;
             gen.set(gen.get() | generateTrees(levelContext, level, disc, pos, trees, data, rand, config));
         });
 
@@ -80,7 +82,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         return gen.get();
     }
 
-    protected boolean generateTrees(LevelContext levelContext, WorldGenLevel level, PoissonDisc disc, BlockPos originPos, int trees, ChunkData data, Random random, ForestConfig config)
+    protected boolean generateTrees(LevelContext levelContext, WorldGenLevel level, PoissonDisc disc, BlockPos originPos, AtomicInteger trees, ChunkData data, Random random, ForestConfig config)
     {
         final BlockPos basePos = new BlockPos(disc.x, 0, disc.z);
         boolean gen = false;
@@ -93,7 +95,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
                     continue;
                 }
             }
-            if (trees-- <= 0)
+            if (trees.decrementAndGet() <= 0)
             {
                 return gen;
             }
