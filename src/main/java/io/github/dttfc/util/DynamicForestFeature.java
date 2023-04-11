@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import com.ferreusveritas.dynamictrees.api.worldgen.GroundFinder;
 import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
 import com.ferreusveritas.dynamictrees.systems.poissondisc.PoissonDisc;
 import com.ferreusveritas.dynamictrees.systems.poissondisc.UniversalPoissonDiscProvider;
@@ -61,7 +60,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         final ChunkPos chunkPos = new ChunkPos(pos);
         final ForestConfig.Type forestTypeConfig = config.typeMap().get(forestType);
 
-        if (rand.nextFloat() < forestTypeConfig.perChunkChance())
+        if (rand.nextFloat() > forestTypeConfig.perChunkChance())
         {
             return false;
         }
@@ -84,25 +83,15 @@ public class DynamicForestFeature extends Feature<ForestConfig>
 
     protected boolean generateTrees(LevelContext levelContext, WorldGenLevel level, PoissonDisc disc, BlockPos originPos, AtomicInteger trees, ChunkData data, Random random, ForestConfig config)
     {
-        final BlockPos basePos = new BlockPos(disc.x, 0, disc.z);
         boolean gen = false;
-        for (BlockPos pos : GroundFinder.getGroundFinder(levelContext.level()).findGround(levelContext.accessor(), basePos))
+        final BlockPos pos = new BlockPos(disc.x, level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, disc.x, disc.z) - 1, disc.z);
+        if ((level instanceof WorldGenRegion region && !this.ensureCanWrite(region, pos)) || trees.decrementAndGet() <= 0)
         {
-            if (level instanceof WorldGenRegion region)
-            {
-                if (!this.ensureCanWrite(region, pos))
-                {
-                    continue;
-                }
-            }
-            if (trees.decrementAndGet() <= 0)
-            {
-                return gen;
-            }
-            if (generateTree(levelContext, disc, originPos, pos, data, random, config) == DynamicTreeFeature.GeneratorResult.GENERATED)
-            {
-                gen = true;
-            }
+            return false;
+        }
+        if (generateTree(levelContext, disc, originPos, pos, data, random, config) == DynamicTreeFeature.GeneratorResult.GENERATED)
+        {
+            gen = true;
         }
         return gen;
     }

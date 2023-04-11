@@ -1,4 +1,4 @@
-from typing import Dict, Any, NamedTuple
+from typing import Dict, Any, NamedTuple, List
 
 from mcresources import ResourceManager, utils, loot_tables
 
@@ -13,6 +13,8 @@ def generate(rm: ResourceManager):
             species(rm, name, tapering=0.1, signal_energy=14, up_probability=4, lowest_branch_height=4, growth_rate=1.25),
         elif name == 'sequoia' or name == 'spruce':
             species(rm, name, tapering=0.25, signal_energy=16, up_probability=3, lowest_branch_height=3, growth_rate=0.9, growth_logic_kit='conifer')
+        elif name == 'palm':
+            species(rm, name, tapering=0.2, signal_energy=10, growth_rate=0.8, soil_str=2, growth_logic_kit='dttfc:diagonal_palm', soils=['dirt_like', 'sand_like'])
         else:
             species(rm, name)
 
@@ -20,6 +22,8 @@ def generate(rm: ResourceManager):
             family(rm, name, conifer_variants=True)
         elif name == 'sequoia' or name == 'spruce':
             family(rm, name, max_branch_radius=24, conifer_variants=True)
+        elif name == 'palm':
+            family(rm, name, thickness1=3, thickness2=4, fam_type='dtttfc:diagonal_palm')
         else:
             family(rm, name)
 
@@ -27,6 +31,8 @@ def generate(rm: ResourceManager):
             leaves_properties(rm, name, cell_kit='dynamictrees:acacia', smother=2)
         elif name == 'sequoia' or name == 'spruce':
             leaves_properties(rm, name, cell_kit='dynamictrees:conifer', smother=3)
+        elif name == 'palm':
+            leaves_properties(rm, name, cell_kit='dttfc:palm', leaf_type='palm')
         else:
             leaves_properties(rm, name)
 
@@ -38,6 +44,8 @@ def generate(rm: ResourceManager):
         soil_properties(rm, soil, 'farmland', ident('%s_dirt' % soil))
         soil_properties(rm, soil, 'rooted_dirt', ident('%s_dirt' % soil))
         soil_properties(rm, soil, 'grass', ident('%s_dirt' % soil))
+    for color in SAND_COLORS:
+        soil_properties(rm, color, 'sand', soil_type='sand_like')
 
 
 def do_worldgen(rm: ResourceManager):
@@ -71,23 +79,23 @@ def do_worldgen(rm: ResourceManager):
                 'per_chunk_chance': 0
             },
             'sparse': {
-                'tree_count': uniform_int(1, 3),
+                'tree_count': uniform_int(1, 4),
                 'groundcover_count': 10,
                 'per_chunk_chance': 0.08,
                 'bush_count': 0,
                 'has_spoiler_old_growth': True
             },
             'edge': {
-                'tree_count': 2,
+                'tree_count': 4,
                 'groundcover_count': 15
             },
             'normal': {
-                'tree_count': 5,
+                'tree_count': 8,
                 'groundcover_count': 30,
                 'has_spoiler_old_growth': True
             },
             'old_growth': {
-                'tree_count': 7,
+                'tree_count': 12,
                 'groundcover_count': 40,
                 'allows_old_growth': True
             }
@@ -131,8 +139,18 @@ def forest_config(rm: ResourceManager, min_rain: float, max_rain: float, min_tem
 def basic_tree_assets(rm: ResourceManager, name: str):
     branch = rm.blockstate('%s_branch' % name).with_lang(lang('%s branch', name))
     strip = rm.blockstate('stripped_%s_branch' % name).with_lang(lang('stripped %s branch', name))
-    leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % name).with_lang(lang('%s leaves', name))
     sap = rm.blockstate('%s_sapling' % name).with_lang(lang('%s sapling', name))
+
+    if name == 'palm':
+        leaf = rm.blockstate_multipart('%s_leaves' % name,
+           ({'distance': '1|2'}, {'model': 'dttfc:block/palm_frond'}),
+           ({'distance': '3'}, {'model': 'dttfc:block/palm_core_top'}),
+           ({'distance': '4'}, {'model': 'dttfc:block/palm_core_bottom'}),
+           ({'OR': [{'direction': '0', 'distance': '1|2'}, {'distance': '5|6|7'}]}, {'model': 'tfc:block/wood/leaves/palm'}),
+        )
+    else:
+        leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % name)
+    leaf.with_lang(lang('%s leaves', name))
 
     sap.with_block_model(parent='dynamictrees:block/smartmodel/sapling', textures={
         'particle': 'tfc:block/wood/leaves/%s' % name,
@@ -208,17 +226,17 @@ def basic_tree_assets(rm: ResourceManager, name: str):
     rm.block_tag('dynamictrees:foliage', '#tfc:plants')
 
 
-def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None):
+def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None, soil_type: str = 'dirt_like'):
     if sub is None:
         block = rm.blockstate('rooty_%s_%s' % (name, tfc_soil)).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_model().with_block_loot('tfc:%s/%s' % (tfc_soil, name)).with_item_model()
     write(rm, 'soil_properties', name + '_' + tfc_soil, {
         'primitive_soil': 'tfc:%s/%s' % (tfc_soil, name),
-        'acceptable_soils': ['dirt_like'],
+        'acceptable_soils': [soil_type],
         'substitute_soil': sub
     })
 
 
-def species(rm: ResourceManager, name: str, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None):
+def species(rm: ResourceManager, name: str, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
     res = ident(name)
     write(rm, 'species', name, {
         'family': res,
@@ -228,27 +246,33 @@ def species(rm: ResourceManager, name: str, tapering: float = None, signal_energ
         'up_probability': up_probability,
         'lowest_branch_height': lowest_branch_height,
         'growth_rate': growth_rate,
-        'growth_logic_kit': growth_logic_kit
+        'growth_logic_kit': growth_logic_kit,
+        'soil_longevity': soil_str,
+        'acceptable_soils': soils,
     })
 
 
-def family(rm: ResourceManager, name: str, max_branch_radius: int = None, conifer_variants: bool = None):
+def family(rm: ResourceManager, name: str, fam_type: str = None, max_branch_radius: int = None, conifer_variants: bool = None, thickness1: int = None, thickness2: int = None):
     res = ident(name)
     write(rm, 'families', name, {
+        'type': fam_type,
         'common_species': res,
         'common_leaves': res,
         'primitive_log': 'tfc:wood/log/%s' % name,
         'primitive_stripped_log': 'tfc:wood/stripped_log/%s' % name,
         'max_branch_radius': max_branch_radius,
-        'conifer_variants': conifer_variants
+        'conifer_variants': conifer_variants,
+        'primary_thickness': thickness1,
+        'secondary_thickness': thickness2,
     })
 
 
-def leaves_properties(rm: ResourceManager, name: str, cell_kit: str = None, smother: int = None):
+def leaves_properties(rm: ResourceManager, name: str, cell_kit: str = None, smother: int = None, leaf_type: str = None):
     write(rm, 'leaves_properties', name, {
         'primitive_leaves': 'tfc:wood/leaves/%s' % name,
         'cell_kit': cell_kit,
-        'smother': smother
+        'smother': smother,
+        'type': leaf_type
     })
 
 
@@ -282,3 +306,4 @@ def lang(key: str, *args) -> str:
 ALL_SPECIES = ['acacia', 'ash', 'aspen', 'birch', 'blackwood', 'chestnut', 'douglas_fir', 'hickory', 'kapok', 'maple', 'oak', 'palm', 'pine', 'rosewood', 'sequoia', 'spruce', 'sycamore', 'white_cedar', 'willow']
 LAND_BIOMES = ['plains', 'hills', 'lowlands', 'low_canyons', 'rolling_hills', 'badlands', 'inverted_badlands', 'plateau', 'canyons', 'mountains', 'old_mountains', 'oceanic_mountains', 'volcanic_mountains', 'volcanic_oceanic_mountains']
 DIRT_TYPES = ['sandy_loam', 'loam', 'silty_loam', 'silt']
+SAND_COLORS = ['black', 'brown', 'green', 'pink', 'red', 'white', 'yellow']

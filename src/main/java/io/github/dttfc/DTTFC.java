@@ -2,6 +2,7 @@ package io.github.dttfc;
 
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
 import com.ferreusveritas.dynamictrees.compat.CompatHandler;
+import io.github.dttfc.client.ClientModEvents;
 import io.github.dttfc.util.ModFeatures;
 import io.github.dttfc.util.TFCSeasonManager;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,7 @@ public class DTTFC
     {
         RegistryHandler.setup(MOD_ID);
         ModEvents.init();
+        ForgeEvents.init();
         CompatHandler.registerSeasonManager(MOD_ID, TFCSeasonManager::new);
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,6 +29,7 @@ public class DTTFC
 
         if (FMLEnvironment.dist == Dist.CLIENT)
         {
+            ClientModEvents.init();
         }
     }
 
