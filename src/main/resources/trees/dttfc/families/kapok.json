@@ -3,5 +3,8 @@
   "common_species": "dttfc:kapok",
   "common_leaves": "dttfc:kapok",
   "primitive_log": "tfc:wood/log/kapok",
-  "primitive_stripped_log": "tfc:wood/stripped_log/kapok"
+  "primitive_stripped_log": "tfc:wood/stripped_log/kapok",
+  "max_branch_radius": 24,
+  "generate_surface_root": true,
+  "max_signal_depth": 64
 }

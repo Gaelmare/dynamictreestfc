@@ -6,7 +6,7 @@ from typing import Sequence
 from mcresources import ResourceManager, utils
 from mcresources.type_definitions import Json
 
-import assets
+import assets, trees
 
 
 class ModificationLoggingResourceManager(ResourceManager):
@@ -44,6 +44,7 @@ def main():
 
 def generate_all(rm: ResourceManager):
     assets.generate(rm)
+    trees.generate(rm)
 
     rm.flush()
 
