@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "family": "dttfc:sequoia",
+  "can_bone_meal_tree": false,
+  "tapering": 0.25,
+  "signal_energy": 16,
+  "up_probability": 3,
+  "lowest_branch_height": 3,
+  "growth_rate": 0.9,
+  "growth_logic_kit": "conifer"
+}

@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "common_species": "dttfc:spruce",
+  "common_leaves": "dttfc:spruce",
+  "primitive_log": "tfc:wood/log/spruce",
+  "primitive_stripped_log": "tfc:wood/stripped_log/spruce",
+  "max_branch_radius": 24,
+  "conifer_variants": true
+}

@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "dynamictrees:block/smartmodel/sapling",
+  "textures": {
+    "particle": "tfc:block/wood/leaves/aspen",
+    "log": "tfc:block/wood/log/aspen",
+    "leaves": "tfc:block/wood/leaves/aspen"
+  }
+}

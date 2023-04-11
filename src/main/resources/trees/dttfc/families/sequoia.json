@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "common_species": "dttfc:sequoia",
+  "common_leaves": "dttfc:sequoia",
+  "primitive_log": "tfc:wood/log/sequoia",
+  "primitive_stripped_log": "tfc:wood/stripped_log/sequoia",
+  "max_branch_radius": 24,
+  "conifer_variants": true
+}

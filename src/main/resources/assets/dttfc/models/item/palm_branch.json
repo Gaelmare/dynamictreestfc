@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "dynamictrees:item/branch",
+  "textures": {
+    "bark": "tfc:block/wood/log/palm",
+    "rings": "tfc:block/wood/log_top/palm"
+  }
+}

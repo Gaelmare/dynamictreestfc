@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "dttfc:acacia",
+    "dttfc:ash",
+    "dttfc:aspen",
+    "dttfc:birch",
+    "dttfc:blackwood",
+    "dttfc:chestnut",
+    "dttfc:douglas_fir",
+    "dttfc:hickory",
+    "dttfc:kapok",
+    "dttfc:maple",
+    "dttfc:oak",
+    "dttfc:palm",
+    "dttfc:pine",
+    "dttfc:rosewood",
+    "dttfc:sequoia",
+    "dttfc:spruce",
+    "dttfc:sycamore",
+    "dttfc:white_cedar",
+    "dttfc:willow"
+  ]
+}

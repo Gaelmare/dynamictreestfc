@@ -2,8 +2,24 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "dttfc:pine_leaves",
+    "dttfc:acacia_leaves",
+    "dttfc:ash_leaves",
+    "dttfc:aspen_leaves",
+    "dttfc:birch_leaves",
+    "dttfc:blackwood_leaves",
+    "dttfc:chestnut_leaves",
+    "dttfc:douglas_fir_leaves",
+    "dttfc:hickory_leaves",
+    "dttfc:kapok_leaves",
+    "dttfc:maple_leaves",
     "dttfc:oak_leaves",
-    "dttfc:blackwood_leaves"
+    "dttfc:palm_leaves",
+    "dttfc:pine_leaves",
+    "dttfc:rosewood_leaves",
+    "dttfc:sequoia_leaves",
+    "dttfc:spruce_leaves",
+    "dttfc:sycamore_leaves",
+    "dttfc:white_cedar_leaves",
+    "dttfc:willow_leaves"
   ]
 }

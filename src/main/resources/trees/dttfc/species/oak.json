@@ -1,4 +1,5 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "family": "dttfc:oak"
+  "family": "dttfc:oak",
+  "can_bone_meal_tree": false
 }
