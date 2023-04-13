@@ -20,6 +20,10 @@
     "dttfc:spruce",
     "dttfc:sycamore",
     "dttfc:white_cedar",
-    "dttfc:willow"
+    "dttfc:willow",
+    "dttfc:saguaro_cactus",
+    "dttfc:pillar_cactus",
+    "dttfc:pipe_cactus",
+    "dttfc:mega_cactus"
   ]
 }

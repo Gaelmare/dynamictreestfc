@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "min_rain": 0,
+      "max_rain": 120,
+      "min_temp": 0,
+      "max_temp": 18,
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "fallen_tree_chance": 0
+    },
+    "species": "dttfc:pipe_cactus"
+  }
+}

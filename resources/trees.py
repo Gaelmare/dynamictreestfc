@@ -11,7 +11,7 @@ def generate(rm: ResourceManager):
         elif name == 'sequoia' or name == 'spruce':
             species(rm, name, tapering=0.25, signal_energy=16, up_probability=3, lowest_branch_height=3, growth_rate=0.9, growth_logic_kit='conifer')
         elif name == 'palm':
-            species(rm, name, tapering=0.2, signal_energy=10, growth_rate=0.8, soil_str=2, growth_logic_kit='dttfc:diagonal_palm', soils=['dirt_like', 'sand_like'])
+            species(rm, name, tapering=0.2, signal_energy=10, growth_rate=0.8, soil_str=2, growth_logic_kit='dttfc:diagonal_palm', soils=['dirt_like', 'sand_like'], spec_type='palm')
         elif name == 'kapok':
             species(rm, name, tapering=0.2, signal_energy=24, up_probability=3, lowest_branch_height=2, growth_rate=1, growth_logic_kit='jungle')
         else:
@@ -59,9 +59,10 @@ def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = No
     })
 
 
-def species(rm: ResourceManager, name: str, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
+def species(rm: ResourceManager, name: str, spec_type: str = None, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
     res = ident(name)
     write(rm, 'species', name, {
+        'type': spec_type,
         'family': res,
         'can_bone_meal_tree': False,
         'tapering': tapering,

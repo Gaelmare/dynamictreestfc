@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "min_rain": 0,
+      "max_rain": 150,
+      "min_temp": 5,
+      "max_temp": 20,
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "fallen_tree_chance": 0
+    },
+    "species": "dttfc:saguaro_cactus"
+  }
+}

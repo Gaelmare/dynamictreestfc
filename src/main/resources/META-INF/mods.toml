@@ -18,6 +18,12 @@ An addon for TFC and Dynamic Trees.
     versionRange="[0,)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.dttfc]]
+    modId="dynamictreesplus"
+    mandatory=true
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
 [[dependencies.dttfc]] #optional
     modId="tfc" #mandatory
     mandatory=true #mandatory

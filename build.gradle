@@ -115,6 +115,11 @@ repositories {
         }
     }
 
+    maven {
+        // DT
+        url 'https://harleyoconnor.com/maven'
+    }
+
     flatDir {
          dir 'libs'
     }
@@ -123,7 +128,8 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("curse.maven:tfc-302973:${tfc_identifier}")
-    implementation fg.deobf("curse.maven:dt-252818:${dt_identifier}")
+    implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-${minecraft_version}:${dt_version}")
+    implementation fg.deobf("com.ferreusveritas.dynamictreesplus:DynamicTreesPlus-${minecraft_version}:${dtp_version}")
 
 
     if (System.getProperty("idea.sync.active") != "true") {

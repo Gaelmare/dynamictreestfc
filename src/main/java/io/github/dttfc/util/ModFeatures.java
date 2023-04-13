@@ -18,6 +18,7 @@ public final class ModFeatures
 
     public static final RegistryObject<DynamicForestFeature> FOREST = register("forest", DynamicForestFeature::new, ForestConfig.CODEC);
     public static final RegistryObject<DFEFeature> FOREST_ENTRY = register("forest_entry", DFEFeature::new, DFEFeature.Entry.CODEC);
+    public static final RegistryObject<SpeciesFeature> SPECIES = register("species", SpeciesFeature::new, SpeciesConfig.CODEC);
 
     private static <C extends FeatureConfiguration, F extends Feature<C>> RegistryObject<F> register(String name, Function<Codec<C>, F> factory, Codec<C> codec)
     {

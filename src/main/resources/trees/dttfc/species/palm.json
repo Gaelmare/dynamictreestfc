@@ -1,5 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
+  "type": "palm",
   "family": "dttfc:palm",
   "can_bone_meal_tree": false,
   "tapering": 0.2,
