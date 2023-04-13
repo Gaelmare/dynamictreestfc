@@ -9,16 +9,8 @@ def generate(rm: ResourceManager):
         strip = rm.blockstate('stripped_%s_branch' % name).with_lang(lang('stripped %s branch', name))
         sap = rm.blockstate('%s_sapling' % name).with_lang(lang('%s sapling', name))
 
-        if name == 'palm':
-            leaf = rm.blockstate_multipart('%s_leaves' % name,
-               ({'distance': '1|2'}, {'model': 'dttfc:block/palm_frond'}),
-               ({'distance': '3'}, {'model': 'dttfc:block/palm_core_top'}),
-               ({'distance': '4'}, {'model': 'dttfc:block/palm_core_bottom'}),
-               ({'OR': [{'direction': '0', 'distance': '1|2'}, {'distance': '5|6|7'}]}, {'model': 'tfc:block/wood/leaves/palm'}),
-            )
-        else:
-            leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % name)
-        leaf.with_lang(lang('%s leaves', name))
+        leaves(rm, name, name)
+        leaves(rm, name + '_undergrowth', name)
 
         sap.with_block_model(parent='dynamictrees:block/smartmodel/sapling', textures={
             'particle': 'tfc:block/wood/leaves/%s' % name,
@@ -43,21 +35,10 @@ def generate(rm: ResourceManager):
         strip.with_tag('dynamictrees:branches_that_burn')
         branch.with_tag('dynamictrees:branches')
         strip.with_tag('dynamictrees:branches')
-        leaf.with_tag('dynamictrees:leaves')
         sap.with_tag('dynamictrees:saplings')
 
         branch.with_block_loot()
         sap.with_block_loot()
-        leaf.with_block_loot(loot_tables.alternatives(({
-               'name': 'tfc:wood/leaves/%s' % name,
-               'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
-        }, {
-           'type': 'dynamictrees:seed_item',
-           'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
-        }, {
-           'name': 'minecraft:stick',
-           'conditions': [loot_tables.random_chance(0.02)]
-        })))
 
         rm.loot(name, {
             'name': ident('%s_seed' % name),
@@ -83,16 +64,45 @@ def generate(rm: ResourceManager):
             'functions': [{'function': 'dynamictrees:multiply_sticks_count'}]
         }, path='trees/branches', loot_type='dynamictrees:branches')
 
-        rm.loot(name, {
-            'type': 'dynamictrees:seed_item',
-            'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
-        }, {
-            'name': 'minecraft:stick',
-            'functions': [loot_tables.set_count(1, 2)],
-            'conditions': [loot_tables.random_chance(0.02)]
-        }, path='trees/leaves', loot_type='dynamictrees:leaves')
-
         rm.block_tag('dynamictrees:foliage', '#tfc:plants')
+
+        if name == 'kapok':
+            rm.blockstate('%s_root' % name).with_lang(lang('%s root', name))
+            rm.custom_block_model('%s_root' % name, 'dynamictrees:root', {'textures': {'bark': 'tfc:block/wood/log/%s' % name}})
+
+
+def leaves(rm: ResourceManager, name: str, base_name: str):
+    if name == 'palm':
+        leaf = rm.blockstate_multipart('%s_leaves' % name,
+           ({'distance': '1|2'}, {'model': 'dttfc:block/palm_frond'}),
+           ({'distance': '3'}, {'model': 'dttfc:block/palm_core_top'}),
+           ({'distance': '4'}, {'model': 'dttfc:block/palm_core_bottom'}),
+           ({'OR': [{'direction': '0', 'distance': '1|2'}, {'distance': '5|6|7'}]}, {'model': 'tfc:block/wood/leaves/palm'}),
+           )
+    else:
+        leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % base_name)
+    leaf.with_block_loot(loot_tables.alternatives(({
+        'name': 'tfc:wood/leaves/%s' % name,
+        'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
+    }, {
+        'type': 'dynamictrees:seed_item',
+        'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
+    }, {
+        'name': 'minecraft:stick',
+        'conditions': [loot_tables.random_chance(0.02)]
+    })))
+    leaf.with_tag('dynamictrees:leaves')
+
+    leaf.with_lang(lang('%s leaves', name))
+
+    rm.loot(name, {
+        'type': 'dynamictrees:seed_item',
+        'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
+    }, {
+        'name': 'minecraft:stick',
+        'functions': [loot_tables.set_count(1, 2)],
+        'conditions': [loot_tables.random_chance(0.02)]
+    }, path='trees/leaves', loot_type='dynamictrees:leaves')
 
 def func(name: str):
     return {'function': name}
@@ -117,3 +127,5 @@ ALL_SPECIES = ['acacia', 'ash', 'aspen', 'birch', 'blackwood', 'chestnut', 'doug
 LAND_BIOMES = ['plains', 'hills', 'lowlands', 'low_canyons', 'rolling_hills', 'badlands', 'inverted_badlands', 'plateau', 'canyons', 'mountains', 'old_mountains', 'oceanic_mountains', 'volcanic_mountains', 'volcanic_oceanic_mountains']
 DIRT_TYPES = ['sandy_loam', 'loam', 'silty_loam', 'silt']
 SAND_COLORS = ['black', 'brown', 'green', 'pink', 'red', 'white', 'yellow']
+
+NO_BUSHES = ['palm', 'rosewood', 'sycamore']

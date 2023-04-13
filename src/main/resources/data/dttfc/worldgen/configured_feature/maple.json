@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/maple",
       "old_growth_tree": "tfc:tree/maple_large"
     },
-    "species": "dttfc:maple"
+    "species": "dttfc:maple",
+    "undergrowth_species": "dttfc:maple_undergrowth"
   }
 }

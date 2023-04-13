@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/acacia",
       "old_growth_tree": "tfc:tree/acacia_large"
     },
-    "species": "dttfc:acacia"
+    "species": "dttfc:acacia",
+    "undergrowth_species": "dttfc:acacia_undergrowth"
   }
 }

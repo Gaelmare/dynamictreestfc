@@ -29,6 +29,7 @@
       "bush_leaves": "tfc:wood/leaves/sequoia",
       "old_growth_tree": "tfc:tree/sequoia_large"
     },
-    "species": "dttfc:sequoia"
+    "species": "dttfc:sequoia",
+    "undergrowth_species": "dttfc:sequoia_undergrowth"
   }
 }

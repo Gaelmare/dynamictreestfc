@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/hickory",
       "old_growth_tree": "tfc:tree/hickory_large"
     },
-    "species": "dttfc:hickory"
+    "species": "dttfc:hickory",
+    "undergrowth_species": "dttfc:hickory_undergrowth"
   }
 }

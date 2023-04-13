@@ -95,7 +95,7 @@ def forest_config(rm: ResourceManager, min_rain: float, max_rain: float, min_tem
         cfg['fallen_log'] = 'tfc:wood/log/%s' % tree
     else:
         cfg['fallen_tree_chance'] = 0
-    if tree not in ('palm', 'rosewood', 'sycamore') and is_tree:
+    if tree not in NO_BUSHES and is_tree:
         cfg['bush_log'] = utils.block_state('tfc:wood/wood/%s[natural=true,axis=y]' % tree)
         cfg['bush_leaves'] = 'tfc:wood/leaves/%s' % tree
     if old_growth and is_tree:
@@ -103,7 +103,8 @@ def forest_config(rm: ResourceManager, min_rain: float, max_rain: float, min_tem
 
     fixed_cfg = {
         'entry': cfg,
-        'species': 'dttfc:%s' % tree
+        'species': 'dttfc:%s' % tree,
+        'undergrowth_species': 'dttfc:%s_undergrowth' % tree if tree not in NO_BUSHES else None
     }
 
     rm.configured_feature(tree, 'dttfc:forest_entry', fixed_cfg)

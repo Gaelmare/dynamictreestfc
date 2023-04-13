@@ -1,6 +1,10 @@
 from mcresources import ResourceManager
 from assets import *
 
+import shutil
+
+JO_PATH = '../src/main/resources/trees/dttfc/jo_codes/'
+
 
 def generate(rm: ResourceManager):
     for name in ALL_SPECIES:
@@ -22,7 +26,7 @@ def generate(rm: ResourceManager):
         elif name == 'sequoia' or name == 'spruce':
             family(rm, name, max_branch_radius=24, conifer_variants=True)
         elif name == 'palm':
-            family(rm, name, thickness1=3, thickness2=4, fam_type='dtttfc:diagonal_palm')
+            family(rm, name, thickness1=3, thickness2=4, fam_type='dttfc:diagonal_palm')
         elif name == 'kapok':
             family(rm, name, max_branch_radius=24, roots=True, max_signal=64)
         else:
@@ -39,6 +43,11 @@ def generate(rm: ResourceManager):
         else:
             leaves_properties(rm, name)
 
+        if name not in NO_BUSHES:
+            jo_code('undergrowth', '%s_undergrowth' % name)
+            leaves_properties(rm, name + '_undergrowth', leaf_type='scruffy', ground=True, light=4, scruff_chance=0.66, scruff_hydro_max=1, leaves_override='tfc:wood/leaves/%s' % name)
+            species(rm, name + '_undergrowth', family_override='dttfc:%s' % name, up_probability=0, lowest_branch_height=0, signal_energy=2, soil_str=1, leaves_override='dttfc:%s_undergrowth' % name)
+
     for soil in DIRT_TYPES:
         soil_properties(rm, soil, 'mud')
         soil_properties(rm, soil, 'dirt')
@@ -47,6 +56,7 @@ def generate(rm: ResourceManager):
         soil_properties(rm, soil, 'grass', ident('%s_dirt' % soil))
     for color in SAND_COLORS:
         soil_properties(rm, color, 'sand', soil_type='sand_like')
+
 
 
 def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None, soil_type: str = 'dirt_like'):
@@ -59,11 +69,12 @@ def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = No
     })
 
 
-def species(rm: ResourceManager, name: str, spec_type: str = None, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
+def species(rm: ResourceManager, name: str, family_override: str = None, leaves_override: str = None, spec_type: str = None, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
     res = ident(name)
     write(rm, 'species', name, {
         'type': spec_type,
-        'family': res,
+        'leaves_properties': leaves_override,
+        'family': res if family_override is None else family_override,
         'can_bone_meal_tree': False,
         'tapering': tapering,
         'signal_energy': signal_energy,
@@ -93,15 +104,20 @@ def family(rm: ResourceManager, name: str, fam_type: str = None, max_branch_radi
     })
 
 
-def leaves_properties(rm: ResourceManager, name: str, cell_kit: str = None, smother: int = None, leaf_type: str = None, light: int = None):
+def leaves_properties(rm: ResourceManager, name: str, leaves_override: str = None, cell_kit: str = None, smother: int = None, leaf_type: str = None, light: int = None, ground: bool = None, scruff_chance: float = None, scruff_hydro_max: int = None):
     write(rm, 'leaves_properties', name, {
-        'primitive_leaves': 'tfc:wood/leaves/%s' % name,
+        'primitive_leaves': 'tfc:wood/leaves/%s' % name if leaves_override is None else leaves_override,
         'cell_kit': cell_kit,
         'smother': smother,
         'type': leaf_type,
         'light_requirement': light,
+        'can_grow_on_ground': ground,
+        'scruffy_leaf_chance': scruff_chance,
+        'scruffy_max_hydro': scruff_hydro_max,
     })
 
+def jo_code(template: str, to: str):
+    shutil.copy('codes/%s.txt' % template, JO_PATH + to + '.txt')
 
 def write(rm: ResourceManager, folder: str, path: str, data):
     rm.write((*rm.resource_dir, 'trees', rm.domain, folder, path), data)

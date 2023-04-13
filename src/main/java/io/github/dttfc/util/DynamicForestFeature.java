@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
 import com.ferreusveritas.dynamictrees.systems.poissondisc.PoissonDisc;
 import com.ferreusveritas.dynamictrees.systems.poissondisc.UniversalPoissonDiscProvider;
@@ -19,6 +21,7 @@ import com.ferreusveritas.dynamictrees.worldgen.GenerationContext;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
@@ -57,6 +60,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         final ChunkDataProvider provider = ChunkDataProvider.get(context.chunkGenerator());
         final ChunkData data = provider.get(level, pos);
         final ForestType forestType = data.getForestType();
+        final float density = data.getForestDensity();
         final ChunkPos chunkPos = new ChunkPos(pos);
         final ForestConfig.Type forestTypeConfig = config.typeMap().get(forestType);
 
@@ -69,34 +73,37 @@ public class DynamicForestFeature extends Feature<ForestConfig>
 
         final AtomicBoolean gen = new AtomicBoolean(false);
         DISC_PROVIDER.getPoissonDiscs(levelContext, chunkPos).forEach(disc -> {
-            if (trees.get() < 0) return;
-            gen.set(gen.get() | generateTrees(levelContext, level, disc, pos, trees, data, rand, config));
+            if (trees.get() >= 0)
+            {
+                gen.set(gen.get() | generateTrees(levelContext, level, disc, pos, trees, data, rand, config, DFEFeature.Entry::species));
+            }
         });
 
         if (gen.get())
         {
+            placeUndergrowth(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestTypeConfig.sampleBushCount(rand, forestTypeConfig.bushCount(), trees.get(), density));
             placeGroundcover(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestTypeConfig.groundcoverCount().sample(rand));
         }
 
         return gen.get();
     }
 
-    protected boolean generateTrees(LevelContext levelContext, WorldGenLevel level, PoissonDisc disc, BlockPos originPos, AtomicInteger trees, ChunkData data, Random random, ForestConfig config)
+    protected boolean generateTrees(LevelContext levelContext, WorldGenLevel level, PoissonDisc disc, BlockPos originPos, AtomicInteger counter, ChunkData data, Random random, ForestConfig config, Function<DFEFeature.Entry, ResourceLocation> speciesFinder)
     {
         boolean gen = false;
         final BlockPos pos = new BlockPos(disc.x, level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, disc.x, disc.z) - 1, disc.z);
-        if ((level instanceof WorldGenRegion region && !this.ensureCanWrite(region, pos)) || trees.decrementAndGet() <= 0)
+        if ((level instanceof WorldGenRegion region && !this.ensureCanWrite(region, pos)) || counter.decrementAndGet() <= 0)
         {
             return false;
         }
-        if (generateTree(levelContext, disc, originPos, pos, data, random, config) == DynamicTreeFeature.GeneratorResult.GENERATED)
+        if (generateTree(levelContext, disc, originPos, pos, data, random, config, speciesFinder) == DynamicTreeFeature.GeneratorResult.GENERATED)
         {
             gen = true;
         }
         return gen;
     }
 
-    protected DynamicTreeFeature.GeneratorResult generateTree(LevelContext levelContext, PoissonDisc circle, BlockPos originPos, BlockPos groundPos, ChunkData data, Random random, ForestConfig config)
+    protected DynamicTreeFeature.GeneratorResult generateTree(LevelContext levelContext, PoissonDisc circle, BlockPos originPos, BlockPos groundPos, ChunkData data, Random random, ForestConfig config, Function<DFEFeature.Entry, ResourceLocation> speciesFinder)
     {
         if (groundPos == BlockPos.ZERO)
         {
@@ -116,7 +123,9 @@ public class DynamicForestFeature extends Feature<ForestConfig>
 
             if (entry != null)
             {
-                final var species = Species.REGISTRY.get(entry.species());
+                final ResourceLocation res = speciesFinder.apply(entry);
+                if (res == null) return DynamicTreeFeature.GeneratorResult.NO_TREE;
+                final var species = Species.REGISTRY.get(res);
                 if (species != null && species.isValid())
                 {
                     if (species.isAcceptableSoilForWorldgen(levelContext.accessor(), groundPos, dirtState))
@@ -146,6 +155,70 @@ public class DynamicForestFeature extends Feature<ForestConfig>
 
             return result;
         }
+    }
+
+    private void placeUndergrowth(WorldGenLevel level, Random random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, int tries)
+    {
+        final int chunkX = chunkBlockPos.getX();
+        final int chunkZ = chunkBlockPos.getZ();
+
+        mutablePos.set(chunkX + random.nextInt(16), 0, chunkZ + random.nextInt(16));
+        mutablePos.setY(level.getHeight(Heightmap.Types.OCEAN_FLOOR, mutablePos.getX(), mutablePos.getZ()));
+
+        final DFEFeature.Entry entry = getTree(data, random, config, mutablePos);
+        if (entry != null)
+        {
+            for (int j = 0; j < tries; ++j)
+            {
+                mutablePos.set(chunkX + random.nextInt(16), 0, chunkZ + random.nextInt(16));
+                mutablePos.setY(level.getHeight(Heightmap.Types.OCEAN_FLOOR, mutablePos.getX(), mutablePos.getZ()));
+
+                if (isAreaClear(level, mutablePos))
+                {
+                    final LevelContext levelContext = LevelContext.create(level);
+                    final ResourceLocation res = entry.undergrowthSpecies().orElse(null);
+                    if (res == null) return;
+                    final var species = Species.REGISTRY.get(res);
+                    if (species != null && species.isValid())
+                    {
+                        BlockPos groundPos = mutablePos.immutable().below();
+                        BlockState dirtState = level.getBlockState(groundPos);
+                        if (species.isAcceptableSoilForWorldgen(levelContext.accessor(), groundPos, dirtState))
+                        {
+                            final Biome biome = levelContext.level().getBiome(groundPos).value();
+
+                            // noinspection removal
+                            species.generate(new GenerationContext(levelContext, species, mutablePos, groundPos.mutable(), biome, CoordUtils.getRandomDir(RANDOM), 3, SafeChunkBounds.ANY_WG));
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+    }
+
+    private boolean isAreaClear(WorldGenLevel level, BlockPos.MutableBlockPos pos)
+    {
+        final BlockPos original = pos.immutable();
+
+        for (int dx = -2; dx <= 2; dx++)
+        {
+            for (int dy = -1; dy <= 2; dy++)
+            {
+                for (int dz = -2; dz <= 2; dz++)
+                {
+                    pos.setWithOffset(original, dx, dy, dz);
+                    if (TreeHelper.isBranch(level.getBlockState(pos)))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        pos.set(original);
+        return true;
     }
 
     private void placeGroundcover(WorldGenLevel level, Random random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, int tries)

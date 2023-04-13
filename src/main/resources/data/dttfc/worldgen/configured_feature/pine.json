@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/pine",
       "old_growth_tree": "tfc:tree/pine_large"
     },
-    "species": "dttfc:pine"
+    "species": "dttfc:pine",
+    "undergrowth_species": "dttfc:pine_undergrowth"
   }
 }

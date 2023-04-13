@@ -27,6 +27,7 @@
       },
       "bush_leaves": "tfc:wood/leaves/oak"
     },
-    "species": "dttfc:oak"
+    "species": "dttfc:oak",
+    "undergrowth_species": "dttfc:oak_undergrowth"
   }
 }

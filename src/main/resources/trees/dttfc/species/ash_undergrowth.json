@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "leaves_properties": "dttfc:ash_undergrowth",
+  "family": "dttfc:ash",
+  "can_bone_meal_tree": false,
+  "signal_energy": 2,
+  "up_probability": 0,
+  "lowest_branch_height": 0,
+  "soil_longevity": 1
+}

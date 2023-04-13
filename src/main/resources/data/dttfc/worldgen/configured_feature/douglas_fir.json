@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/douglas_fir",
       "old_growth_tree": "tfc:tree/douglas_fir_large"
     },
-    "species": "dttfc:douglas_fir"
+    "species": "dttfc:douglas_fir",
+    "undergrowth_species": "dttfc:douglas_fir_undergrowth"
   }
 }

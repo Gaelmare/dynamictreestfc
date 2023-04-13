@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/ash",
       "old_growth_tree": "tfc:tree/ash_large"
     },
-    "species": "dttfc:ash"
+    "species": "dttfc:ash",
+    "undergrowth_species": "dttfc:ash_undergrowth"
   }
 }

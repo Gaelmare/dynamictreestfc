@@ -43,7 +43,7 @@ minecraft {
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
     runs {
-        client {
+        all {
             workingDirectory project.file('run')
             args '-mixin.config=dttfc.mixins.json'
 
@@ -51,6 +51,8 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+
+            jvmArg '-XX:+AllowEnhancedClassRedefinition'
 
             mods {
                 dttfc {
@@ -60,35 +62,10 @@ minecraft {
         }
 
         server {
-            workingDirectory project.file('run')
-            args '-mixin.config=dttfc.mixins.json', '--nogui'
-
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                dttfc {
-                    source sourceSets.main
-                }
-            }
+            workingDirectory project.file('run/server')
         }
 
-        data {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'dttfc', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                dttfc {
-                    source sourceSets.main
-                }
-            }
+        client {
         }
     }
 }

@@ -27,6 +27,7 @@
       },
       "bush_leaves": "tfc:wood/leaves/chestnut"
     },
-    "species": "dttfc:chestnut"
+    "species": "dttfc:chestnut",
+    "undergrowth_species": "dttfc:chestnut_undergrowth"
   }
 }

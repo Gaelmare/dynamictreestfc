@@ -11,6 +11,7 @@
       "dead_tree": "dttfc:noop",
       "fallen_tree_chance": 0
     },
-    "species": "dttfc:mega_cactus"
+    "species": "dttfc:mega_cactus",
+    "undergrowth_species": "dttfc:mega_cactus_undergrowth"
   }
 }

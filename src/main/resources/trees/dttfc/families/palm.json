@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "dtttfc:diagonal_palm",
+  "type": "dttfc:diagonal_palm",
   "common_species": "dttfc:palm",
   "common_leaves": "dttfc:palm",
   "primitive_log": "tfc:wood/log/palm",

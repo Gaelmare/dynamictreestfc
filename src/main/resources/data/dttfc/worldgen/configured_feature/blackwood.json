@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/blackwood",
       "old_growth_tree": "tfc:tree/blackwood_large"
     },
-    "species": "dttfc:blackwood"
+    "species": "dttfc:blackwood",
+    "undergrowth_species": "dttfc:blackwood_undergrowth"
   }
 }

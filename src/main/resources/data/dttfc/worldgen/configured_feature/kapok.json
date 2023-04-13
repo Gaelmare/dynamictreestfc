@@ -27,6 +27,7 @@
       },
       "bush_leaves": "tfc:wood/leaves/kapok"
     },
-    "species": "dttfc:kapok"
+    "species": "dttfc:kapok",
+    "undergrowth_species": "dttfc:kapok_undergrowth"
   }
 }

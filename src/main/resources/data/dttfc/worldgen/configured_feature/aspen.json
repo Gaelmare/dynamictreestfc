@@ -27,6 +27,7 @@
       },
       "bush_leaves": "tfc:wood/leaves/aspen"
     },
-    "species": "dttfc:aspen"
+    "species": "dttfc:aspen",
+    "undergrowth_species": "dttfc:aspen_undergrowth"
   }
 }

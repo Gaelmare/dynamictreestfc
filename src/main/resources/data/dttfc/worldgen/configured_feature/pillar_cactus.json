@@ -11,6 +11,7 @@
       "dead_tree": "dttfc:noop",
       "fallen_tree_chance": 0
     },
-    "species": "dttfc:pillar_cactus"
+    "species": "dttfc:pillar_cactus",
+    "undergrowth_species": "dttfc:pillar_cactus_undergrowth"
   }
 }

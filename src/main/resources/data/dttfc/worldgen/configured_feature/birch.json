@@ -27,6 +27,7 @@
       },
       "bush_leaves": "tfc:wood/leaves/birch"
     },
-    "species": "dttfc:birch"
+    "species": "dttfc:birch",
+    "undergrowth_species": "dttfc:birch_undergrowth"
   }
 }

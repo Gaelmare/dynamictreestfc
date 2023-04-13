@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/willow",
       "old_growth_tree": "tfc:tree/willow_large"
     },
-    "species": "dttfc:willow"
+    "species": "dttfc:willow",
+    "undergrowth_species": "dttfc:willow_undergrowth"
   }
 }

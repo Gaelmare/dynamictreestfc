@@ -28,6 +28,7 @@
       "bush_leaves": "tfc:wood/leaves/white_cedar",
       "old_growth_tree": "tfc:tree/white_cedar_large"
     },
-    "species": "dttfc:white_cedar"
+    "species": "dttfc:white_cedar",
+    "undergrowth_species": "dttfc:white_cedar_undergrowth"
   }
 }

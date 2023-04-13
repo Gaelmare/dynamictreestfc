@@ -11,6 +11,7 @@
       "dead_tree": "dttfc:noop",
       "fallen_tree_chance": 0
     },
-    "species": "dttfc:pipe_cactus"
+    "species": "dttfc:pipe_cactus",
+    "undergrowth_species": "dttfc:pipe_cactus_undergrowth"
   }
 }
