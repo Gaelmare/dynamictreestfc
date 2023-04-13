@@ -10,8 +10,7 @@
           "type": "dynamictrees:seed_item",
           "conditions": [
             {
-              "condition": "minecraft:random_chance",
-              "chance": 0.02
+              "condition": "dynamictrees:seasonal_seed_drop_chance"
             }
           ]
         }
@@ -28,6 +27,16 @@
             {
               "condition": "minecraft:random_chance",
               "chance": 0.02
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2,
+                "type": "minecraft:uniform"
+              }
             }
           ]
         }

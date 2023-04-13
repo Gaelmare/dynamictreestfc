@@ -53,7 +53,7 @@ def generate(rm: ResourceManager):
                'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
         }, {
            'type': 'dynamictrees:seed_item',
-           'conditions': [loot_tables.random_chance(0.8)]
+           'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
         }, {
            'name': 'minecraft:stick',
            'conditions': [loot_tables.random_chance(0.02)]
@@ -69,15 +69,15 @@ def generate(rm: ResourceManager):
 
         rm.loot(name, {
             'name': 'tfc:wood/log/%s' % name,
-            'conditions': [loot_tables.random_chance(0.8)]
+            'conditions': [func('dynamictrees:multiply_logs_count')]
         }, {
             'name': 'minecraft:stick',
-            'functions': [{'function': 'dynamictrees:multiply_sticks_count'}]
+            'functions': [func('dynamictrees:multiply_sticks_count')]
         }, path='trees/branches', loot_type='dynamictrees:branches')
 
         rm.loot('stripped_%s' % name, {
             'name': 'tfc:wood/stripped_log/%s' % name,
-            'conditions': [loot_tables.random_chance(0.8)]
+            'conditions': [func('dynamictrees:multiply_logs_count')]
         }, {
             'name': 'minecraft:stick',
             'functions': [{'function': 'dynamictrees:multiply_sticks_count'}]
@@ -85,14 +85,20 @@ def generate(rm: ResourceManager):
 
         rm.loot(name, {
             'type': 'dynamictrees:seed_item',
-            'conditions': [loot_tables.random_chance(0.02)]
+            'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
         }, {
             'name': 'minecraft:stick',
+            'functions': [loot_tables.set_count(1, 2)],
             'conditions': [loot_tables.random_chance(0.02)]
         }, path='trees/leaves', loot_type='dynamictrees:leaves')
 
         rm.block_tag('dynamictrees:foliage', '#tfc:plants')
 
+def func(name: str):
+    return {'function': name}
+
+def cond(name: str):
+    return {'condition': name}
 
 def ident(path: str) -> str:
     return utils.resource_location('dttfc', path).join()

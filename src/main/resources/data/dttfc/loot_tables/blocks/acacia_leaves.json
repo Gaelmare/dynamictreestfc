@@ -43,8 +43,7 @@
               "type": "dynamictrees:seed_item",
               "conditions": [
                 {
-                  "condition": "minecraft:random_chance",
-                  "chance": 0.8
+                  "condition": "dynamictrees:seasonal_seed_drop_chance"
                 }
               ]
             },

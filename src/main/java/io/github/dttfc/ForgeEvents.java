@@ -17,5 +17,7 @@ public final class ForgeEvents
     public static void onLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
     {
         DTConfigs.IS_LEAVES_PASSABLE.set(true);
+        DTConfigs.TREE_HARVEST_MULTIPLIER.set(2d);
+        DTConfigs.SEED_DROP_RATE.set(0.02);
     }
 }

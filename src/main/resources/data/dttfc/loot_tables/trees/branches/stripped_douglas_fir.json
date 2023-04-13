@@ -11,8 +11,7 @@
           "name": "tfc:wood/stripped_log/douglas_fir",
           "conditions": [
             {
-              "condition": "minecraft:random_chance",
-              "chance": 0.8
+              "function": "dynamictrees:multiply_logs_count"
             }
           ]
         }
