@@ -11,7 +11,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tfc:wood/leaves/kapok_undergrowth",
+              "name": "tfc:wood/leaves/kapok",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",

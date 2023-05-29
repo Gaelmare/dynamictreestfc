@@ -10,7 +10,8 @@ def generate(rm: ResourceManager):
         sap = rm.blockstate('%s_sapling' % name).with_lang(lang('%s sapling', name))
 
         leaves(rm, name, name)
-        leaves(rm, name + '_undergrowth', name)
+        if name not in NO_BUSHES:
+            leaves(rm, name + '_undergrowth', name)
 
         sap.with_block_model(parent='dynamictrees:block/smartmodel/sapling', textures={
             'particle': 'tfc:block/wood/leaves/%s' % name,
@@ -50,7 +51,7 @@ def generate(rm: ResourceManager):
 
         rm.loot(name, {
             'name': 'tfc:wood/log/%s' % name,
-            'conditions': [func('dynamictrees:multiply_logs_count')]
+            'functions': [func('dynamictrees:multiply_logs_count')]
         }, {
             'name': 'minecraft:stick',
             'functions': [func('dynamictrees:multiply_sticks_count')]
@@ -58,7 +59,7 @@ def generate(rm: ResourceManager):
 
         rm.loot('stripped_%s' % name, {
             'name': 'tfc:wood/stripped_log/%s' % name,
-            'conditions': [func('dynamictrees:multiply_logs_count')]
+            'functions': [func('dynamictrees:multiply_logs_count')]
         }, {
             'name': 'minecraft:stick',
             'functions': [{'function': 'dynamictrees:multiply_sticks_count'}]
@@ -82,7 +83,7 @@ def leaves(rm: ResourceManager, name: str, base_name: str):
     else:
         leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % base_name)
     leaf.with_block_loot(loot_tables.alternatives(({
-        'name': 'tfc:wood/leaves/%s' % name,
+        'name': 'tfc:wood/leaves/%s' % base_name,
         'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
     }, {
         'type': 'dynamictrees:seed_item',

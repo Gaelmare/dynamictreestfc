@@ -4,5 +4,5 @@
   "acceptable_soils": [
     "dirt_like"
   ],
-  "substitute_soil": "dttfc:silt_dirt"
+  "type": "dttfc:grass"
 }

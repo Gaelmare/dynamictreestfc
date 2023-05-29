@@ -11,7 +11,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tfc:wood/leaves/ash_undergrowth",
+              "name": "tfc:wood/leaves/ash",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",

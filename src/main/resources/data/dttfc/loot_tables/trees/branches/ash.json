@@ -9,7 +9,7 @@
         {
           "type": "minecraft:item",
           "name": "tfc:wood/log/ash",
-          "conditions": [
+          "functions": [
             {
               "function": "dynamictrees:multiply_logs_count"
             }

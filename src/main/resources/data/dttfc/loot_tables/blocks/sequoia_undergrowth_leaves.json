@@ -11,7 +11,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tfc:wood/leaves/sequoia_undergrowth",
+              "name": "tfc:wood/leaves/sequoia",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",

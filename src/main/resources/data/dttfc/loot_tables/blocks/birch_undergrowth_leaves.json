@@ -11,7 +11,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tfc:wood/leaves/birch_undergrowth",
+              "name": "tfc:wood/leaves/birch",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",

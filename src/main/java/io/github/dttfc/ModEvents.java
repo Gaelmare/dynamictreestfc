@@ -3,11 +3,12 @@ package io.github.dttfc;
 import com.ferreusveritas.dynamictrees.api.cell.CellKit;
 import com.ferreusveritas.dynamictrees.api.registry.RegistryEvent;
 import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
-import com.ferreusveritas.dynamictrees.block.leaves.LeavesProperties;
+import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.tree.family.Family;
 import io.github.dttfc.tree.DiagonalPalmFamily;
 import io.github.dttfc.tree.DiagonalPalmLogic;
+import io.github.dttfc.tree.GrassSoilProperties;
 import io.github.dttfc.tree.PalmCellKit;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -21,7 +22,7 @@ public final class ModEvents
         bus.addGenericListener(Family.class, ModEvents::registerFamilies);
         bus.addGenericListener(GrowthLogicKit.class, ModEvents::registerGrowth);
         bus.addGenericListener(CellKit.class, ModEvents::registerCells);
-        bus.addGenericListener(LeavesProperties.class, ModEvents::registerLeafProperties);
+        bus.addGenericListener(SoilProperties.class, ModEvents::registerSoils);
     }
 
     public static void registerFamilies(TypeRegistryEvent<Family> event)
@@ -39,8 +40,10 @@ public final class ModEvents
         event.getRegistry().register(new PalmCellKit(DTTFC.identifier("palm")));
     }
 
-    public static void registerLeafProperties(TypeRegistryEvent<LeavesProperties> event)
+    public static void registerSoils(TypeRegistryEvent<SoilProperties> event)
     {
+        event.registerType(DTTFC.identifier("grass"), GrassSoilProperties.TYPE);
     }
+
 
 }

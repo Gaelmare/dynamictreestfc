@@ -53,21 +53,44 @@ def generate(rm: ResourceManager):
         soil_properties(rm, soil, 'dirt')
         soil_properties(rm, soil, 'farmland', ident('%s_dirt' % soil))
         soil_properties(rm, soil, 'rooted_dirt', ident('%s_dirt' % soil))
-        soil_properties(rm, soil, 'grass', ident('%s_dirt' % soil))
+        soil_properties(rm, soil, 'grass', properties='dttfc:grass')
     for color in SAND_COLORS:
         soil_properties(rm, color, 'sand', soil_type='sand_like')
 
 
 
-def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None, soil_type: str = 'dirt_like'):
+def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = None, soil_type: str = 'dirt_like', properties: str = None):
     if sub is None:
-        rm.blockstate('rooty_%s_%s' % (name, tfc_soil)).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_model().with_block_loot('tfc:%s/%s' % (tfc_soil, name)).with_item_model()
+        if tfc_soil != 'grass':
+            rm.blockstate('rooty_%s_%s' % (name, tfc_soil)).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_model().with_block_loot('tfc:%s/%s' % (tfc_soil, name)).with_item_model()
+        else:
+            rm.blockstate_multipart('rooty_%s_%s' % (name, tfc_soil), *grass_multipart('dttfc:block/rooty_%s_%s' % (name, tfc_soil))).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_loot('tfc:dirt/%s' % name)
+            grass_models(rm, 'rooty_%s_%s' % (name, tfc_soil), 'tfc:block/dirt/%s' % name)
+            rm.item_model('rooty_%s_%s' % (name, tfc_soil), {'block': 'tfc:block/dirt/%s' % name}, parent='tfc:item/grass_inv')
     write(rm, 'soil_properties', name + '_' + tfc_soil, {
         'primitive_soil': 'tfc:%s/%s' % (tfc_soil, name),
         'acceptable_soils': [soil_type],
-        'substitute_soil': sub
+        'substitute_soil': sub,
+        'type': properties
     })
 
+def grass_multipart(model: str):
+    return [
+        {'model': model + '/bottom', 'x': 90},
+        {'model': model + '/top', 'x': 270},
+        ({'north': True}, {'model': model + '/top'}),
+        ({'east': True}, {'model': model + '/top', 'y': 90}),
+        ({'south': True}, {'model': model + '/top', 'y': 180}),
+        ({'west': True}, {'model': model + '/top', 'y': 270}),
+        ({'north': False}, {'model': model + '/side'}),
+        ({'east': False}, {'model': model + '/side', 'y': 90}),
+        ({'south': False}, {'model': model + '/side', 'y': 180}),
+        ({'west': False}, {'model': model + '/side', 'y': 270}),
+    ]
+
+def grass_models(rm: ResourceManager, name: utils.ResourceIdentifier, texture: str):
+    for variant in ('top', 'side', 'bottom'):
+        rm.block_model((name, variant), {'texture': texture}, parent='tfc:block/grass_%s' % variant)
 
 def species(rm: ResourceManager, name: str, family_override: str = None, leaves_override: str = None, spec_type: str = None, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
     res = ident(name)
