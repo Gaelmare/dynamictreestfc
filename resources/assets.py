@@ -8,6 +8,7 @@ def generate(rm: ResourceManager):
         branch = rm.blockstate('%s_branch' % name).with_lang(lang('%s branch', name))
         strip = rm.blockstate('stripped_%s_branch' % name).with_lang(lang('stripped %s branch', name))
         sap = rm.blockstate('%s_sapling' % name).with_lang(lang('%s sapling', name))
+        rm.lang(['species.dttfc.%s' % name, name.title()])
 
         leaves(rm, name, name)
         if name not in NO_BUSHES:
