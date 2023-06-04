@@ -66,6 +66,8 @@ def soil_properties(rm: ResourceManager, name: str, tfc_soil: str, sub: str = No
         else:
             rm.blockstate_multipart('rooty_%s_%s' % (name, tfc_soil), *grass_multipart('dttfc:block/rooty_%s_%s' % (name, tfc_soil))).with_lang(lang('rooty %s %s', name, tfc_soil)).with_block_loot('tfc:dirt/%s' % name)
             grass_models(rm, 'rooty_%s_%s' % (name, tfc_soil), 'tfc:block/dirt/%s' % name)
+            # multipart handles display of grass on sides when grassy, this handles display of dirt+roots when dirty
+            rm.block_model(('rooty_%s_%s' % (name, tfc_soil), 'side'), {'texture': 'dttfc:block/rooty_%s_dirt' % name}, parent='tfc:block/grass_side')
             rm.item_model('rooty_%s_%s' % (name, tfc_soil), {'block': 'tfc:block/dirt/%s' % name}, parent='tfc:item/grass_inv')
     write(rm, 'soil_properties', name + '_' + tfc_soil, {
         'primitive_soil': 'tfc:%s/%s' % (tfc_soil, name),
@@ -89,8 +91,9 @@ def grass_multipart(model: str):
     ]
 
 def grass_models(rm: ResourceManager, name: utils.ResourceIdentifier, texture: str):
-    for variant in ('top', 'side', 'bottom'):
+    for variant in ('top', 'bottom'):
         rm.block_model((name, variant), {'texture': texture}, parent='tfc:block/grass_%s' % variant)
+
 
 def species(rm: ResourceManager, name: str, family_override: str = None, leaves_override: str = None, spec_type: str = None, tapering: float = None, signal_energy: float = None, up_probability: float = None, lowest_branch_height: float = None, growth_rate: float = None, growth_logic_kit: str = None, soil_str: int = None, soils: List[str] = None):
     res = ident(name)

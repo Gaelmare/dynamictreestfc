@@ -83,6 +83,7 @@ def leaves(rm: ResourceManager, name: str, base_name: str):
            )
     else:
         leaf = rm.blockstate('%s_leaves' % name, model='tfc:block/wood/leaves/%s' % base_name)
+
     leaf.with_block_loot(loot_tables.alternatives(({
         'name': 'tfc:wood/leaves/%s' % base_name,
         'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]

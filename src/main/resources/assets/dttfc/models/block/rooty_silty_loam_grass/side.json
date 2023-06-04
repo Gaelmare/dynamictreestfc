@@ -2,6 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "tfc:block/grass_side",
   "textures": {
-    "texture": "tfc:block/dirt/silty_loam"
+    "texture": "dttfc:block/rooty_silty_loam_dirt"
   }
 }
