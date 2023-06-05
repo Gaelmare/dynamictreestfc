@@ -12,7 +12,9 @@ def generate(rm: ResourceManager):
             species(rm, name, tapering=0.15, signal_energy=12, up_probability=0, lowest_branch_height=3, growth_rate=0.7)
         elif name == 'birch':
             species(rm, name, tapering=0.1, signal_energy=14, up_probability=4, lowest_branch_height=4, growth_rate=1.25),
-        elif name == 'sequoia' or name == 'spruce':
+        elif name == 'sequoia':
+            species(rm, name, tapering=0.25, signal_energy=24, up_probability=3, lowest_branch_height=4, growth_rate=1.2, growth_logic_kit='conifer')
+        elif name == 'spruce':
             species(rm, name, tapering=0.25, signal_energy=16, up_probability=3, lowest_branch_height=3, growth_rate=0.9, growth_logic_kit='conifer')
         elif name == 'palm':
             species(rm, name, tapering=0.2, signal_energy=10, growth_rate=0.8, soil_str=2, growth_logic_kit='dttfc:diagonal_palm', soils=['dirt_like', 'sand_like'], spec_type='palm')
