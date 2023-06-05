@@ -20,6 +20,7 @@ public class DTTFC
     public DTTFC()
     {
         RegistryHandler.setup(MOD_ID);
+        ConfigDTTFC.register();
         ModEvents.init();
         ForgeEvents.init();
         CompatHandler.registerSeasonManager(MOD_ID, TFCSeasonManager::new);
