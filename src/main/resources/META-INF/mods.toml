@@ -28,7 +28,7 @@ An addon for TFC and Dynamic Trees.
     modId="tfc" #mandatory
     mandatory=true #mandatory
     versionRange="[0,)" #mandatory
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 [[dependencies.dttfc]] #optional
     modId="forge" #mandatory
