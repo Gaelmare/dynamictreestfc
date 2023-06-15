@@ -1,39 +1,39 @@
 modLoader="javafml" #mandatory
 loaderVersion="[40,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 license="MIT"
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+issueTrackerURL="https://github.com/Gaelmare/dynamictreestfc/issues" #optional
 [[mods]] #mandatory
 # The modid of the mod
 modId= "dttfc" #mandatory
-version="${file.jarVersion}" #mandatory
+version="1.18.2-1.0.0-rc2" #mandatory
 displayName="Dynamic Trees TFC" #mandatory
 logoFile="dttfc.png" #optional
-authors="EERussianguy" #optional
+authors="Gaelmare and EERussianguy" #optional
 description='''
 An addon for TFC and Dynamic Trees.
 '''
 [[dependencies.dttfc]]
     modId="dynamictrees"
     mandatory=true
-    versionRange="[0,)"
+    versionRange="[1.0.2,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.dttfc]]
     modId="dynamictreesplus"
     mandatory=true
-    versionRange="[0,)"
+    versionRange="[1.0.0,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.dttfc]] #optional
     modId="tfc" #mandatory
     mandatory=true #mandatory
-    versionRange="[0,)" #mandatory
+    versionRange="[2.2.23,)" #mandatory
     ordering="AFTER"
     side="BOTH"
 [[dependencies.dttfc]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[39,)" #mandatory
+    versionRange="[40,)" #mandatory
     ordering="NONE"
     side="BOTH"
 [[dependencies.dttfc]]
