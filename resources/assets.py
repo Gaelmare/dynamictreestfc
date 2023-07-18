@@ -4,6 +4,7 @@ from mcresources import ResourceManager, utils, loot_tables
 
 
 def generate(rm: ResourceManager):
+    rm.block_tag('tfc:mineable_with_scythe', '#dynamictrees:leaves')
     for name in ALL_SPECIES:
         branch = rm.blockstate('%s_branch' % name).with_lang(lang('%s branch', name))
         strip = rm.blockstate('stripped_%s_branch' % name).with_lang(lang('stripped %s branch', name))
