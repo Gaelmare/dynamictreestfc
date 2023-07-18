@@ -1,9 +1,9 @@
 # Dynamic Trees TFC
 At long last, someone's at least put some code out there!
 
-For Minecraft 1.12.2 + TerraFirmaCraft TNG.
+Compatibility with TFC and Dynamic Trees for 1.18.
 
-See TerraFirmaCraft #tfc-tng-addons discord channel for support: https://invite.gg/terrafirmacraft
+See the Dynamic Trees TFC discord forum under #content in the TFC discord for support: https://invite.gg/terrafirmacraft
 
 All code and resources used according to their published licenses.
 
@@ -11,9 +11,8 @@ Translations and textures welcome.
 
 ## Status
 
-LATE BETA, needs help with tree placement and density, as well as TFC specific JoCode library.
+Released for 1.18, with some features / bugs. See the issues page for more info. PRs are welcome.
 
-## Current issues/todo
-* Correct density generation
-* Fix chopping speed
+## License
 
+This mod, as with almost every DT addon, is MIT licensed, which gives you free use of it, even in modpacks. This is an addon TFC, which is under EUPL v1.2, a more restrictive but still open source license. Please be cognizant of that license when using and modifying this work.

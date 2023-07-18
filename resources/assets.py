@@ -86,7 +86,10 @@ def leaves(rm: ResourceManager, name: str, base_name: str):
 
     leaf.with_block_loot(loot_tables.alternatives(({
         'name': 'tfc:wood/leaves/%s' % base_name,
-        'conditions': [loot_tables.or_condition(loot_tables.match_tag('forge:shears'), loot_tables.silk_touch())]
+        'conditions': [{
+            "condition": "minecraft:alternative",
+            "terms": [loot_tables.match_tag('forge:shears'), loot_tables.silk_touch()]
+        }]
     }, {
         'type': 'dynamictrees:seed_item',
         'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
