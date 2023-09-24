@@ -96,7 +96,7 @@ def leaves(rm: ResourceManager, name: str, base_name: str):
         'conditions': [cond('dynamictrees:seasonal_seed_drop_chance')]
     }, {
         'name': 'minecraft:stick',
-        'conditions': [loot_tables.random_chance(0.05)]
+        'conditions': [loot_tables.random_chance(0.02)]
     })))
     leaf.with_tag('dynamictrees:leaves')
 
