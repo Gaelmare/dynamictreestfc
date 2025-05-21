@@ -25,6 +25,6 @@ public class PalmLeavesModelGeometry implements IUnbakedGeometry<PalmLeavesModel
     @Override
     public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation)
     {
-        return new PalmLeavesBakedModel(modelLocation, frondsResLoc);
+        return new PalmLeavesBakedModel(modelLocation, frondsResLoc, spriteGetter);
     }
 }

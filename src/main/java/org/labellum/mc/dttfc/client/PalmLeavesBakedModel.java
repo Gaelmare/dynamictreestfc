@@ -5,8 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Function;
+
 import com.ferreusveritas.dynamictrees.block.leaves.PalmLeavesProperties;
-import com.ferreusveritas.dynamictrees.client.ModelUtils;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.google.common.primitives.Ints;
 import net.minecraft.client.renderer.RenderType;
@@ -15,8 +16,10 @@ import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.block.model.FaceBakery;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -28,25 +31,18 @@ import org.jetbrains.annotations.Nullable;
 
 public class PalmLeavesBakedModel extends BaseBakedModel
 {
-    public static List<PalmLeavesBakedModel> INSTANCES = new ArrayList<>();
-
     protected final BlockModel blockModel;
 
-    ResourceLocation frondsResLoc;
-    TextureAtlasSprite frondsTexture;
+    private final TextureAtlasSprite frondsTexture;
 
-    private final BakedModel[] bakedFronds = new BakedModel[8]; // 8 = Number of surrounding blocks
+    private final BakedModel[] bakedFronds;
 
-    public PalmLeavesBakedModel(ResourceLocation modelResLoc, ResourceLocation frondsResLoc)
+    public PalmLeavesBakedModel(ResourceLocation modelResLoc, ResourceLocation frondsResLoc, Function<Material, TextureAtlasSprite> spriteGetter)
     {
         this.blockModel = new BlockModel(null, new ArrayList<>(), new HashMap<>(), false, BlockModel.GuiLight.FRONT, ItemTransforms.NO_TRANSFORMS, new ArrayList<>());
-        this.frondsResLoc = frondsResLoc;
-        INSTANCES.add(this);
-    }
+        this.bakedFronds = new BakedModel[8];
 
-    public void setupModels()
-    {
-        frondsTexture = ModelUtils.getTexture(frondsResLoc);
+        frondsTexture = spriteGetter.apply(new Material(TextureAtlas.LOCATION_BLOCKS, frondsResLoc));
 
         for (CoordUtils.Surround surr : CoordUtils.Surround.values())
         {
