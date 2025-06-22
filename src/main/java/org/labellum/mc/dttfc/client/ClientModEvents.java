@@ -9,18 +9,11 @@ public final class ClientModEvents
     public static void init()
     {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        bus.addListener(ClientModEvents::onModelBake);
         bus.addListener(ClientModEvents::onModelRegister);
     }
 
     public static void onModelRegister(ModelEvent.RegisterGeometryLoaders event)
     {
         event.register("palm_fronds", new PalmLeavesModelLoader());
-    }
-
-    public static void onModelBake(ModelEvent.BakingCompleted event)
-    {
-        // Setup fronds models
-        PalmLeavesBakedModel.INSTANCES.forEach(PalmLeavesBakedModel::setupModels);
     }
 }
