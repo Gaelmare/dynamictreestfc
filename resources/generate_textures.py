@@ -9,7 +9,7 @@ PATH = '../src/main/resources/assets/dttfc/textures/'
 def main():
     for dirt in assets.DIRT_TYPES:
         overlay_image('texture_templates/roots', 'texture_templates/mud/%s' % dirt, PATH + 'block/rooty_%s_mud' % dirt)
-        overlay_image('texture_templates/roots', 'texture_templates/dirt/%s' % dirt, PATH + 'block/rooty_%s_dirt' % dirt)
+        overlay_image('texture_templates/roots', 'texture_templates/rooted_dirt/%s' % dirt, PATH + 'block/rooty_%s_dirt' % dirt)
     for color in assets.SAND_COLORS:
         overlay_image('texture_templates/roots', 'texture_templates/sand/%s' % color, PATH + 'block/rooty_%s_sand' % color)
 
