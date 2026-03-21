@@ -1,9 +1,10 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.block.rooty.AerialRootsSoilProperties;
-import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
+import com.dtteam.dynamictrees.api.registry.TypedRegistry;
+import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties;
+import com.dtteam.dynamictrees.block.soil.SoilBlock;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -17,7 +18,7 @@ public class AerialRootsFluidSoilProperties extends AerialRootsSoilProperties
     }
 
     @Override
-    protected RootyBlock createBlock(BlockBehaviour.Properties blockProperties)
+    protected SoilBlock createBlock(BlockBehaviour.Properties blockProperties)
     {
         return new RootyRootFluidBlock(this, blockProperties);
     }

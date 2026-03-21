@@ -1,19 +1,19 @@
 package org.labellum.mc.dttfc.client;
 
-import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.ModelEvent;
+import org.labellum.mc.dttfc.DTTFC;
 
 public final class ClientModEvents
 {
-    public static void init()
+    public static void init(IEventBus modEventBus)
     {
-        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        bus.addListener(ClientModEvents::onModelRegister);
+        modEventBus.addListener(ClientModEvents::onModelRegister);
     }
 
     public static void onModelRegister(ModelEvent.RegisterGeometryLoaders event)
     {
-        event.register("palm_fronds", new PalmLeavesModelLoader());
+        event.register(ResourceLocation.fromNamespaceAndPath(DTTFC.MOD_ID, "palm_fronds"), new PalmLeavesModelLoader());
     }
 }

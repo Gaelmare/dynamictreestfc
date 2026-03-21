@@ -1,7 +1,7 @@
 package org.labellum.mc.dttfc.content;
 
-import com.ferreusveritas.dynamictrees.DynamicTrees;
-import com.ferreusveritas.dynamictrees.block.branch.BasicRootsBlock;
+import com.dtteam.dynamictrees.DynamicTrees;
+import com.dtteam.dynamictrees.block.branch.BasicRootsBlock;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -40,11 +41,10 @@ public class TFCRootsBlock extends BasicRootsBlock implements IFluidLoggable
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
+    public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
     {
         if (!this.isFullBlock(state))
         {
-            ItemStack handStack = player.getItemInHand(hand);
             Block coverBlock = this.getFamily().getPrimitiveCoveredRoots().orElse(null);
             if (coverBlock != null && handStack.getItem() == coverBlock.asItem())
             {
@@ -58,12 +58,12 @@ public class TFCRootsBlock extends BasicRootsBlock implements IFluidLoggable
                     }
 
                     level.playSound(null, pos, coverBlock.getSoundType(state, level, pos, player).getPlaceSound(), SoundSource.BLOCKS, 1.0F, 0.8F);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
         }
 
-        return super.use(state, level, pos, player, hand, hitResult);
+        return super.useItemOn(handStack, state, level, pos, player, hand, hitResult);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class TFCRootsBlock extends BasicRootsBlock implements IFluidLoggable
         destroyMode = DynamicTrees.DestroyMode.SET_RADIUS;
         BlockState currentState = level.getBlockState(pos);
 
-        boolean replacingWater = Helpers.isFluid(currentState.getFluidState(), TFCTags.Fluids.ANY_WATER);
+        boolean replacingWater = Helpers.isFluid(currentState.getFluidState(), TFCTags.Fluids.WATER_LIKE);
         boolean replacingGround = this.getFamily().isAcceptableSoilForRootSystem(currentState);
         boolean setWaterlogged = replacingWater && !replacingGround;
         Layer layer = currentState.getBlock() == this ? currentState.getValue(LAYER) : (replacingGround ? BasicRootsBlock.Layer.COVERED : BasicRootsBlock.Layer.EXPOSED);
@@ -102,9 +102,9 @@ public class TFCRootsBlock extends BasicRootsBlock implements IFluidLoggable
     }
 
     @Override
-    public boolean canPlaceLiquid(BlockGetter level, BlockPos pos, BlockState state, Fluid fluid)
+    public boolean canPlaceLiquid(Player player, BlockGetter level, BlockPos pos, BlockState state, Fluid fluid)
     {
-        return IFluidLoggable.super.canPlaceLiquid(level, pos, state, fluid);
+        return IFluidLoggable.super.canPlaceLiquid(player, level, pos, state, fluid);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class TFCRootsBlock extends BasicRootsBlock implements IFluidLoggable
     @Override
     public FluidState getFluidState(BlockState state)
     {
-        return IFluidLoggable.super.getFluidLoggedState(state);
+        return IFluidLoggable.super.getFluidState(state);
     }
 
     @Override

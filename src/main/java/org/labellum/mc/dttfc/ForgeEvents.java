@@ -1,14 +1,15 @@
 package org.labellum.mc.dttfc;
 
-import com.ferreusveritas.dynamictrees.DynamicTrees;
-import com.ferreusveritas.dynamictrees.api.FutureBreakable;
-import com.ferreusveritas.dynamictrees.init.DTConfigs;
+import com.dtteam.dynamictrees.DynamicTrees;
+import com.dtteam.dynamictrees.block.FutureBreakable;
+import com.dtteam.dynamictrees.config.DTConfigs;
+
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 import net.dries007.tfc.common.TFCCreativeTabs;
 import net.dries007.tfc.util.events.LoggingEvent;
@@ -17,23 +18,21 @@ import static org.labellum.mc.dttfc.ConfigDTTFC.DT_TWEAKS;
 
 public final class ForgeEvents
 {
-    public static void init()
+    public static void init(IEventBus modEventBus)
     {
-        final IEventBus bus = MinecraftForge.EVENT_BUS;
-
-        bus.addListener(ForgeEvents::onLoggedIn);
-        bus.addListener(ForgeEvents::onLogging);
-        bus.addListener(ForgeEvents::onCreativeTabs);
-        //bus.addListener(ForgeEvents::onBreakSpeed);
+        NeoForge.EVENT_BUS.addListener(ForgeEvents::onLoggedIn);
+        NeoForge.EVENT_BUS.addListener(ForgeEvents::onLogging);
+        modEventBus.addListener(ForgeEvents::onCreativeTabs);
+        //modEventBus.addListener(ForgeEvents::onBreakSpeed);
     }
 
     public static void onLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
     {
         if (DT_TWEAKS.get()) {
-            DTConfigs.IS_LEAVES_PASSABLE.set(true);
-            DTConfigs.TREE_HARVEST_MULTIPLIER.set(1.5d);
-            DTConfigs.SEED_DROP_RATE.set(0.02);
-            DTConfigs.AXE_DAMAGE_MODE.set(DynamicTrees.AxeDamage.VOLUME);
+            DTConfigs.SERVER.isLeavesPassable.set(true);
+            DTConfigs.SERVER.treeHarvestMultiplier.set(1.5d);
+            DTConfigs.SERVER.leavesSeedDropRate.set(0.02);
+            DTConfigs.SERVER.axeDamageMode.set(DynamicTrees.AxeDamage.VOLUME);
         }
     }
 
@@ -49,10 +48,10 @@ public final class ForgeEvents
     {
         if (event.getTab() == TFCCreativeTabs.WOOD.tab().get())
         {
-            ForgeRegistries.ITEMS.getEntries().forEach((entry) -> {
-                if (entry.getKey().location().getNamespace().equals(DTTFC.MOD_ID))
+            BuiltInRegistries.ITEM.forEach((item) -> {
+                if (BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(DTTFC.MOD_ID))
                 {
-                    event.accept(entry.getValue());
+                    event.accept(item.getDefaultInstance());
                 }
             });
         }

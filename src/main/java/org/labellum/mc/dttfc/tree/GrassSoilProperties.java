@@ -1,8 +1,9 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
+import com.dtteam.dynamictrees.api.registry.TypedRegistry;
+import com.dtteam.dynamictrees.block.soil.SoilBlock;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
+
 import org.labellum.mc.dttfc.content.RootyGrassBlock;
 import javax.annotation.Nullable;
 import net.minecraft.resources.ResourceLocation;
@@ -26,7 +27,7 @@ public class GrassSoilProperties extends SoilProperties
     }
 
     @Override
-    protected RootyBlock createBlock(BlockBehaviour.Properties blockProperties)
+    protected SoilBlock createBlock(BlockBehaviour.Properties blockProperties)
     {
         return new RootyGrassBlock(this, blockProperties);
     }

@@ -1,27 +1,29 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.data.WaterRootGenerator;
-import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
+import com.dtteam.dynamictrees.api.registry.TypedRegistry;
+import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties;
+import com.dtteam.dynamictrees.block.soil.SoilBlock;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
+import com.dtteam.dynamictrees.data.generator.WaterRootSoilGenerator;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import org.labellum.mc.dttfc.content.RootyFluidBlock;
 
-public class FluidSoilProperties extends SoilProperties
+public class FluidSoilProperties extends AerialRootsSoilProperties
 {
     public static final TypedRegistry.EntryType<SoilProperties> TYPE = TypedRegistry.newType(FluidSoilProperties::new);
 
     public FluidSoilProperties(ResourceLocation registryName)
     {
-        super(null, registryName);
-        this.soilStateGenerator.reset(WaterRootGenerator::new);
+        super(registryName);
+        this.soilStateGenerator.reset(WaterRootSoilGenerator::new);
     }
 
     @Override
-    protected RootyBlock createBlock(BlockBehaviour.Properties blockProperties)
+    protected SoilBlock createBlock(BlockBehaviour.Properties blockProperties)
     {
         return new RootyFluidBlock(this, blockProperties);
     }
@@ -33,6 +35,6 @@ public class FluidSoilProperties extends SoilProperties
     @Override
     public BlockBehaviour.Properties getDefaultBlockProperties(MapColor mapColor)
     {
-        return BlockBehaviour.Properties.copy(Blocks.WATER);
+        return BlockBehaviour.Properties.of().mapColor(mapColor);
     }
 }

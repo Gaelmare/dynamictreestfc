@@ -7,9 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
-import com.ferreusveritas.dynamictrees.block.leaves.PalmLeavesProperties;
-import com.ferreusveritas.dynamictrees.util.CoordUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.dtteam.dynamictrees.block.leaves.PalmLeavesProperties;
+import com.dtteam.dynamictrees.utility.CoordUtils;
 import com.google.common.primitives.Ints;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -25,9 +29,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.ModelData;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.client.model.data.ModelData;
 
 public class PalmLeavesBakedModel extends BaseBakedModel
 {

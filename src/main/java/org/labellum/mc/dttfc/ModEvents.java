@@ -1,31 +1,28 @@
 package org.labellum.mc.dttfc;
 
-import com.ferreusveritas.dynamictrees.api.cell.CellKit;
-import com.ferreusveritas.dynamictrees.api.registry.RegistryEvent;
-import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
-import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
-import com.ferreusveritas.dynamictrees.tree.family.Family;
+import com.dtteam.dynamictrees.api.cell.CellKit;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
+import com.dtteam.dynamictrees.event.RegistryEvent;
+import com.dtteam.dynamictrees.event.TypeRegistryEvent;
+import com.dtteam.dynamictrees.systems.growthlogic.GrowthLogicKit;
+import com.dtteam.dynamictrees.tree.family.Family;
 import org.labellum.mc.dttfc.tree.AerialRootsFluidSoilProperties;
 import org.labellum.mc.dttfc.tree.DiagonalPalmFamily;
 import org.labellum.mc.dttfc.tree.DiagonalPalmLogic;
 import org.labellum.mc.dttfc.tree.FluidSoilProperties;
 import org.labellum.mc.dttfc.tree.GrassSoilProperties;
 import org.labellum.mc.dttfc.tree.PalmCellKit;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
 import org.labellum.mc.dttfc.tree.TFCMangroveFamily;
 
 public final class ModEvents
 {
-    public static void init()
+    public static void init(IEventBus modEventBus)
     {
-        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        bus.addGenericListener(Family.class, ModEvents::registerFamilies);
-        bus.addGenericListener(GrowthLogicKit.class, ModEvents::registerGrowth);
-        bus.addGenericListener(CellKit.class, ModEvents::registerCells);
-        bus.addGenericListener(SoilProperties.class, ModEvents::registerSoils);
+        modEventBus.addListener(ModEvents::registerFamilies);
+        modEventBus.addListener(ModEvents::registerGrowth);
+        modEventBus.addListener(ModEvents::registerCells);
+        modEventBus.addListener(ModEvents::registerSoils);
     }
 
     public static void registerFamilies(TypeRegistryEvent<Family> event)
@@ -36,12 +33,16 @@ public final class ModEvents
 
     public static void registerGrowth(RegistryEvent<GrowthLogicKit> event)
     {
-        event.getRegistry().register(new DiagonalPalmLogic(DTTFC.identifier("diagonal_palm")));
+        if (event.isEntryOfType(GrowthLogicKit.class)) {
+            event.getRegistry().register(new DiagonalPalmLogic(DTTFC.identifier("diagonal_palm")));
+        }
     }
 
     public static void registerCells(RegistryEvent<CellKit> event)
     {
-        event.getRegistry().register(new PalmCellKit(DTTFC.identifier("palm")));
+        if (event.isEntryOfType(CellKit.class)) {
+            event.getRegistry().register(new PalmCellKit(DTTFC.identifier("palm")));
+        }
     }
 
     public static void registerSoils(TypeRegistryEvent<SoilProperties> event)

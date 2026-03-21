@@ -1,6 +1,6 @@
 package org.labellum.mc.dttfc.util;
 
-import com.ferreusveritas.dynamictrees.compat.season.NormalSeasonManager;
+import com.dtteam.dynamictrees.systems.season.NormalSeasonManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
@@ -10,6 +10,11 @@ import net.dries007.tfc.util.climate.Climate;
 
 public class TFCSeasonManager extends NormalSeasonManager
 {
+    public TFCSeasonManager()
+    {
+        super();
+        setTropicalPredicate((levelAccess, blockPos) -> levelAccess instanceof Level level ? Climate.getAverageTemperature(level, blockPos) > 19f && Climate.getAverageRainfall(level, blockPos) > 330f : false);
+    }
     private static final float[] SEASON_FACTORS = {0.2f, 0.3f, 0.35f, 0.8f, 0.9f, 0.9f, 0.8f, 0.7f, 0.5f, 0.4f, 0.3f, 0.2f};
 
     @Override
@@ -25,7 +30,7 @@ public class TFCSeasonManager extends NormalSeasonManager
     }
 
     @Override
-    public float getFruitProductionFactor(Level level, BlockPos blockPos, float v, boolean b)
+    public float getFruitProductionFactor(Level level, BlockPos blockPos, float offset)
     {
         return getWeightedSeasonFactor(level);
     }
@@ -43,20 +48,14 @@ public class TFCSeasonManager extends NormalSeasonManager
     }
 
     @Override
-    public boolean isTropical(Level level, BlockPos blockPos)
-    {
-        return Climate.getTemperature(level, blockPos) > 19f && Climate.getRainfall(level, blockPos) > 330f;
-    }
-
-    @Override
     public boolean shouldSnowMelt(Level level, BlockPos blockPos)
     {
-        return Climate.getTemperature(level, blockPos) > 0f;
+        return Climate.getAverageTemperature(level, blockPos) > 0f;
     }
 
     private float getWeightedSeasonFactor(Level level)
     {
-        return SEASON_FACTORS[Calendars.get(level).getCalendarMonthOfYear().ordinal()];
+        return SEASON_FACTORS[Calendars.get(level).getAbsoluteCalendarMonthOfYear().ordinal()];
     }
 
     private float getPercentPassedSinceSpring(Level level)

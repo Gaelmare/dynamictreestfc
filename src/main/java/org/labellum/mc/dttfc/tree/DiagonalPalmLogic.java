@@ -1,12 +1,13 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.configuration.ConfigurationProperty;
-import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKitConfiguration;
-import com.ferreusveritas.dynamictrees.growthlogic.PalmGrowthLogic;
-import com.ferreusveritas.dynamictrees.growthlogic.context.DirectionManipulationContext;
-import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.tree.species.Species;
-import com.ferreusveritas.dynamictrees.util.CoordUtils;
+import com.dtteam.dynamictrees.api.configuration.ConfigurationProperty;
+import com.dtteam.dynamictrees.systems.GrowSignal;
+import com.dtteam.dynamictrees.systems.growthlogic.GrowthLogicKitConfiguration;
+import com.dtteam.dynamictrees.systems.growthlogic.PalmGrowthLogic;
+import com.dtteam.dynamictrees.systems.growthlogic.context.DirectionManipulationContext;
+import com.dtteam.dynamictrees.tree.species.Species;
+import com.dtteam.dynamictrees.utility.CoordUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;

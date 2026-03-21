@@ -2,8 +2,9 @@ package org.labellum.mc.dttfc.content;
 
 import java.util.Map;
 import java.util.Random;
-import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
+
+import com.dtteam.dynamictrees.block.soil.SoilBlock;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +25,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.dries007.tfc.common.blocks.DirectionPropertyBlock;
 import net.dries007.tfc.common.blocks.soil.IGrassBlock;
 
-public class RootyGrassBlock extends RootyBlock implements IGrassBlock
+public class RootyGrassBlock extends SoilBlock implements IGrassBlock
 {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
