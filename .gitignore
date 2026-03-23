@@ -13,6 +13,8 @@ out
 *.iml
 .idea
 
+.vscode
+
 # gradle
 build
 .gradle

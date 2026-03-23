@@ -1,4 +1,5 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "primitive_leaves": "tfc:wood/leaves/maple"
+  "primitive_leaves": "tfc:wood/leaves/maple",
+  "block_registry_name": "dynamictrees:dttfc_maple_leaves"
 }

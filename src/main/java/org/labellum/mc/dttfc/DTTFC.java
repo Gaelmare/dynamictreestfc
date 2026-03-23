@@ -3,7 +3,6 @@ package org.labellum.mc.dttfc;
 import com.dtteam.dynamictrees.registry.NeoForgeRegistryHandler;
 import com.dtteam.dynamictrees.systems.season.SeasonCompatibilityHandler;
 
-import org.labellum.mc.dttfc.client.ClientModEvents;
 import org.labellum.mc.dttfc.util.ModFeatures;
 import org.labellum.mc.dttfc.util.TFCSeasonManager;
 import net.minecraft.resources.ResourceLocation;
@@ -30,7 +29,15 @@ public class DTTFC
 
         if (FMLEnvironment.dist == Dist.CLIENT)
         {
-            ClientModEvents.init(modEventBus);
+            try
+            {
+                final Class<?> clientEvents = Class.forName("org.labellum.mc.dttfc.client.ClientModEvents");
+                clientEvents.getMethod("init", IEventBus.class).invoke(null, modEventBus);
+            }
+            catch (ReflectiveOperationException e)
+            {
+                throw new RuntimeException("Failed to initialize DTTFC client events", e);
+            }
         }
     }
 

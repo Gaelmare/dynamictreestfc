@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dttfc:birch_seed",
+          "name": "dynamictrees:birch_seed",
           "conditions": [
             {
               "condition": "dynamictrees:voluntary_seed_drop_chance",

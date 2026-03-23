@@ -2,5 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "primitive_leaves": "tfc:wood/leaves/acacia",
   "cell_kit": "dynamictrees:acacia",
-  "smother": 2
+  "smother": 2,
+  "block_registry_name": "dynamictrees:dttfc_acacia_leaves"
 }

@@ -6,6 +6,15 @@ from mcresources import ResourceManager, utils, loot_tables
 def generate(rm: ResourceManager):
     rm.block_tag("tfc:mineable_with_scythe", "#dynamictrees:leaves")
     for name in ALL_SPECIES:
+        external_seed_id = {
+            "acacia": "dynamictrees:acacia_seed",
+            "birch": "dynamictrees:birch_seed",
+            "oak": "dynamictrees:oak_seed",
+            "spruce": "dynamictrees:spruce_seed",
+            "mangrove": "dynamictrees:mangrove_seed",
+        }.get(name)
+        local_seed_base = name if external_seed_id is None else None
+
         branch = rm.blockstate("%s_branch" % name).with_lang(lang("%s branch", name))
         strip = rm.blockstate("stripped_%s_branch" % name).with_lang(
             lang("stripped %s branch", name)
@@ -53,11 +62,12 @@ def generate(rm: ResourceManager):
             },
             parent="dynamictrees:item/branch",
         )
-        rm.item_model(
-            "%s_seed" % name,
-            {"layer0": "dttfc:item/seed/%s" % name},
-            parent="dynamictrees:item/standard_seed",
-        ).with_lang(lang("%s seed", name))
+        if local_seed_base is not None:
+            rm.item_model(
+                "%s_seed" % local_seed_base,
+                {"layer0": "dttfc:item/seed/%s" % name},
+                parent="dynamictrees:item/standard_seed",
+            ).with_lang(lang("%s seed", name))
 
         branch.with_tag("dynamictrees:branches_that_burn")
         strip.with_tag("dynamictrees:branches_that_burn")
@@ -71,7 +81,7 @@ def generate(rm: ResourceManager):
         rm.loot(
             name,
             {
-                "name": ident("%s_seed" % name),
+                "name": external_seed_id if external_seed_id is not None else ident("%s_seed" % name),
                 "conditions": [
                     {
                         "condition": "dynamictrees:voluntary_seed_drop_chance",
@@ -111,7 +121,7 @@ def generate(rm: ResourceManager):
             loot_type="dynamictrees:branches",
         )
 
-        rm.block_tag("dynamictrees:foliage", "#tfc:plants")
+        rm.block_tag("dynamictrees:foliage", "#tfc:natural_regrowing_plants")
 
         if name == "kapok":
             rm.blockstate("%s_root" % name).with_lang(lang("%s root", name))
@@ -124,7 +134,7 @@ def generate(rm: ResourceManager):
     rm.blockstate(
         "mangrove_roots",
         variants={
-            "layer=covered": {"model": "tfc:block/mud/loam"},
+            "layer=covered": {"model": "tfc:block/mud/entisol"},
             "layer=exposed": {"model": "dttfc:block/tree_roots"},
             "layer=filled": {"model": "dttfc:block/muddy_roots"},
         },
@@ -136,8 +146,8 @@ def generate(rm: ResourceManager):
         "dynamictrees:roots",
         {
             "textures": {
-                "bark": "tfc:block/mud/loam_roots_side",
-                "rings": "tfc:block/mud/loam_roots_top",
+                "bark": "tfc:block/mud/entisol_roots_side",
+                "rings": "tfc:block/mud/entisol_roots_top",
             },
             "render_type": "cutout_mipped",
         },

@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "underground_roots",
-  "family": "dttfc:mangrove",
+  "family": "dttfc:tfc_mangrove",
   "can_bone_meal_tree": false,
   "tapering": 0.25,
   "signal_energy": 20,

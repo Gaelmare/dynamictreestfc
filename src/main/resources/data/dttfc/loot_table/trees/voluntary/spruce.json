@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dttfc:spruce_seed",
+          "name": "dynamictrees:spruce_seed",
           "conditions": [
             {
               "condition": "dynamictrees:voluntary_seed_drop_chance",

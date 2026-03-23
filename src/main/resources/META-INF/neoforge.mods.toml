@@ -35,13 +35,6 @@ ordering="AFTER"
 side="BOTH"
 
 [[dependencies.dttfc]]
-modId="dynamictreesplus"
-type="required"
-versionRange="[1.3.0,)"
-ordering="AFTER"
-side="BOTH"
-
-[[dependencies.dttfc]]
 modId="tfc"
 type="required"
 versionRange="[3.2.10,)"

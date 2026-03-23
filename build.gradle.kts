@@ -2,14 +2,15 @@ plugins {
     id("java")
     id("idea")
     id("com.matthewprenger.cursegradle") version "1.4.0"
-    id("net.neoforged.moddev") version "2.0.136"
-    id("eclipse")
+    id("net.neoforged.moddev") version "2.0.141"
+//    id("eclipse")
 }
 
 val minecraftVersion: String = "1.21.1"
 val neoForgeVersion: String = "21.1.197"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
-val jeiVersion: String = "19.21.0.247"
+val jeiVersion: String = "19.25.0.321"
+val patchouliVersion: String = "7730942"
 val jadeVersion: String = "7545219"
 val topVersion: String = "7292875"
 val tfcVersion: String = "7634816"
@@ -25,13 +26,6 @@ base {
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
-
-idea {
-    module {
-        excludeDirs.add(file("run"))
-    }
-}
-
 
 repositories {
     mavenCentral()
@@ -55,7 +49,7 @@ dependencies {
     implementation("curse.maven:tfc-302973:${tfcVersion}")
 
 	implementation("curse.maven:dt-252818:7661136")
-	implementation("curse.maven:dtplus-478155:7698617")
+	// implementation("curse.maven:dtplus-478155:7698617")
 
     // JEI
     compileOnly("mezz.jei:jei-$minecraftVersion-neoforge-api:$jeiVersion")
@@ -69,11 +63,32 @@ dependencies {
     // Only use Jade at runtime
     runtimeOnly("curse.maven:jade-324717:${jadeVersion}")
 
+    // Patchouli
+    runtimeOnly("curse.maven:patchouli-306770:${patchouliVersion}")
+
 }
 
 neoForge {
     version = neoForgeVersion
     validateAccessTransformers = true
+
+    mods {
+        create(modId) {
+            sourceSet(sourceSets.main.get())
+        }
+    }
+
+    runs {
+        create("client") {
+            client()
+        }
+        create("server") {
+            server()
+        }
+         create("data") {
+            data()
+        }
+    }
 }
 
 tasks {

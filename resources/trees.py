@@ -9,32 +9,40 @@ JO_PATH = '../src/main/resources/trees/dttfc/jo_codes/'
 def generate(rm: ResourceManager):
     for name in ALL_SPECIES:
         if name == 'acacia':
-            species(rm, name, tapering=0.15, signal_energy=12, up_probability=0, lowest_branch_height=3, growth_rate=0.7)
+            species(rm, name, family_override='dttfc:tfc_acacia', tapering=0.15, signal_energy=12, up_probability=0, lowest_branch_height=3, growth_rate=0.7)
         elif name == 'birch':
-            species(rm, name, tapering=0.1, signal_energy=14, up_probability=4, lowest_branch_height=4, growth_rate=1.25),
+            species(rm, name, family_override='dttfc:tfc_birch', tapering=0.1, signal_energy=14, up_probability=4, lowest_branch_height=4, growth_rate=1.25),
+        elif name == 'oak':
+            species(rm, name, family_override='dttfc:tfc_oak')
         elif name == 'sequoia':
             species(rm, name, tapering=0.25, signal_energy=24, up_probability=3, lowest_branch_height=4, growth_rate=1.2, growth_logic_kit='conifer')
         elif name == 'spruce':
-            species(rm, name, tapering=0.25, signal_energy=16, up_probability=3, lowest_branch_height=3, growth_rate=0.9, growth_logic_kit='conifer')
+            species(rm, name, family_override='dttfc:tfc_spruce', tapering=0.25, signal_energy=16, up_probability=3, lowest_branch_height=3, growth_rate=0.9, growth_logic_kit='conifer')
         elif name == 'palm':
-            species(rm, name, tapering=0.2, signal_energy=10, growth_rate=0.8, soil_str=2, growth_logic_kit='dttfc:diagonal_palm', soils=['dirt_like', 'sand_like'], spec_type='palm')
+            species(rm, name, tapering=0.2, signal_energy=10, growth_rate=0.8, soil_str=2, growth_logic_kit='dynamictrees:palm', soils=['dirt_like', 'sand_like'], spec_type='dynamictrees:palm', leaves_override='dttfc:palm')
         elif name == 'kapok':
             species(rm, name, tapering=0.2, signal_energy=24, up_probability=3, lowest_branch_height=2, growth_rate=1, growth_logic_kit='jungle')
         elif name == 'mangrove':
-            species(rm, name, tapering=0.25, signal_energy=20, up_probability=8, lowest_branch_height=2, growth_rate=0.6, spec_type='mangrove', soils=['dirt_like', 'mud_like', 'water_like'], extra_data={'root_tapering': 0.2, 'root_signal_energy': 20.0, 'roots_growth_logic_kit': 'mangrove_roots', 'primitive_sapling': 'mangrove_propagule', 'model_overrides': {'sapling': 'dynamictrees:block/smartmodel/water_sapling_thin'}, 'plantable_on_fluid': True})
+            species(rm, name, family_override='dttfc:tfc_mangrove', tapering=0.25, signal_energy=20, up_probability=8, lowest_branch_height=2, growth_rate=0.6, spec_type='mangrove', soils=['dirt_like', 'mud_like', 'water_like'], extra_data={'root_tapering': 0.2, 'root_signal_energy': 20.0, 'roots_growth_logic_kit': 'mangrove_roots', 'primitive_sapling': 'mangrove_propagule', 'model_overrides': {'sapling': 'dynamictrees:block/smartmodel/water_sapling_thin'}, 'plantable_on_fluid': True})
         else:
             species(rm, name)
 
         if name == 'birch':
-            family(rm, name, conifer_variants=True)
+                family(rm, 'tfc_birch', conifer_variants=True, extra_data={})
+        elif name == 'acacia':
+                family(rm, 'tfc_acacia', extra_data={})
+        elif name == 'oak':
+                family(rm, 'tfc_oak', extra_data={})
         elif name == 'sequoia' or name == 'spruce':
-            family(rm, name, max_branch_radius=24, conifer_variants=True)
+            family_name = 'tfc_spruce' if name == 'spruce' else name
+            family_extra_data = {} if name == 'spruce' else {}
+            family(rm, family_name, max_branch_radius=24, conifer_variants=True, extra_data=family_extra_data)
         elif name == 'palm':
-            family(rm, name, thickness1=3, thickness2=4, fam_type='dttfc:diagonal_palm')
+            family(rm, name, thickness1=3, thickness2=4, fam_type='dynamictrees:palm')
         elif name == 'kapok':
             family(rm, name, max_branch_radius=24, roots=True, max_signal=64)
         elif name == 'mangrove':
-            family(rm, name, fam_type='dttfc:mangrove', max_branch_radius=8, extra_data={'default_soil': 'dttfc:mangrove_aerial_roots', 'primitive_root': 'tfc:tree_roots', 'primitive_filled_root': 'tfc:muddy_roots/loam', 'primitive_covered_root': 'tfc:mud/loam', 'root_system_acceptable_soils': ['dirt_like', 'mud_like', 'sand_like']})
+            family(rm, 'tfc_mangrove', fam_type='underground_roots', max_branch_radius=8, extra_data={'default_soil': 'dttfc:mangrove_aerial_roots', 'primitive_root': 'tfc:tree_roots', 'primitive_filled_root': 'tfc:muddy_roots/entisol', 'primitive_covered_root': 'tfc:mud/entisol', 'root_system_acceptable_soils': ['dirt_like', 'mud_like', 'sand_like']})
         else:
             family(rm, name)
 
@@ -43,7 +51,7 @@ def generate(rm: ResourceManager):
         elif name == 'sequoia' or name == 'spruce':
             leaves_properties(rm, name, cell_kit='dynamictrees:conifer', smother=3)
         elif name == 'palm':
-            leaves_properties(rm, name, cell_kit='dttfc:palm', leaf_type='palm')
+            leaves_properties(rm, name, cell_kit='dttfc:palm', leaf_type='dynamictrees:palm')
         elif name == 'kapok':
             leaves_properties(rm, name, light=12)
         elif name == 'mangrove':
@@ -54,7 +62,8 @@ def generate(rm: ResourceManager):
         if name not in NO_BUSHES:
             jo_code('undergrowth', '%s_undergrowth' % name)
             leaves_properties(rm, name + '_undergrowth', leaf_type='scruffy', ground=True, light=4, scruff_chance=0.66, scruff_hydro_max=1, leaves_override='tfc:wood/leaves/%s' % name)
-            species(rm, name + '_undergrowth', family_override='dttfc:%s' % name, up_probability=0, lowest_branch_height=0, signal_energy=2, soil_str=1, leaves_override='dttfc:%s_undergrowth' % name)
+            undergrowth_family = 'dttfc:tfc_%s' % name if name in ('acacia', 'birch', 'oak', 'spruce', 'mangrove') else 'dttfc:%s' % name
+            species(rm, name + '_undergrowth', family_override=undergrowth_family, up_probability=0, lowest_branch_height=0, signal_energy=2, soil_str=1, leaves_override='dttfc:%s_undergrowth' % name)
 
     for soil in DIRT_TYPES:
         soil_properties(rm, soil, 'mud')
@@ -156,6 +165,7 @@ def family(rm: ResourceManager, name: str, fam_type: str = None, max_branch_radi
 def leaves_properties(rm: ResourceManager, name: str, leaves_override: str = None, cell_kit: str = None, smother: int = None, leaf_type: str = None, light: int = None, ground: bool = None, scruff_chance: float = None, scruff_hydro_max: int = None):
     write(rm, 'leaves_properties', name, {
         'primitive_leaves': 'tfc:wood/leaves/%s' % name if leaves_override is None else leaves_override,
+        'block_registry_name': 'dynamictrees:dttfc_%s_leaves' % name,
         'cell_kit': cell_kit,
         'smother': smother,
         'type': leaf_type,

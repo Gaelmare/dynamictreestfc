@@ -1,5 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "primitive_leaves": "tfc:wood/leaves/kapok",
-  "light_requirement": 12
+  "light_requirement": 12,
+  "block_registry_name": "dynamictrees:dttfc_kapok_leaves"
 }

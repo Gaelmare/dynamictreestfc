@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dttfc:mangrove_seed",
+          "name": "dynamictrees:mangrove_seed",
           "conditions": [
             {
               "condition": "dynamictrees:voluntary_seed_drop_chance",

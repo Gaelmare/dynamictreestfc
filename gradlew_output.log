@@ -1,0 +1,923 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :createMinecraftArtifacts UP-TO-DATE
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :downloadAssets UP-TO-DATE
+> Task :writeClientLegacyClasspath UP-TO-DATE
+> Task :prepareClientRun UP-TO-DATE
+
+> Task :runClient
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[03:47:01] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientdev, --version, 21.1.197, --assetIndex, 17, --assetsDir, /home/edward_wong/.gradle/caches/neoformruntime/assets, --gameDir, ., --fml.fmlVersion, 4.0.41, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.197, --fml.neoFormVersion, 20240808.144430]
+[03:47:01] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: JVM identified as Arch Linux OpenJDK 64-Bit Server VM 21.0.10+7
+[03:47:01] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.10 by Arch Linux; OS Linux arch amd64 version 6.19.8-arch1-1
+[03:47:01] [main/INFO] [ne.ne.fm.lo.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[03:47:01] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[03:47:01] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[03:47:01] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/home/edward_wong/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23126!/ Service=ModLauncher Env=CLIENT
+[03:47:01] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 3080/PCIe/SSE2 GL version 4.6.0 NVIDIA 590.48.01, NVIDIA Corporation
+[03:47:01] [main/INFO] [ne.ne.fm.lo.mo.lo.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[03:47:01] [main/INFO] [ne.ne.fm.lo.mo.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Dynamic Trees 1.7.0 (dynamictrees)
+		Dynamic Trees TFC 0.0NONE (dttfc)
+		Jade 15.10.5+neoforge (jade)
+		Just Enough Items 19.25.0.321 (jei)
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.197 (neoforge)
+		Patchouli 1.21.1-93-NEOFORGE (patchouli)
+		TerraFirmaCraft 4.0.19-beta (tfc)
+[03:47:02] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[03:47:02] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientdev' with arguments [--version, 21.1.197, --gameDir, ., --assetsDir, /home/edward_wong/.gradle/caches/neoformruntime/assets, --assetIndex, 17]
+[03:47:02] [main/WARN] [mixin/]: Reference map 'patchouli.refmap.json' for patchouli_xplat.mixins.json could not be read. If this is a development environment you can ignore this message
+[03:47:02] [main/WARN] [mixin/]: Reference map 'dynamictrees.refmap.json' for dynamictrees.mixins.json could not be read. If this is a development environment you can ignore this message
+[03:47:02] [main/WARN] [mixin/]: Reference map 'tfc.refmap.json' for tfc.mixins.json could not be read. If this is a development environment you can ignore this message
+[03:47:03] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[03:47:04] [Datafixer Bootstrap/INFO] [mojang/DataFixerBuilder]: 229 Datafixer optimizations took 226 milliseconds
+[03:47:09] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[03:47:09] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[03:47:09] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[03:47:09] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[03:47:09] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[03:47:09] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/media/Software/programming/java/modpack/1.21.1/Dynamic-Trees/dynamictreestfc/build/moddev/artifacts/neoforge-21.1.197.jar%23176!/assets/.mcassetsroot' uses unexpected schema
+[03:47:09] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/media/Software/programming/java/modpack/1.21.1/Dynamic-Trees/dynamictreestfc/build/moddev/artifacts/neoforge-21.1.197.jar%23176!/data/.mcassetsroot' uses unexpected schema
+[03:47:09] [Render thread/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[03:47:09] [Render thread/INFO] [minecraft/Minecraft]: Setting user: Dev
+[03:47:09] [Render thread/INFO] [minecraft/Minecraft]: Backend library: LWJGL version 3.3.3+5
+[03:47:09] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.197, for MC 1.21.1
+[03:47:09] [modloading-worker-0/WARN] [patchouli/]: Could not locate JEI keybindings, lookups in books may not work
+[03:47:09] [modloading-worker-0/INFO] [me.je.li.lo.PluginCaller/]: Sending ConfigManager...
+[03:47:09] [modloading-worker-0/INFO] [me.je.li.lo.PluginCaller/]: Sending ConfigManager took 1.707 milliseconds
+[03:47:09] [modloading-worker-0/INFO] [ne.dr.tf.TerraFirmaCraft/]: Initializing TerraFirmaCraft
+[03:47:09] [modloading-worker-0/INFO] [ne.dr.tf.TerraFirmaCraft/]: Options: Assertions = false, Debug = false, Production = false, Dist = CLIENT, Self Test = false (Fatal = true)
+[03:47:10] [Worker-Main-1/ERROR] [co.dt.dy.ap.re.TypedRegistry/]: Error constructing Family 'dttfc:tfc_mangrove': Could not find type for 'dttfc:mangrove' (will use default).
+[03:47:10] [Worker-Main-1/ERROR] [co.dt.dy.ap.re.TypedRegistry/]: Error constructing Family 'dttfc:palm': Could not find type for 'dttfc:diagonal_palm' (will use default).
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ja.FMLModContainer/]: Exception caught during firing event: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+	Index: 16
+	Listeners:
+		0: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@40aaec2e
+		1: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@67700b8
+		2: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@248d6d28
+		3: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@7f0ceb5
+		4: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@72571a3d
+		5: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@296aaaf8
+		6: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@38a571ac
+		7: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1eb1debe
+		8: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3780ab17
+		9: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@41e993b7
+		10: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@bf133ee
+		11: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@38132d42
+		12: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@5cfc4e51
+		13: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1b0ba3f4
+		14: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@78b7b964
+		15: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1b958794
+		16: net.neoforged.bus.EventListenerFactory$loadResources/0x00007f1984f92400@2125d794
+java.util.concurrent.CompletionException: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:315)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:320)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:722)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+Caused by: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:70)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:35)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.Species.setLeavesProperties(Species.java:435)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.Species.<init>(Species.java:339)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.<init>(UndergroundRootsSpecies.java:63)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Instance.ap3(DataResult.java:456)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.codecs.RecordCodecBuilder$Instance$5.decode(RecordCodecBuilder.java:321)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.codecs.RecordCodecBuilder$2.decode(RecordCodecBuilder.java:107)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapDecoder.lambda$compressedDecode$1(MapDecoder.java:52)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Success.flatMap(DataResult.java:201)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapDecoder.compressedDecode(MapDecoder.java:52)
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapCodec$MapCodecCodec.decode(MapCodec.java:158)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.registry.TypedRegistry$EntryType.decode(TypedRegistry.java:152)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.loadNewResource(JsonRegistryResourceLoader.java:221)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.loadResourceOnLoad(JsonRegistryResourceLoader.java:67)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.lambda$applyOnLoad$0(JsonRegistryResourceLoader.java:58)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.SimpleResourceAccessor.forEach(SimpleResourceAccessor.java:48)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.applyOnLoad(JsonRegistryResourceLoader.java:55)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.AbstractResourceLoader.lambda$load$3(AbstractResourceLoader.java:37)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718)
+	... 8 more
+
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ModContainer/LOADING]: Caught exception during event net.neoforged.neoforge.registries.RegisterEvent@6f700a7d dispatch for modid dynamictrees
+java.util.concurrent.CompletionException: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:315) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:320) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:722) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[?:?] {}
+Caused by: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:70) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:35) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.Species.setLeavesProperties(Species.java:435) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.Species.<init>(Species.java:339) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.<init>(UndergroundRootsSpecies.java:63) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Instance.ap3(DataResult.java:456) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.codecs.RecordCodecBuilder$Instance$5.decode(RecordCodecBuilder.java:321) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.codecs.RecordCodecBuilder$2.decode(RecordCodecBuilder.java:107) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapDecoder.lambda$compressedDecode$1(MapDecoder.java:52) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Success.flatMap(DataResult.java:201) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapDecoder.compressedDecode(MapDecoder.java:52) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapCodec$MapCodecCodec.decode(MapCodec.java:158) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.registry.TypedRegistry$EntryType.decode(TypedRegistry.java:152) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.loadNewResource(JsonRegistryResourceLoader.java:221) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.loadResourceOnLoad(JsonRegistryResourceLoader.java:67) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.lambda$applyOnLoad$0(JsonRegistryResourceLoader.java:58) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[?:?] {}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.SimpleResourceAccessor.forEach(SimpleResourceAccessor.java:48) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.applyOnLoad(JsonRegistryResourceLoader.java:55) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.AbstractResourceLoader.lambda$load$3(AbstractResourceLoader.java:37) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718) ~[?:?] {}
+	... 8 more
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ja.FMLModContainer/]: Exception caught during firing event: Trying to access unbound value: ResourceKey[minecraft:block / tfc:wood/vertical_support/acacia]
+	Index: 1
+	Listeners:
+		0: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@4bf980df
+		1: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@747d363e
+		2: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@60d227e9
+		3: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@47891ae4
+		4: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@41961493
+		5: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@5e257532
+		6: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@698eb7bc
+		7: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3608228e
+		8: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@323e847e
+		9: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@45c5f100
+		10: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@43b2a632
+		11: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@52cfc26f
+		12: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@794aeb5f
+		13: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1c468550
+		14: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@cebb080
+		15: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1686c61e
+		16: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@525dd096
+		17: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@40a0246f
+		18: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3028ada9
+		19: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@24cb3cdf
+		20: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@474018ae
+		21: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@644ea6ae
+		22: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@5111151b
+		23: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@4e56fa86
+		24: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@762cf80d
+		25: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@474ab4fd
+		26: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@582513dc
+		27: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@336d01c0
+		28: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@112fb50a
+		29: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@4a06d86e
+		30: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@2d784736
+		31: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@6e65405b
+		32: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@168add23
+		33: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@51d60600
+		34: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3759fc01
+		35: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@624c0ca0
+		36: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@7d7c5996
+		37: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@2140dd0b
+		38: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@48aee937
+		39: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@77e3aa8c
+		40: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@68db6d48
+		41: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@772a4b36
+		42: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@65a76236
+		43: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@6e10bf80
+		44: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@761a8d9d
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:wood/vertical_support/acacia]
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117)
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.util.registry.RegistryHolder.get(RegistryHolder.java:44)
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.common.items.TFCItems.lambda$static$14(TFCItems.java:110)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ModContainer/LOADING]: Caught exception during event net.neoforged.neoforge.registries.RegisterEvent@5ac4e2f9 dispatch for modid tfc
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:wood/vertical_support/acacia]
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.util.registry.RegistryHolder.get(RegistryHolder.java:44) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:mixin,re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.common.items.TFCItems.lambda$static$14(TFCItems.java:110) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ja.FMLModContainer/]: Exception caught during firing event: Trying to access unbound value: ResourceKey[minecraft:block / dynamictrees:rooty_yellow_terracotta]
+	Index: 0
+	Listeners:
+		0: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@40aaec2e
+		1: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@67700b8
+		2: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@248d6d28
+		3: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@7f0ceb5
+		4: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@72571a3d
+		5: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@296aaaf8
+		6: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@38a571ac
+		7: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1eb1debe
+		8: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3780ab17
+		9: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@41e993b7
+		10: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@bf133ee
+		11: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@38132d42
+		12: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@5cfc4e51
+		13: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1b0ba3f4
+		14: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@78b7b964
+		15: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1b958794
+		16: net.neoforged.bus.EventListenerFactory$loadResources/0x00007f1984f92400@2125d794
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / dynamictrees:rooty_yellow_terracotta]
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.block.soil.SoilProperties.getBlock(SoilProperties.java:175)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1939)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.registry.DTRegistries.lambda$getAllRootyBlocks$6(DTRegistries.java:180)
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.registry.NeoForgeRegistryLoader.lambda$registerBlockEntity$2(NeoForgeRegistryLoader.java:127)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ModContainer/LOADING]: Caught exception during event net.neoforged.neoforge.registries.RegisterEvent@4b39a94e dispatch for modid dynamictrees
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / dynamictrees:rooty_yellow_terracotta]
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.block.soil.SoilProperties.getBlock(SoilProperties.java:175) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?] {}
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?] {}
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1939) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?] {}
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?] {}
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[?:?] {}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.registry.DTRegistries.lambda$getAllRootyBlocks$6(DTRegistries.java:180) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.registry.NeoForgeRegistryLoader.lambda$registerBlockEntity$2(NeoForgeRegistryLoader.java:127) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ja.FMLModContainer/]: Exception caught during firing event: Trying to access unbound value: ResourceKey[minecraft:block / tfc:nest_box]
+	Index: 19
+	Listeners:
+		0: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@4bf980df
+		1: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@747d363e
+		2: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@60d227e9
+		3: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@47891ae4
+		4: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@41961493
+		5: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@5e257532
+		6: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@698eb7bc
+		7: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3608228e
+		8: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@323e847e
+		9: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@45c5f100
+		10: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@43b2a632
+		11: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@52cfc26f
+		12: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@794aeb5f
+		13: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1c468550
+		14: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@cebb080
+		15: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@1686c61e
+		16: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@525dd096
+		17: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@40a0246f
+		18: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3028ada9
+		19: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@24cb3cdf
+		20: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@474018ae
+		21: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@644ea6ae
+		22: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@5111151b
+		23: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@4e56fa86
+		24: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@762cf80d
+		25: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@474ab4fd
+		26: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@582513dc
+		27: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@336d01c0
+		28: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@112fb50a
+		29: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@4a06d86e
+		30: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@2d784736
+		31: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@6e65405b
+		32: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@168add23
+		33: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@51d60600
+		34: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@3759fc01
+		35: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@624c0ca0
+		36: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@7d7c5996
+		37: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@2140dd0b
+		38: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@48aee937
+		39: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@77e3aa8c
+		40: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@68db6d48
+		41: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@772a4b36
+		42: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@65a76236
+		43: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@6e10bf80
+		44: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x00007f1984f02f20@761a8d9d
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:nest_box]
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117)
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.util.registry.RegistryHolder.get(RegistryHolder.java:44)
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.common.entities.ai.TFCBrain.lambda$static$0(TFCBrain.java:63)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360)
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377)
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92)
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.fm.ModContainer/LOADING]: Caught exception during event net.neoforged.neoforge.registries.RegisterEvent@43a9e0fb dispatch for modid tfc
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:nest_box]
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.util.registry.RegistryHolder.get(RegistryHolder.java:44) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:mixin,re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.common.entities.ai.TFCBrain.lambda$static$0(TFCBrain.java:63) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.ne.re.GameData/]: Failed to register some entries, see suppressed exceptions for details
+java.lang.RuntimeException: null
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:83) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+	Suppressed: net.neoforged.fml.ModLoadingException: Loading errors encountered:
+	- Dynamic Trees (dynamictrees) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+	  java.util.concurrent.CompletionException: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:181) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+		at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+	Suppressed: net.neoforged.fml.ModLoadingException: Loading errors encountered:
+	- TerraFirmaCraft (tfc) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+	  java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:wood/vertical_support/acacia]
+
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:181) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+		at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+	Suppressed: net.neoforged.fml.ModLoadingException: Loading errors encountered:
+	- Dynamic Trees (dynamictrees) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+	  java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / dynamictrees:rooty_yellow_terracotta]
+
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:181) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+		at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+	Suppressed: net.neoforged.fml.ModLoadingException: Loading errors encountered:
+	- TerraFirmaCraft (tfc) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+	  java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:nest_box]
+
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:181) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+		at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+		at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+[03:47:10] [modloading-sync-worker/ERROR] [ne.ne.ne.re.GameData/]: Rolling back to VANILLA state
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:bluegill has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:crappie has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:lake_trout has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:largemouth_bass has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:rainbow_trout has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:salmon has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:smallmouth_bass has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:cod has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:tropical_fish has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:pufferfish has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:jellyfish has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:isopod has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:lobster has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:crayfish has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:horseshoe_crab has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:dolphin has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:orca has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:manatee has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:squid has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:octopoteuthis has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:turtle has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:penguin has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:leopard_seal has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:frog has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:polar_bear has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:grizzly_bear has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:black_bear has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:cougar has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:panther has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:lion has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:sabertooth has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:tiger has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:crocodile has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:wolf has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:hyena has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:direwolf has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:pig has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:cow has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:goat has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:yak has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:alpaca has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:sheep has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:musk_ox has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:chicken has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:duck has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:quail has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:rabbit has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:fox has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:panda has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:ocelot has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:deer has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:caribou has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:bongo has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:gazelle has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:grouse has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:pheasant has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:turkey has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:peafowl has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:boar has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:moose has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:wildebeest has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:bison has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:rat has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:lemming has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:mongoose has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:jerboa has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:donkey has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:mule has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:horse has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:cat has no attributes
+[03:47:10] [modloading-sync-worker/ERROR] [minecraft/Util]: Entity tfc:dog has no attributes
+[03:47:11] [Render thread/FATAL] [ne.ne.fm.ModLoader/LOADING]: Failed to wait for future Registry initialization, 4 errors found
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.sound.SoundEngineLoadEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$Block to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$Item to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterMaterialAtlasesEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterRenderBuffersEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RenderLevelStageEvent$RegisterStageEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterMenuScreensEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$RegisterLayerDefinitions to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$RegisterRenderers to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterEntitySpectatorShadersEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterGuiLayersEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterNamedRenderTypesEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$ColorResolvers to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterPresetEditorsEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.gui.map.RegisterMapDecorationRenderersEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent to a broken mod state
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterJsonAnimationTypesEvent to a broken mod state
+[03:47:11] [Render thread/INFO] [minecraft/ReloadableResourceManager]: Reloading ResourceManager: vanilla
+[03:47:11] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$RegisterGeometryLoaders to a broken mod state
+[03:47:11] [Worker-Main-15/INFO] [minecraft/UnihexProvider]: Found unifont_all_no_pua-15.1.05.hex, loading
+[03:47:11] [Worker-Main-12/INFO] [minecraft/UnihexProvider]: Found unifont_jp_patch-15.1.05.hex, loading
+[03:47:12] [Worker-Main-14/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$RegisterAdditional to a broken mod state
+[03:47:13] [Worker-Main-14/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$ModifyBakingResult to a broken mod state
+[03:47:13] [Render thread/INFO] [mojang/Library]: OpenAL initialized on device Starship/Matisse HD Audio Controller Analog Stereo
+[03:47:13] [Render thread/INFO] [minecraft/SoundEngine]: Sound engine started
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.sound.SoundEngineLoadEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$BakingCompleted to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$AddLayers to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
+[03:47:13] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[03:47:13] [Render thread/ERROR] [ne.ne.fm.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterShadersEvent to a broken mod state
+[03:47:14] [Render thread/ERROR] [minecraft/CrashReport]: Negative index in crash report handler (0/31)
+[03:47:14] [Render thread/FATAL] [ne.ne.ne.co.NeoForgeMod/]: Preparing crash report with UUID 57026ed5-45b4-4c3b-8470-3f13c28de0c5
+[03:47:14] [Render thread/FATAL] [ne.ne.ne.cl.lo.ClientModLoader/]: Crash report saved to ./crash-reports/crash-2026-03-24_03.47.14-fml.txt
+[03:47:14] [Render thread/FATAL] [ne.ne.ne.co.NeoForgeMod/]: Preparing crash report with UUID 1c491c8f-1bd5-4e8d-ab33-015ae554b15a
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 2026-03-24 03:47:14
+Description: Mod loading failures have occurred; consult the issue messages for more details
+
+net.neoforged.neoforge.logging.CrashReportExtender$ModLoadingCrashException: Mod loading has failed
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:70) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+-- Mod loading issue for: dynamictrees --
+Details:
+	Caused by 0: java.util.concurrent.CompletionException: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+		at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:315) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:320) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:722) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[?:?] {}
+
+	Mod file: /home/edward_wong/.gradle/caches/modules-2/files-2.1/curse.maven/dt-252818/7661136/214b57ccd42bc306de8aff347162172fc4ba971b/dt-252818-7661136.jar
+	Failure message: Dynamic Trees (dynamictrees) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+		java.util.concurrent.CompletionException: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+	Mod version: 1.7.0
+	Mod issues URL: <No issues URL found>
+	Exception message: java.lang.ClassCastException: class com.dtteam.dynamictrees.tree.family.Family cannot be cast to class com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily (com.dtteam.dynamictrees.tree.family.Family and com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily are in module dynamictrees@1.7.0 of loader 'TRANSFORMER' @5136207f)
+Stacktrace:
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:70) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.getFamily(UndergroundRootsSpecies.java:35) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.Species.setLeavesProperties(Species.java:435) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.Species.<init>(Species.java:339) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.tree.species.UndergroundRootsSpecies.<init>(UndergroundRootsSpecies.java:63) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Instance.ap3(DataResult.java:456) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.codecs.RecordCodecBuilder$Instance$5.decode(RecordCodecBuilder.java:321) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.codecs.RecordCodecBuilder$2.decode(RecordCodecBuilder.java:107) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapDecoder.lambda$compressedDecode$1(MapDecoder.java:52) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Success.flatMap(DataResult.java:201) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapDecoder.compressedDecode(MapDecoder.java:52) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.MapCodec$MapCodecCodec.decode(MapCodec.java:158) ~[datafixerupper-8.0.16.jar%23107!/:?] {}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.registry.TypedRegistry$EntryType.decode(TypedRegistry.java:152) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.loadNewResource(JsonRegistryResourceLoader.java:221) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.loadResourceOnLoad(JsonRegistryResourceLoader.java:67) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.lambda$applyOnLoad$0(JsonRegistryResourceLoader.java:58) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[?:?] {}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.SimpleResourceAccessor.forEach(SimpleResourceAccessor.java:48) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.preparation.JsonRegistryResourceLoader.applyOnLoad(JsonRegistryResourceLoader.java:55) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.api.resource.loading.AbstractResourceLoader.lambda$load$3(AbstractResourceLoader.java:37) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[?:?] {}
+
+
+-- Mod loading issue for: tfc --
+Details:
+	Mod file: /home/edward_wong/.gradle/caches/modules-2/files-2.1/curse.maven/tfc-302973/7634816/3c699464ff91a76398ac7dcec7fa93cdc480b794/tfc-302973-7634816.jar
+	Failure message: TerraFirmaCraft (tfc) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+		java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:wood/vertical_support/acacia]
+	Mod version: 4.0.19-beta
+	Mod issues URL: https://github.com/TerraFirmaCraft/TerraFirmaCraft/issues
+	Exception message: java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:wood/vertical_support/acacia]
+Stacktrace:
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.util.registry.RegistryHolder.get(RegistryHolder.java:44) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:mixin,re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.common.items.TFCItems.lambda$static$14(TFCItems.java:110) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?] {}
+
+
+-- Mod loading issue for: dynamictrees --
+Details:
+	Mod file: /home/edward_wong/.gradle/caches/modules-2/files-2.1/curse.maven/dt-252818/7661136/214b57ccd42bc306de8aff347162172fc4ba971b/dt-252818-7661136.jar
+	Failure message: Dynamic Trees (dynamictrees) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+		java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / dynamictrees:rooty_yellow_terracotta]
+	Mod version: 1.7.0
+	Mod issues URL: <No issues URL found>
+	Exception message: java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / dynamictrees:rooty_yellow_terracotta]
+Stacktrace:
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.block.soil.SoilProperties.getBlock(SoilProperties.java:175) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?] {}
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?] {}
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1939) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?] {}
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?] {}
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[?:?] {}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.registry.DTRegistries.lambda$getAllRootyBlocks$6(DTRegistries.java:180) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/dynamictrees@1.7.0/com.dtteam.dynamictrees.registry.NeoForgeRegistryLoader.lambda$registerBlockEntity$2(NeoForgeRegistryLoader.java:127) ~[dt-252818-7661136.jar%23182!/:1.7.0] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?] {}
+
+
+-- Mod loading issue for: tfc --
+Details:
+	Mod file: /home/edward_wong/.gradle/caches/modules-2/files-2.1/curse.maven/tfc-302973/7634816/3c699464ff91a76398ac7dcec7fa93cdc480b794/tfc-302973-7634816.jar
+	Failure message: TerraFirmaCraft (tfc) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
+		java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:nest_box]
+	Mod version: 4.0.19-beta
+	Mod issues URL: https://github.com/TerraFirmaCraft/TerraFirmaCraft/issues
+	Exception message: java.lang.NullPointerException: Trying to access unbound value: ResourceKey[minecraft:block / tfc:nest_box]
+Stacktrace:
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.util.registry.RegistryHolder.get(RegistryHolder.java:44) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:mixin,re:classloading}
+	at TRANSFORMER/tfc@4.0.19-beta/net.dries007.tfc.common.entities.ai.TFCBrain.lambda$static$0(TFCBrain.java:63) ~[tfc-302973-7634816.jar%23181!/:4.0.19-beta] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$0(DeferredRegister.java:215) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23138!/:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:379) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:377) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.41/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:368) ~[loader-4.0.41.jar%23134!/:4.0] {}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:92) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.197/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.1.197.jar%23177!/:?] {re:classloading}
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?] {}
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?] {}
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.1
+	Minecraft Version ID: 1.21.1
+	Operating System: Linux (amd64) version 6.19.8-arch1-1
+	Java Version: 21.0.10, Arch Linux
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Arch Linux
+	Memory: 481986960 bytes (459 MiB) / 864026624 bytes (824 MiB) up to 12608077824 bytes (12024 MiB)
+	CPUs: 24
+	Processor Vendor: AuthenticAMD
+	Processor Name: AMD Ryzen 9 3900X 12-Core Processor
+	Identifier: AuthenticAMD Family 23 Model 113 Stepping 0
+	Microarchitecture: Zen 2
+	Frequency (GHz): -0.00
+	Number of physical packages: 1
+	Number of physical CPUs: 12
+	Number of logical CPUs: 24
+	Graphics card #0 name: GA102 [GeForce RTX 3080 Lite Hash Rate]
+	Graphics card #0 vendor: NVIDIA Corporation (0x10de)
+	Graphics card #0 VRAM (MiB): 16416.00
+	Graphics card #0 deviceId: 0x2216
+	Graphics card #0 versionInfo: unknown
+	Virtual memory max (MiB): 24044.68
+	Virtual memory used (MiB): 20249.57
+	Swap memory total (MiB): 0.00
+	Swap memory used (MiB): 0.00
+	Space in storage for jna.tmpdir (MiB): <path not set>
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): <path not set>
+	Space in storage for io.netty.native.workdir (MiB): <path not set>
+	Space in storage for java.io.tmpdir (MiB): available: 23955.55, total: 24044.68
+	Space in storage for workdir (MiB): available: 13989.64, total: 467852.25
+	JVM Flags: 0 total; 
+	ModLauncher: 11.0.5+main.901c6ea8
+	ModLauncher launch target: forgeclientdev
+	ModLauncher services: 
+		sponge-mixin-0.15.2+mixin.0.8.7.jar mixin PLUGINSERVICE 
+		loader-4.0.41.jar slf4jfixer PLUGINSERVICE 
+		loader-4.0.41.jar runtime_enum_extender PLUGINSERVICE 
+		at-modlauncher-10.0.1.jar accesstransformer PLUGINSERVICE 
+		loader-4.0.41.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-11.0.5.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-11.0.5.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		javafml@4.0
+		lowcodefml@4.0
+		minecraft@4.0
+	Mod List: 
+		dt-252818-7661136.jar                             |Dynamic Trees                 |dynamictrees                  |1.7.0               |Manifest: NOSIGNATURE
+		main                                              |Dynamic Trees TFC             |dttfc                         |0.0NONE             |Manifest: NOSIGNATURE
+		jade-324717-7545219.jar                           |Jade                          |jade                          |15.10.5+neoforge    |Manifest: NOSIGNATURE
+		jei-1.21.1-neoforge-19.25.0.321.jar               |Just Enough Items             |jei                           |19.25.0.321         |Manifest: NOSIGNATURE
+		neoforge-21.1.197.jar                             |Minecraft                     |minecraft                     |1.21.1              |Manifest: NOSIGNATURE
+		neoforge-21.1.197.jar                             |NeoForge                      |neoforge                      |21.1.197            |Manifest: NOSIGNATURE
+		patchouli-306770-7730942.jar                      |Patchouli                     |patchouli                     |1.21.1-93-NEOFORGE  |Manifest: NOSIGNATURE
+		tfc-302973-7634816.jar                            |TerraFirmaCraft               |tfc                           |4.0.19-beta         |Manifest: NOSIGNATURE
+	Crash Report UUID: 1c491c8f-1bd5-4e8d-ab33-015ae554b15a
+	FML: 4.0.41
+	NeoForge: 21.1.197
+[03:47:17] [Render thread/INFO] [minecraft/Minecraft]: Stopping!
+
+BUILD SUCCESSFUL in 26s
+7 actionable tasks: 2 executed, 5 up-to-date

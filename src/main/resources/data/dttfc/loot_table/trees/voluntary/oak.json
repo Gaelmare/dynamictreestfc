@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dttfc:oak_seed",
+          "name": "dynamictrees:oak_seed",
           "conditions": [
             {
               "condition": "dynamictrees:voluntary_seed_drop_chance",
