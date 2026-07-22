@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "ash",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/ash"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/ash"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/ash"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/ash"
+  }
+}

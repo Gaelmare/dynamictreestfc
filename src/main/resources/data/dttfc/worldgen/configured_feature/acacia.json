@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": 10.4,
+        "max_temperature": 40,
+        "min_groundwater": 90,
+        "max_groundwater": 500,
+        "min_rain_variance": 0.4,
+        "max_rain_variance": 0.85,
+        "rain_variance_absolute": true
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/acacia"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/acacia"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
+      "fallen_tree_chance": 0,
+      "bush_log": {
+        "Name": "tfc:wood/wood/acacia",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/acacia",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:acacia",
+    "dead_species": "dttfc:acacia_dead",
+    "undergrowth_species": "dttfc:acacia_undergrowth"
+  }
+}

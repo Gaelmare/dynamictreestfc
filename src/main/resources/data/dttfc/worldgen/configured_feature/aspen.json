@@ -1,0 +1,44 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": -14.2,
+        "max_temperature": 5,
+        "min_groundwater": 350,
+        "max_groundwater": 500,
+        "min_rain_variance": -0.65,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/aspen"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/aspen"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "krummholz": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
+      "fallen_log": "tfc:wood/log/aspen",
+      "old_growth_chance": 1,
+      "fallen_leaves": "tfc:wood/fallen_leaves/aspen",
+      "bush_log": {
+        "Name": "tfc:wood/wood/aspen",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/aspen",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:aspen",
+    "dead_species": "dttfc:aspen_dead",
+    "undergrowth_species": "dttfc:aspen_undergrowth"
+  }
+}

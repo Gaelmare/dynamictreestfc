@@ -1,0 +1,42 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": -0.4,
+        "max_temperature": 14,
+        "min_groundwater": 150,
+        "max_groundwater": 340,
+        "min_rain_variance": -0.2,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/chestnut"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/chestnut"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:alfisol_disc",
+      "fallen_log": "tfc:wood/log/chestnut",
+      "fallen_leaves": "tfc:wood/fallen_leaves/chestnut",
+      "bush_log": {
+        "Name": "tfc:wood/wood/chestnut",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/chestnut",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:chestnut",
+    "dead_species": "dttfc:chestnut_dead",
+    "undergrowth_species": "dttfc:chestnut_undergrowth"
+  }
+}

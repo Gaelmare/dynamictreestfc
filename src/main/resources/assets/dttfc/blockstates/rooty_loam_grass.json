@@ -1,0 +1,87 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "multipart": [
+    {
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/bottom",
+        "x": 90
+      }
+    },
+    {
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/top",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "north": true
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/top"
+      }
+    },
+    {
+      "when": {
+        "east": true
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/top",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": true
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/top",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": true
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/top",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "north": false
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/side"
+      }
+    },
+    {
+      "when": {
+        "east": false
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": false
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/side",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": false
+      },
+      "apply": {
+        "model": "dttfc:block/rooty_loam_grass/side",
+        "y": 270
+      }
+    }
+  ]
+}

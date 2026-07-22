@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "dynamictrees:item/mangrove_roots",
+  "textures": {
+    "layer0": "dttfc:item/mangrove_roots"
+  }
+}

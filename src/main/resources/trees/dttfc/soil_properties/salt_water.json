@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:fluid",
+  "primitive_soil": "tfc:fluid/salt_water",
+  "acceptable_soils": [
+    "water_like"
+  ]
+}

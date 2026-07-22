@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "dynamictrees:roots",
+  "textures": {
+    "bark": "tfc:block/mud/mollisol_roots_side",
+    "rings": "tfc:block/mud/mollisol_roots_top"
+  },
+  "render_type": "cutout_mipped"
+}

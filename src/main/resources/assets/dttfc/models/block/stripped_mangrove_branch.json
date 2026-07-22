@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "dynamictrees:branch",
+  "textures": {
+    "bark": "tfc:block/wood/stripped_log/mangrove",
+    "rings": "tfc:block/wood/stripped_log_top/mangrove"
+  }
+}

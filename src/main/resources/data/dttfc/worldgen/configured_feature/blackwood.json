@@ -1,0 +1,42 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": 10.4,
+        "max_temperature": 40,
+        "min_groundwater": 35,
+        "max_groundwater": 215,
+        "min_rain_variance": -1,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/blackwood"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/blackwood"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
+      "fallen_log": "tfc:wood/log/blackwood",
+      "fallen_leaves": "tfc:wood/fallen_leaves/blackwood",
+      "bush_log": {
+        "Name": "tfc:wood/wood/blackwood",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/blackwood",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:blackwood",
+    "dead_species": "dttfc:blackwood_dead",
+    "undergrowth_species": "dttfc:blackwood_undergrowth"
+  }
+}

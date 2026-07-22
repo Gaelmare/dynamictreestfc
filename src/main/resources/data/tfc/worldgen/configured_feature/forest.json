@@ -1,0 +1,53 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest",
+  "config": {
+    "entries": "#dttfc:dynamic_forest_trees",
+    "types": {
+      "none": {
+        "per_chunk_chance": 0
+      },
+      "sparse": {
+        "tree_count": {
+          "type": "uniform",
+          "value": {
+            "min_inclusive": 1,
+            "max_inclusive": 4
+          }
+        },
+        "groundcover_count": 10,
+        "per_chunk_chance": 0.08,
+        "bush_count": 0,
+        "has_spoiler_old_growth": true
+      },
+      "edge": {
+        "tree_count": 4,
+        "groundcover_count": 15,
+        "leaf_pile_count": {
+          "type": "uniform",
+          "value": {
+            "min_inclusive": 0,
+            "max_inclusive": 1
+          }
+        }
+      },
+      "normal": {
+        "tree_count": 8,
+        "groundcover_count": 30,
+        "has_spoiler_old_growth": true
+      },
+      "old_growth": {
+        "tree_count": 12,
+        "groundcover_count": 40,
+        "allows_old_growth": true,
+        "leaf_pile_count": {
+          "type": "uniform",
+          "value": {
+            "min_inclusive": 0,
+            "max_inclusive": 1
+          }
+        }
+      }
+    }
+  }
+}

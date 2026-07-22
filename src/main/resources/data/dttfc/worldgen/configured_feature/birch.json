@@ -1,0 +1,42 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": -9.4,
+        "max_temperature": 8.6,
+        "min_groundwater": 125,
+        "max_groundwater": 360,
+        "min_rain_variance": -0.6,
+        "max_rain_variance": 0.8,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/birch"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/birch"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:alfisol_disc",
+      "fallen_log": "tfc:wood/log/birch",
+      "old_growth_chance": 1,
+      "fallen_leaves": "tfc:wood/fallen_leaves/birch",
+      "bush_log": {
+        "Name": "tfc:wood/wood/birch",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/birch"
+    },
+    "species": "dttfc:birch",
+    "dead_species": "dttfc:birch_dead",
+    "undergrowth_species": "dttfc:birch_undergrowth"
+  }
+}

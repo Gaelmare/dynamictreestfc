@@ -1,0 +1,47 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": -14.2,
+        "max_temperature": 12.2,
+        "min_groundwater": 90,
+        "max_groundwater": 320,
+        "min_rain_variance": -1,
+        "max_rain_variance": 0.75,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/pine"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/pine"
+        },
+        {
+          "block": "tfc:groundcover/pinecone"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "krummholz": "dttfc:noop",
+      "soil_disc": "tfc:podzol_disc",
+      "fallen_log": "tfc:wood/log/pine",
+      "old_growth_chance": 1,
+      "fallen_leaves": "tfc:wood/fallen_leaves/pine",
+      "bush_log": {
+        "Name": "tfc:wood/wood/pine",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/pine",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:pine",
+    "dead_species": "dttfc:pine_dead",
+    "undergrowth_species": "dttfc:pine_undergrowth"
+  }
+}

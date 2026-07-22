@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "aspen",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/aspen"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/aspen"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/aspen"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/aspen"
+  }
+}

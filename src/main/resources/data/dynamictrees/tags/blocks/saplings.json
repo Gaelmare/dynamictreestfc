@@ -1,0 +1,26 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "dttfc:acacia_sapling",
+    "dttfc:ash_sapling",
+    "dttfc:aspen_sapling",
+    "dttfc:birch_sapling",
+    "dttfc:blackwood_sapling",
+    "dttfc:chestnut_sapling",
+    "dttfc:douglas_fir_sapling",
+    "dttfc:hickory_sapling",
+    "dttfc:kapok_sapling",
+    "dttfc:mangrove_sapling",
+    "dttfc:maple_sapling",
+    "dttfc:oak_sapling",
+    "dttfc:palm_sapling",
+    "dttfc:pine_sapling",
+    "dttfc:rosewood_sapling",
+    "dttfc:sequoia_sapling",
+    "dttfc:spruce_sapling",
+    "dttfc:sycamore_sapling",
+    "dttfc:white_cedar_sapling",
+    "dttfc:willow_sapling"
+  ]
+}

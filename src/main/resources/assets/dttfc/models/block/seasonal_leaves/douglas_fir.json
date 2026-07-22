@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "douglas_fir",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/douglas_fir"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/douglas_fir"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/douglas_fir"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/douglas_fir"
+  }
+}

@@ -1,0 +1,7 @@
+﻿{
+  "__comment__": "This file was automatically created by mcresources",
+  "primitive_soil": "tfc:mud/aridisol",
+  "acceptable_soils": [
+    "dirt_like"
+  ]
+}

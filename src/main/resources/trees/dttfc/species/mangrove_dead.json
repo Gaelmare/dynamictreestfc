@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:dead_underground_roots",
+  "family": "dttfc:mangrove",
+  "can_bone_meal_tree": false,
+  "tapering": 0.25,
+  "signal_energy": 20,
+  "up_probability": 8,
+  "lowest_branch_height": 2,
+  "growth_rate": 0.6,
+  "acceptable_soils": [
+    "dirt_like",
+    "mud_like",
+    "water_like"
+  ],
+  "root_tapering": 0.2,
+  "root_signal_energy": 20,
+  "roots_growth_logic_kit": "mangrove_roots",
+  "plantable_on_fluid": true
+}

@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": -0.4,
+        "max_temperature": 17.6,
+        "min_groundwater": 210,
+        "max_groundwater": 500,
+        "min_rain_variance": -0.5,
+        "max_rain_variance": 0.75,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/oak"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/oak"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:alfisol_disc",
+      "fallen_log": "tfc:wood/log/oak",
+      "fallen_leaves": "tfc:wood/fallen_leaves/oak",
+      "bush_log": {
+        "Name": "tfc:wood/wood/oak",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/oak"
+    },
+    "species": "dttfc:oak",
+    "dead_species": "dttfc:oak_dead",
+    "undergrowth_species": "dttfc:oak_undergrowth"
+  }
+}

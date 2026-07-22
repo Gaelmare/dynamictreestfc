@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "layer=covered": {
+      "model": "tfc:block/mud/mollisol"
+    },
+    "layer=exposed": {
+      "model": "dttfc:block/tree_roots"
+    },
+    "layer=filled": {
+      "model": "dttfc:block/muddy_roots"
+    }
+  }
+}

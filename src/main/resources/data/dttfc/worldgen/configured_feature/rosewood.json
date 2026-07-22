@@ -1,0 +1,33 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": 12.2,
+        "max_temperature": 40,
+        "min_groundwater": 200,
+        "max_groundwater": 500,
+        "min_rain_variance": 0.65,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": true
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/rosewood"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/rosewood"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
+      "fallen_log": "tfc:wood/log/rosewood",
+      "fallen_leaves": "tfc:wood/fallen_leaves/rosewood",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:rosewood",
+    "dead_species": "dttfc:rosewood_dead"
+  }
+}

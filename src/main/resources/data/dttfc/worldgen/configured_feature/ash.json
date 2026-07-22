@@ -1,0 +1,42 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": 1.4,
+        "max_temperature": 15.8,
+        "min_groundwater": 60,
+        "max_groundwater": 380,
+        "min_rain_variance": -0.2,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/ash"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/ash"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:alfisol_disc",
+      "fallen_log": "tfc:wood/log/ash",
+      "fallen_leaves": "tfc:wood/fallen_leaves/ash",
+      "bush_log": {
+        "Name": "tfc:wood/wood/ash",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/ash",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:ash",
+    "dead_species": "dttfc:ash_dead",
+    "undergrowth_species": "dttfc:ash_undergrowth"
+  }
+}

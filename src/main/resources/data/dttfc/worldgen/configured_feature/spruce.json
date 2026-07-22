@@ -1,0 +1,43 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": -16,
+        "max_temperature": -4,
+        "min_groundwater": 220,
+        "max_groundwater": 500,
+        "min_rain_variance": -1,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/spruce"
+        },
+        {
+          "block": "tfc:wood/fallen_leaves/spruce"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "krummholz": "dttfc:noop",
+      "soil_disc": "tfc:podzol_disc",
+      "fallen_log": "tfc:wood/log/spruce",
+      "fallen_leaves": "tfc:wood/fallen_leaves/spruce",
+      "bush_log": {
+        "Name": "tfc:wood/wood/spruce",
+        "Properties": {
+          "branch_direction": "down",
+          "axis": "y"
+        }
+      },
+      "bush_leaves": "tfc:wood/leaves/spruce",
+      "old_growth_tree": "dttfc:noop"
+    },
+    "species": "dttfc:spruce",
+    "dead_species": "dttfc:spruce_dead",
+    "undergrowth_species": "dttfc:spruce_undergrowth"
+  }
+}

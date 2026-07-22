@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "maple",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/maple"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/maple"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/maple"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/maple"
+  }
+}

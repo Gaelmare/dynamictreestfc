@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "primitive_soil": "tfc:sand/yellow",
+  "acceptable_soils": [
+    "sand_like"
+  ]
+}

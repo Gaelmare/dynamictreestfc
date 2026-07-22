@@ -1,0 +1,29 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:forest_entry",
+  "config": {
+    "entry": {
+      "climate": {
+        "min_temperature": 17.6,
+        "max_temperature": 40,
+        "min_groundwater": 150,
+        "max_groundwater": 330,
+        "min_rain_variance": -0.7,
+        "max_rain_variance": 0.7,
+        "rain_variance_absolute": false
+      },
+      "groundcover": [
+        {
+          "block": "tfc:wood/twig/palm"
+        }
+      ],
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
+      "fallen_log": "tfc:wood/log/palm",
+      "fallen_leaves": "tfc:wood/fallen_leaves/palm"
+    },
+    "species": "dttfc:palm",
+    "dead_species": "dttfc:palm_dead"
+  }
+}

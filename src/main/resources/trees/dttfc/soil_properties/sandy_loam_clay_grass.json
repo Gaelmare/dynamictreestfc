@@ -1,0 +1,8 @@
+﻿{
+  "__comment__": "This file was automatically created by mcresources",
+  "primitive_soil": "tfc:clay_grass/entisol",
+  "acceptable_soils": [
+    "dirt_like"
+  ],
+  "substitute_soil": "dttfc:sandy_loam_grass"
+}
