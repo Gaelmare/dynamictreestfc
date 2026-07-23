@@ -27,3 +27,4 @@ resources/__pycache__
 
 # Files from Forge MDK
 forge*changelog.txt
+/venv/
