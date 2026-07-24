@@ -1,11 +1,12 @@
 package org.labellum.mc.dttfc.content;
 
 import java.util.Objects;
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.block.branch.BranchBlock;
-import com.ferreusveritas.dynamictrees.block.rooty.RootyBlock;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilProperties;
-import com.ferreusveritas.dynamictrees.init.DTConfigs;
+import com.dtteam.dynamictrees.tree.TreeHelper;
+import com.dtteam.dynamictrees.block.branch.BranchBlock;
+import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties.RootSoilBlock;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
+import com.dtteam.dynamictrees.config.DTConfigs;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,7 +33,7 @@ import net.dries007.tfc.common.fluids.FluidProperty;
 import net.dries007.tfc.common.fluids.IFluidLoggable;
 import net.dries007.tfc.common.fluids.TFCFluids;
 
-public class RootyFluidBlock extends RootyBlock implements IFluidLoggable
+public class RootyFluidBlock extends RootSoilBlock implements IFluidLoggable
 {
     protected static final AABB WATER_ROOTS_AABB = new AABB(0.1, 0.0, 0.1, 0.9, 1.0, 0.9);
     public static final FluidProperty FLUID = TFCBlockStateProperties.WATER;
@@ -55,7 +57,7 @@ public class RootyFluidBlock extends RootyBlock implements IFluidLoggable
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player)
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state)
     {
         BlockState upState = level.getBlockState(pos.above());
         return TreeHelper.isBranch(upState) ? Objects.requireNonNull(TreeHelper.getBranch(upState)).getFamily().getBranchItem().map(ItemStack::new).orElse(ItemStack.EMPTY) : ItemStack.EMPTY;
@@ -64,7 +66,7 @@ public class RootyFluidBlock extends RootyBlock implements IFluidLoggable
     @Override
     public float getHardness(BlockState state, BlockGetter level, BlockPos pos)
     {
-        return (float) (0.5 * DTConfigs.ROOTY_BLOCK_HARDNESS_MULTIPLIER.get());
+        return (float) (0.5 * DTConfigs.SERVER.rootyBlockHardnessMultiplier.get());
     }
 
     @Override
@@ -105,7 +107,7 @@ public class RootyFluidBlock extends RootyBlock implements IFluidLoggable
     @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state)
     {
-        return IFluidLoggable.super.getFluidLoggedState(state);
+        return IFluidLoggable.super.getFluidState(state);
     }
 
     @Override
@@ -115,7 +117,7 @@ public class RootyFluidBlock extends RootyBlock implements IFluidLoggable
     }
 
     @Override
-    public boolean fallWithTree(BlockState state, Level level, BlockPos pos)
+    public boolean fallWithTree(BlockState state, Level level, BlockPos pos, boolean hasRoots)
     {
         level.setBlockAndUpdate(pos, getDecayBlockState(state, level, pos));
         return true;

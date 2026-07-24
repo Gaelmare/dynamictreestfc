@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "primitive_soil": "tfc:grass/silty_loam",
-  "acceptable_soils": [
-    "dirt_like"
-  ],
-  "type": "dttfc:grass"
-}

@@ -2,22 +2,18 @@ plugins {
     id("java")
     id("idea")
     id("com.matthewprenger.cursegradle") version "1.4.0"
-    id("net.minecraftforge.gradle") version "[6.0,6.2)"
-    id("org.parchmentmc.librarian.forgegradle") version "1.+"
-    id("org.spongepowered.mixin") version "0.7.+"
+    id("net.neoforged.moddev") version "2.0.141"
+//    id("eclipse")
 }
 
-val minecraftVersion: String = "1.20.1"
-// Don't bump this unless completely necessary - this is the NeoForge + Forge compatible version
-// In future we probably want to track NeoForge versions, especially post-1.20 breaking change window
-val forgeVersion: String = "47.1.3"
-val mixinVersion: String = "0.8.5"
+val minecraftVersion: String = "1.21.1"
+val neoForgeVersion: String = "21.1.197"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
-val jeiVersion: String = "15.2.0.21"
-val patchouliVersion: String = "1.20.1-81-FORGE"
-val jadeVersion: String = "4614153"
-val topVersion: String = "4629624"
-val tfcVersion: String = "5872631"
+val jeiVersion: String = "19.25.0.321"
+val patchouliVersion: String = "7730942"
+val jadeVersion: String = "7545219"
+val topVersion: String = "7292875"
+val tfcVersion: String = "7634816"
 
 val modId: String = "dttfc"
 
@@ -28,15 +24,8 @@ base {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
-
-idea {
-    module {
-        excludeDirs.add(file("run"))
-    }
-}
-
 
 repositories {
     mavenCentral()
@@ -55,40 +44,39 @@ repositories {
 }
 
 dependencies {
-    minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
+    implementation("net.neoforged:neoforge:$neoForgeVersion")
     // TFC
-    implementation(fg.deobf("curse.maven:tfc-302973:${tfcVersion}"))
-//    implementation(fg.deobf("tfc:TerraFirmaCraft-Forge-1.20.1:0.0.0-indev"))
+    implementation("curse.maven:tfc-302973:${tfcVersion}")
 
-	implementation(fg.deobf("curse.maven:dt-252818:5439532"))
-	implementation(fg.deobf("curse.maven:dtplus-478155:5393548"))
+	implementation("curse.maven:dt-252818:7661136")
+	// implementation("curse.maven:dtplus-478155:7698617")
 
     // JEI
-    compileOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge-api:$jeiVersion"))
-    compileOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-common-api:$jeiVersion"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge:$jeiVersion"))
-
-    // Patchouli
-    // We need to compile against the full JAR, not just the API, because we do some egregious hacks.
-    compileOnly(fg.deobf("vazkii.patchouli:Patchouli:$patchouliVersion"))
-    runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:$patchouliVersion"))
+    compileOnly("mezz.jei:jei-$minecraftVersion-neoforge-api:$jeiVersion")
+    compileOnly("mezz.jei:jei-$minecraftVersion-common-api:$jeiVersion")
+    runtimeOnly("mezz.jei:jei-$minecraftVersion-neoforge:$jeiVersion")
 
     // Jade / The One Probe
-    compileOnly(fg.deobf("curse.maven:jade-324717:${jadeVersion}"))
-    compileOnly(fg.deobf("curse.maven:top-245211:${topVersion}"))
+    compileOnly("curse.maven:jade-324717:${jadeVersion}")
+    compileOnly("curse.maven:top-245211:${topVersion}")
 
     // Only use Jade at runtime
-    runtimeOnly(fg.deobf("curse.maven:jade-324717:${jadeVersion}"))
+    runtimeOnly("curse.maven:jade-324717:${jadeVersion}")
 
-    if (System.getProperty("idea.sync.active") != "true") {
-        annotationProcessor("org.spongepowered:mixin:${mixinVersion}:processor")
-    }
+    // Patchouli
+    runtimeOnly("curse.maven:patchouli-306770:${patchouliVersion}")
 
 }
 
-minecraft {
-    mappings("parchment", "2023.09.03-1.20.1")
-    accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
+neoForge {
+    version = neoForgeVersion
+    validateAccessTransformers = true
+
+    mods {
+        create(modId) {
+            sourceSet(sourceSets.main.get())
+        }
+    }
 
     runs {
         all {
@@ -101,30 +89,20 @@ minecraft {
 
             jvmArgs("-ea", "-Xmx4G", "-Xms4G")
 
-            if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_21)) {
-                jvmArg("-XX:+AllowEnhancedClassRedefinition")
-            }
-
             mods.create(modId) {
                 source(sourceSets.main.get())
             }
         }
-
-        register("client") {
-            workingDirectory(project.file("run/client"))
+        create("client") {
+            client()
         }
-
-        register("server") {
-            workingDirectory(project.file("run/server"))
-
-            arg("--nogui")
+        create("server") {
+            server()
         }
-
+         create("data") {
+            data()
+        }
     }
-}
-
-mixin {
-    add(sourceSets.main.get(), "dttfc.refmap.json")
 }
 
 tasks {

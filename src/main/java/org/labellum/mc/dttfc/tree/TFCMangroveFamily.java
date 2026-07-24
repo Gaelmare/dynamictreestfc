@@ -1,13 +1,14 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.block.branch.BranchBlock;
-import com.ferreusveritas.dynamictrees.tree.family.Family;
-import com.ferreusveritas.dynamictrees.tree.family.MangroveFamily;
+import com.dtteam.dynamictrees.api.registry.TypedRegistry;
+import com.dtteam.dynamictrees.block.branch.BranchBlock;
+import com.dtteam.dynamictrees.tree.family.Family;
+import com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily;
+
 import net.minecraft.resources.ResourceLocation;
 import org.labellum.mc.dttfc.content.TFCRootsBlock;
 
-public class TFCMangroveFamily extends MangroveFamily
+public class TFCMangroveFamily extends UndergroundRootsFamily
 {
     public static final TypedRegistry.EntryType<Family> TFC_TYPE = TypedRegistry.newType(TFCMangroveFamily::new);
 

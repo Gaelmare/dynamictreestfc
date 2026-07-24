@@ -8,8 +8,9 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
-import net.minecraftforge.client.model.geometry.IUnbakedGeometry;
+import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
+import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
+import org.labellum.mc.dttfc.DTTFC;
 import org.jetbrains.annotations.Nullable;
 
 public class PalmLeavesModelGeometry implements IUnbakedGeometry<PalmLeavesModelGeometry>
@@ -23,8 +24,8 @@ public class PalmLeavesModelGeometry implements IUnbakedGeometry<PalmLeavesModel
     }
 
     @Override
-    public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation)
+    public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides)
     {
-        return new PalmLeavesBakedModel(modelLocation, frondsResLoc, spriteGetter);
+        return new PalmLeavesBakedModel(DTTFC.identifier("palm_fronds"), frondsResLoc, spriteGetter);
     }
 }

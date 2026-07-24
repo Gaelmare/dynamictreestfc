@@ -1,13 +1,14 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.cell.Cell;
-import com.ferreusveritas.dynamictrees.api.cell.CellKit;
-import com.ferreusveritas.dynamictrees.api.cell.CellNull;
-import com.ferreusveritas.dynamictrees.api.cell.CellSolver;
-import com.ferreusveritas.dynamictrees.cell.CellKits;
-import com.ferreusveritas.dynamictrees.cell.LeafClusters;
-import com.ferreusveritas.dynamictrees.cell.PalmFrondCell;
-import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
+import com.dtteam.dynamictrees.api.cell.Cell;
+import com.dtteam.dynamictrees.api.cell.CellKit;
+import com.dtteam.dynamictrees.api.cell.CellNull;
+import com.dtteam.dynamictrees.api.cell.CellSolver;
+import com.dtteam.dynamictrees.api.voxmap.SimpleVoxmap;
+import com.dtteam.dynamictrees.systems.cell.CellKits;
+import com.dtteam.dynamictrees.systems.cell.LeafClusters;
+import com.dtteam.dynamictrees.systems.cell.PalmFrondCell;
+
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 

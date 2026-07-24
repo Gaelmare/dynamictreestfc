@@ -1,7 +1,7 @@
 package org.labellum.mc.dttfc.client;
 
 import net.minecraft.client.renderer.block.model.ItemOverrides;
-import net.minecraftforge.client.model.IDynamicBakedModel;
+import net.neoforged.neoforge.client.model.IDynamicBakedModel;
 
 public abstract class BaseBakedModel implements IDynamicBakedModel
 {

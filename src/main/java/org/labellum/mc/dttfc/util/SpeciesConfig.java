@@ -1,6 +1,6 @@
 package org.labellum.mc.dttfc.util;
 
-import com.ferreusveritas.dynamictrees.tree.species.Species;
+import com.dtteam.dynamictrees.tree.species.Species;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import net.minecraft.resources.ResourceLocation;

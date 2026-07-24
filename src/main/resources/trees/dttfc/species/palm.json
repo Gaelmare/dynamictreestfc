@@ -1,12 +1,13 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "palm",
+  "type": "dynamictrees:palm",
+  "leaves_properties": "dttfc:palm",
   "family": "dttfc:palm",
   "can_bone_meal_tree": false,
   "tapering": 0.2,
   "signal_energy": 10,
   "growth_rate": 0.8,
-  "growth_logic_kit": "dttfc:diagonal_palm",
+  "growth_logic_kit": "dynamictrees:palm",
   "soil_longevity": 2,
   "acceptable_soils": [
     "dirt_like",

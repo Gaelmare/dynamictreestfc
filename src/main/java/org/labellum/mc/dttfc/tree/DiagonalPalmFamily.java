@@ -1,17 +1,18 @@
 package org.labellum.mc.dttfc.tree;
 
-import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.block.branch.BasicBranchBlock;
-import com.ferreusveritas.dynamictrees.block.branch.BranchBlock;
-import com.ferreusveritas.dynamictrees.block.leaves.DynamicLeavesBlock;
-import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.tree.family.Family;
-import com.ferreusveritas.dynamictrees.tree.species.Species;
+import com.dtteam.dynamictrees.api.registry.TypedRegistry;
+import com.dtteam.dynamictrees.block.branch.BasicBranchBlock;
+import com.dtteam.dynamictrees.block.branch.BranchBlock;
+import com.dtteam.dynamictrees.block.leaves.DynamicLeavesBlock;
+import com.dtteam.dynamictrees.systems.GrowSignal;
+import com.dtteam.dynamictrees.tree.family.Family;
+import com.dtteam.dynamictrees.tree.family.PalmFamily;
+import com.dtteam.dynamictrees.tree.species.Species;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 
-public class DiagonalPalmFamily extends Family
+public class DiagonalPalmFamily extends PalmFamily
 {
     public static final TypedRegistry.EntryType<Family> TYPE = TypedRegistry.newType(DiagonalPalmFamily::new);
 
@@ -42,7 +43,7 @@ public class DiagonalPalmFamily extends Family
                             signal.success = false;
                             return signal;
                         }
-                        signal.success = leaves.growLeavesIfLocationIsSuitable(world, species.getLeavesProperties(), pos.above(), 0);
+                        signal.success = leaves.growLeavesIfLocationIsSuitable(world, species.getLeavesProperties(), pos.above(), 0) != 0;
                         if (signal.success)
                             return leaves.branchOut(world, pos, signal);
                     }

@@ -34,7 +34,7 @@ public class DFEFeature extends Feature<DFEFeature.Entry>
         public boolean isValid(float temperature, float rainfall)
         {
             final var c = entry.climate();
-            return rainfall >= c.getMinRainfall() && rainfall <= c.getMaxRainfall() && temperature >= c.getMinTemp() && temperature <= c.getMaxTemp();
+            return rainfall >= c.getMinRainVariance() && rainfall <= c.getMaxRainVariance() && temperature >= c.getMinTemp() && temperature <= c.getMaxTemp();
         }
 
         public float distanceFromMean(float temperature, float rainfall)
@@ -49,7 +49,7 @@ public class DFEFeature extends Feature<DFEFeature.Entry>
 
         public float getAverageRain()
         {
-            return (entry.climate().getMaxRainfall() - entry.climate().getMinRainfall()) / 2;
+            return entry.getAverageRainVar();
         }
     }
 }
