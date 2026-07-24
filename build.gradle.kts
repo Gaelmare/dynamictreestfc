@@ -101,7 +101,9 @@ minecraft {
 
             jvmArgs("-ea", "-Xmx4G", "-Xms4G")
 
-            jvmArg("-XX:+AllowEnhancedClassRedefinition")
+            if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_21)) {
+                jvmArg("-XX:+AllowEnhancedClassRedefinition")
+            }
 
             mods.create(modId) {
                 source(sourceSets.main.get())

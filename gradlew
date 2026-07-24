@@ -118,6 +118,10 @@ CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
 
 # Determine the Java command to use to start the JVM.
+if [ -z "$JAVA_HOME" ] && [ -x "/usr/lib/jvm/java-17-temurin-jdk/bin/java" ] ; then
+    JAVA_HOME="/usr/lib/jvm/java-17-temurin-jdk"
+    export JAVA_HOME
+fi
 if [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
         # IBM's JDK on AIX uses strange locations for the executables

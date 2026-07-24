@@ -1,0 +1,16 @@
+{
+  "java.configuration.runtimes": [
+
+    {
+      "name": "JavaSE-17",
+      "path": "/usr/lib/jvm/java-17-temurin-jdk",
+      "default": true
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "/usr/lib/jvm/java-21-openjdk"
+    }
+  ],
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "interactive"
+}
