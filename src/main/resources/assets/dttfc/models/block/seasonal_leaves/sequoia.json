@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "sequoia",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/sequoia"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/sequoia"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/sequoia"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/sequoia"
+  }
+}

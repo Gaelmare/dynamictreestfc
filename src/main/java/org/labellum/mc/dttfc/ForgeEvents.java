@@ -6,24 +6,30 @@ import com.dtteam.dynamictrees.config.DTConfigs;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
 
 import net.dries007.tfc.common.TFCCreativeTabs;
 import net.dries007.tfc.util.events.LoggingEvent;
+import org.labellum.mc.dttfc.util.DynamicForestFeature;
 
 import static org.labellum.mc.dttfc.ConfigDTTFC.DT_TWEAKS;
 
 public final class ForgeEvents
 {
-    public static void init(IEventBus modEventBus)
+    public static void init(IEventBus modBus)
     {
-        NeoForge.EVENT_BUS.addListener(ForgeEvents::onLoggedIn);
-        NeoForge.EVENT_BUS.addListener(ForgeEvents::onLogging);
-        modEventBus.addListener(ForgeEvents::onCreativeTabs);
-        //modEventBus.addListener(ForgeEvents::onBreakSpeed);
+        final IEventBus bus = NeoForge.EVENT_BUS;
+
+        bus.addListener(ForgeEvents::onLoggedIn);
+        bus.addListener(ForgeEvents::onLogging);
+        bus.addListener(ForgeEvents::onLevelUnload);
+        modBus.addListener(ForgeEvents::onCreativeTabs);
+        //bus.addListener(ForgeEvents::onBreakSpeed);
     }
 
     public static void onLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
@@ -31,7 +37,7 @@ public final class ForgeEvents
         if (DT_TWEAKS.get()) {
             DTConfigs.SERVER.isLeavesPassable.set(true);
             DTConfigs.SERVER.treeHarvestMultiplier.set(1.5d);
-            DTConfigs.SERVER.leavesSeedDropRate.set(0.02);
+            DTConfigs.SERVER.leavesSeedDropRate.set(0.02d);
             DTConfigs.SERVER.axeDamageMode.set(DynamicTrees.AxeDamage.VOLUME);
         }
     }
@@ -44,14 +50,22 @@ public final class ForgeEvents
         }
     }
 
+    public static void onLevelUnload(LevelEvent.Unload event)
+    {
+        if (event.getLevel() instanceof ServerLevel level)
+        {
+            DynamicForestFeature.DISC_PROVIDER.unloadWorld(level);
+        }
+    }
+
     public static void onCreativeTabs(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTab() == TFCCreativeTabs.WOOD.tab().get())
         {
-            BuiltInRegistries.ITEM.forEach((item) -> {
-                if (BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(DTTFC.MOD_ID))
+            BuiltInRegistries.ITEM.entrySet().forEach((entry) -> {
+                if (entry.getKey().location().getNamespace().equals(DTTFC.MOD_ID))
                 {
-                    event.accept(item.getDefaultInstance());
+                    event.accept(entry.getValue());
                 }
             });
         }

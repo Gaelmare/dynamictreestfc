@@ -29,6 +29,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.data.ModelData;
 
 public class PalmLeavesBakedModel extends BaseBakedModel
@@ -52,17 +53,17 @@ public class PalmLeavesBakedModel extends BaseBakedModel
             SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(blockModel, ItemOverrides.EMPTY, false).particle(frondsTexture);
 
             BlockVertexData[] quadData = {
-                new BlockVertexData(0, 0, 3, 15, 4),
-                new BlockVertexData(0, 1, 3, 15, 0),
+                new BlockVertexData(0, 0, 3, 0.9375f, 0.25f),
+                new BlockVertexData(0, 1, 3, 0.9375f, 0),
                 new BlockVertexData(0, 1, 0, 0, 0),
-                new BlockVertexData(0, 0, 0, 0, 4),
-                new BlockVertexData(0, 0, 3, 15, 4),
-                new BlockVertexData(0, 0, 0, 0, 4),
+                new BlockVertexData(0, 0, 0, 0, 0.25f),
+                new BlockVertexData(0, 0, 3, 0.9375f, 0.25f),
+                new BlockVertexData(0, 0, 0, 0, 0.25f),
                 new BlockVertexData(0, 1, 0, 0, 0),
-                new BlockVertexData(0, 1, 3, 15, 0)
+                new BlockVertexData(0, 1, 3, 0.9375f, 0)
             };
 
-            for (int pass = 0; pass < 3; pass++)
+            for (int pass = 0; pass < 4; pass++)
             {
                 for (int half = 0; half < 2; half++)
                 {
@@ -100,16 +101,16 @@ public class PalmLeavesBakedModel extends BaseBakedModel
                         switch (pass)
                         {
                             case 0:
-                                mult = -0.26;
+                                mult = -0.29;
                                 break;
                             case 1:
-                                mult = -0.05;
+                                mult = -0.06;
                                 break;
-//                            case 2:
-//                                mult = 0.04;
-//                                break;
                             case 2:
-                                mult = 0.12;
+                                mult = 0.16;
+                                break;
+                            case 3:
+                                mult = 0.32;
                                 break;
                             default:
                                 mult = 0;
@@ -118,27 +119,24 @@ public class PalmLeavesBakedModel extends BaseBakedModel
                         y = (float) (Math.sin(angle) * len);
                         z = (float) (Math.cos(angle) * len);
 
-                        // offset the top leaves to make the canopy less cylindrical
-                        if (pass == 2)
-                            z -= 0.4;
-
                         // Rotate the vertex around x0,z0
                         // Rotate on y axis
                         len = Math.sqrt(x * x + z * z);
                         angle = Math.atan2(x, z);
                         switch (pass)
                         {
-                            default:
-//                            case 3:
+                            case 3:
                             case 0:
-                                mult = 0;
+                                mult = 0.005;
                                 break;
                             case 1:
-                                mult = 0.185 - 0.25;
+                                mult = 0.185;
                                 break;
                             case 2:
                                 mult = 0.08;
                                 break;
+                            default:
+                                mult = 0;
                         }
                         angle += Math.PI * 0.25 * surr.ordinal() + (Math.PI * mult);
                         x = (float) (Math.sin(angle) * len);
@@ -214,6 +212,12 @@ public class PalmLeavesBakedModel extends BaseBakedModel
 
 
         return quads;
+    }
+
+    @Override
+    public ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand, @NotNull ModelData data)
+    {
+        return ChunkRenderTypeSet.of(RenderType.cutoutMipped());
     }
 
     @Override

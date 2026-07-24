@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "blackwood",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/blackwood"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/blackwood"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/blackwood"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/blackwood"
+  }
+}

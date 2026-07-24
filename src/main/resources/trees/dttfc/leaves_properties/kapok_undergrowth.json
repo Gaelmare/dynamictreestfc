@@ -5,6 +5,5 @@
   "light_requirement": 4,
   "can_grow_on_ground": true,
   "scruffy_leaf_chance": 0.66,
-  "scruffy_max_hydro": 1,
-  "block_registry_name": "dynamictrees:dttfc_kapok_undergrowth_leaves"
+  "scruffy_max_hydro": 1
 }

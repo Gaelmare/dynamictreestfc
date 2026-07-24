@@ -1,0 +1,16 @@
+{
+  "loader": "dttfc:seasonal_leaves",
+  "wood": "white_cedar",
+  "dense_leaves": {
+    "parent": "tfc:block/wood/leaves/dense_leaves/white_cedar"
+  },
+  "sparse_leaves": {
+    "parent": "tfc:block/wood/leaves/sparse_leaves/white_cedar"
+  },
+  "bare": {
+    "parent": "tfc:block/wood/leaves/bare/white_cedar"
+  },
+  "blooming": {
+    "parent": "tfc:block/wood/leaves/blooming/white_cedar"
+  }
+}

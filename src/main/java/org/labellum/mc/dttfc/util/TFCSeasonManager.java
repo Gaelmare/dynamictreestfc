@@ -1,79 +1,104 @@
 package org.labellum.mc.dttfc.util;
 
+import com.dtteam.dynamictrees.api.season.SeasonProvider;
+import com.dtteam.dynamictrees.systems.season.ActiveSeasonGrowthCalculator;
 import com.dtteam.dynamictrees.systems.season.NormalSeasonManager;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
+import net.dries007.tfc.util.calendar.Month;
 import net.dries007.tfc.util.climate.Climate;
 
 public class TFCSeasonManager extends NormalSeasonManager
 {
+    private static final int MONTHS_IN_YEAR = 12;
+    private static final int MONTHS_IN_SEASON = 3;
+    private static final int SPRING_START_MONTH = Month.MARCH.ordinal();
+
     public TFCSeasonManager()
     {
-        super();
-        setTropicalPredicate((levelAccess, blockPos) -> levelAccess instanceof Level level ? Climate.getAverageTemperature(level, blockPos) > 19f && Climate.getAverageRainfall(level, blockPos) > 330f : false);
-    }
-    private static final float[] SEASON_FACTORS = {0.2f, 0.3f, 0.35f, 0.8f, 0.9f, 0.9f, 0.8f, 0.7f, 0.5f, 0.4f, 0.3f, 0.2f};
-
-    @Override
-    public float getGrowthFactor(Level level, BlockPos blockPos, float v)
-    {
-        return Math.min(getWeightedSeasonFactor(level) + 0.25f, 1);
+        super(level -> new Tuple<>(new TFCSeasonProvider(), new ActiveSeasonGrowthCalculator()));
+        this.setTropicalPredicate((level, pos) -> TFCSeasonManager.isTropicalClimate(level, pos));
     }
 
-    @Override
-    public float getSeedDropFactor(Level level, BlockPos blockPos, float v)
+    private static boolean isTropicalClimate(LevelAccessor level, BlockPos pos)
     {
-        return Math.min(getWeightedSeasonFactor(level) + 0.1f, 1);
-    }
-
-    @Override
-    public float getFruitProductionFactor(Level level, BlockPos blockPos, float offset)
-    {
-        return getWeightedSeasonFactor(level);
-    }
-
-    @Override
-    public Float getSeasonValue(Level level, BlockPos blockPos)
-    {
-        return getPercentPassedSinceSpring(level);
-    }
-
-    @Override
-    public Float getPeakFruitProductionSeasonValue(Level level, BlockPos blockPos, float offset)
-    {
-        return getWeightedSeasonFactor(level);
-    }
-
-    @Override
-    public boolean shouldSnowMelt(Level level, BlockPos blockPos)
-    {
-        return Climate.getAverageTemperature(level, blockPos) > 0f;
-    }
-
-    private float getWeightedSeasonFactor(Level level)
-    {
-        return SEASON_FACTORS[Calendars.get(level).getAbsoluteCalendarMonthOfYear().ordinal()];
-    }
-
-    private float getPercentPassedSinceSpring(Level level)
-    {
-        float pct = getYearPercentPassed(level) + 0.25f;
-        if (pct > 1)
+        if (!(level instanceof Level actualLevel) || !canQueryClimate(actualLevel, pos))
         {
-            pct -= 1;
+            return false;
         }
-        return pct;
+        return Climate.getInstantTemperature(actualLevel, pos) > 19f && Climate.getAverageRainfall(actualLevel, pos) > 330f;
     }
 
-    /**
-     * [0, 1], 0 == january
-     */
-    private float getYearPercentPassed(Level level)
+    private static boolean canQueryClimate(Level level, BlockPos pos)
     {
-        final ICalendar calendar = Calendars.get(level);
-        return (float) (calendar.getCalendarTicks() % calendar.getCalendarTicksInYear()) / calendar.getCalendarTicksInYear();
+        final var server = level.getServer();
+        return !level.isClientSide()
+            && level.dimension().equals(Level.OVERWORLD)
+            && server != null
+            && Thread.currentThread() == server.getRunningThread()
+            && level.isLoaded(pos);
+    }
+
+    private static class TFCSeasonProvider implements SeasonProvider
+    {
+        @Override
+        public Float getSeasonValue(Level level, BlockPos pos)
+        {
+            return getSeasonValueFromTFCMonth(level, pos);
+        }
+
+        @Override
+        public void updateTick(Level level, long dayTime)
+        {
+        }
+
+        @Override
+        public boolean shouldSnowMelt(Level level, BlockPos pos)
+        {
+            if (!canQueryClimate(level, pos))
+            {
+                return false;
+            }
+            return Climate.getInstantTemperature(level, pos) > 0f;
+        }
+
+        private float getSeasonValueFromTFCMonth(Level level, BlockPos pos)
+        {
+            final ICalendar calendar = Calendars.get(level);
+            final Month month = calendar.getHemispheralCalendarMonthOfYear(isInNorthernHemisphere(level, pos));
+            final float monthProgress = month.ordinal() + calendar.getCalendarFractionOfMonth();
+            float monthsSinceSpring = monthProgress - SPRING_START_MONTH;
+
+            if (monthsSinceSpring < 0)
+            {
+                monthsSinceSpring += MONTHS_IN_YEAR;
+            }
+
+            return monthsSinceSpring / MONTHS_IN_SEASON;
+        }
+
+        private boolean isInNorthernHemisphere(Level level, BlockPos pos)
+        {
+            if (!level.dimension().equals(Level.OVERWORLD))
+            {
+                return true;
+            }
+
+            final float hemisphereScale = Climate.get(level).hemisphereScale();
+            if (hemisphereScale == 0f)
+            {
+                return true;
+            }
+
+            final int shiftedZ = pos.getZ() - (int) (hemisphereScale / 2f);
+            final int hemisphereSize = (int) (hemisphereScale * 2f);
+            return Mth.positiveModulo(shiftedZ, hemisphereSize * 2) > hemisphereSize;
+        }
     }
 }

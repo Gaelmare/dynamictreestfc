@@ -2,8 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "dynamictrees:block/smartmodel/sapling",
   "textures": {
-    "particle": "tfc:block/wood/leaves/blackwood",
+    "particle": "tfc:block/wood/leaves/dense_leaves/blackwood",
     "log": "tfc:block/wood/log/blackwood",
-    "leaves": "tfc:block/wood/leaves/blackwood"
+    "leaves": "tfc:block/wood/leaves/dense_leaves/blackwood"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
+  "__comment__": "Compatibility path for Minecraft 1.21+ block tags.",
   "replace": false,
   "values": [
     "dttfc:acacia_branch",

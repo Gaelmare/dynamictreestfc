@@ -1,30 +1,50 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
+### Gradle ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
 
-# idea
-out
-*.ipr
+### IntelliJ IDEA ###
+.idea/
 *.iws
 *.iml
-.idea
+*.ipr
+out/
+!**/src/**/out/
 
-.vscode
+.run/
 
-# gradle
-build
-.gradle
-
-# other
+### Eclipse ###
 eclipse
-run
+.apt_generated
+.classpath
+.eclipse/
+.factorypath
+*.launch
+.metadata
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/**/bin/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Minecraft Modding ###
+run/
 libs
-resources/__pycache__
+!**/src/**/run/
+**/src/generated/**/.cache/
+repo/
+!**/src/**/repo/
 
 # Files from Forge MDK
 forge*changelog.txt
 /venv/
+resources/__pycache__
+

@@ -1,87 +1,119 @@
 package org.labellum.mc.dttfc;
 
 import com.dtteam.dynamictrees.api.cell.CellKit;
+import com.dtteam.dynamictrees.block.leaves.LeavesProperties;
+import com.dtteam.dynamictrees.block.leaves.PalmLeavesProperties;
+import com.dtteam.dynamictrees.event.RegistryEvent;
+import com.dtteam.dynamictrees.event.TypeRegistryEvent;
 import com.dtteam.dynamictrees.block.soil.SoilProperties;
 import com.dtteam.dynamictrees.systems.growthlogic.GrowthLogicKit;
 import com.dtteam.dynamictrees.tree.family.Family;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.bus.api.IEventBus;
+import com.dtteam.dynamictrees.tree.species.Species;
 import org.labellum.mc.dttfc.tree.AerialRootsFluidSoilProperties;
+import org.labellum.mc.dttfc.tree.DeadPalmSpecies;
+import org.labellum.mc.dttfc.tree.DeadSpecies;
+import org.labellum.mc.dttfc.tree.DeadUndergroundRootsSpecies;
 import org.labellum.mc.dttfc.tree.DiagonalPalmFamily;
 import org.labellum.mc.dttfc.tree.DiagonalPalmLogic;
 import org.labellum.mc.dttfc.tree.FluidSoilProperties;
 import org.labellum.mc.dttfc.tree.GrassSoilProperties;
 import org.labellum.mc.dttfc.tree.PalmCellKit;
+import net.neoforged.bus.api.IEventBus;
 import org.labellum.mc.dttfc.tree.TFCMangroveFamily;
 
 public final class ModEvents
 {
-    private static boolean initialized;
-
-    public static void init(IEventBus modEventBus)
+    public static void init(IEventBus bus)
     {
-        if (initialized) {
+        bus.addListener(ModEvents::registerFamilies);
+        bus.addListener(ModEvents::registerSpecies);
+        bus.addListener(ModEvents::registerGrowth);
+        bus.addListener(ModEvents::registerCells);
+        bus.addListener(ModEvents::registerSoils);
+        bus.addListener(ModEvents::registerLeaves);
+    }
+
+    public static void registerFamilies(TypeRegistryEvent<?> event)
+    {
+        if (!event.isEntryOfType(Family.class))
+        {
             return;
         }
-        initialized = true;
 
-        registerFamilyTypes();
-        registerGrowthLogicAndCellKits();
-        registerSoilTypesAndEntries();
+        @SuppressWarnings("unchecked")
+        final TypeRegistryEvent<Family> familyEvent = (TypeRegistryEvent<Family>) event;
+
+        familyEvent.registerType(DTTFC.identifier("diagonal_palm"), DiagonalPalmFamily.TYPE);
+        familyEvent.registerType(DTTFC.identifier("mangrove"), TFCMangroveFamily.TFC_TYPE);
     }
 
-    private static void registerFamilyTypes()
+    public static void registerSpecies(TypeRegistryEvent<?> event)
     {
-        final ResourceLocation diagonalPalmId = DTTFC.identifier("diagonal_palm");
-        if (!Family.REGISTRY.hasType(diagonalPalmId)) {
-            Family.REGISTRY.registerType(diagonalPalmId, DiagonalPalmFamily.TYPE);
+        if (!event.isEntryOfType(Species.class))
+        {
+            return;
         }
 
-        final ResourceLocation mangroveId = DTTFC.identifier("mangrove");
-        if (!Family.REGISTRY.hasType(mangroveId)) {
-            Family.REGISTRY.registerType(mangroveId, TFCMangroveFamily.TFC_TYPE);
-        }
+        @SuppressWarnings("unchecked")
+        final TypeRegistryEvent<Species> speciesEvent = (TypeRegistryEvent<Species>) event;
+
+        speciesEvent.registerType(DTTFC.identifier("dead"), DeadSpecies.TYPE);
+        speciesEvent.registerType(DTTFC.identifier("dead_palm"), DeadPalmSpecies.TYPE);
+        speciesEvent.registerType(DTTFC.identifier("dead_underground_roots"), DeadUndergroundRootsSpecies.TYPE);
     }
 
-    private static void registerGrowthLogicAndCellKits()
+    public static void registerGrowth(RegistryEvent<?> event)
     {
-        final ResourceLocation diagonalPalmLogicId = DTTFC.identifier("diagonal_palm");
-        if (!GrowthLogicKit.REGISTRY.has(diagonalPalmLogicId)) {
-            GrowthLogicKit.REGISTRY.register(new DiagonalPalmLogic(diagonalPalmLogicId));
+        if (!event.isEntryOfType(GrowthLogicKit.class))
+        {
+            return;
         }
 
-        final ResourceLocation palmCellKitId = DTTFC.identifier("palm");
-        if (!CellKit.REGISTRY.has(palmCellKitId)) {
-            CellKit.REGISTRY.register(new PalmCellKit(palmCellKitId));
-        }
+        @SuppressWarnings("unchecked")
+        final RegistryEvent<GrowthLogicKit> growthEvent = (RegistryEvent<GrowthLogicKit>) event;
+
+        growthEvent.getRegistry().register(new DiagonalPalmLogic(DTTFC.identifier("diagonal_palm")));
     }
 
-    private static void registerSoilTypesAndEntries()
+    public static void registerCells(RegistryEvent<?> event)
     {
-        final ResourceLocation grassId = DTTFC.identifier("grass");
-        if (!SoilProperties.REGISTRY.hasType(grassId)) {
-            SoilProperties.REGISTRY.registerType(grassId, GrassSoilProperties.TYPE);
+        if (!event.isEntryOfType(CellKit.class))
+        {
+            return;
         }
 
-        final ResourceLocation fluidId = DTTFC.identifier("fluid");
-        if (!SoilProperties.REGISTRY.hasType(fluidId)) {
-            SoilProperties.REGISTRY.registerType(fluidId, FluidSoilProperties.TYPE);
+        @SuppressWarnings("unchecked")
+        final RegistryEvent<CellKit> cellEvent = (RegistryEvent<CellKit>) event;
+
+        cellEvent.getRegistry().register(new PalmCellKit(DTTFC.identifier("palm")));
+    }
+
+    public static void registerSoils(TypeRegistryEvent<?> event)
+    {
+        if (!event.isEntryOfType(SoilProperties.class))
+        {
+            return;
         }
 
-        final ResourceLocation aerialRootsId = DTTFC.identifier("aerial_roots");
-        if (!SoilProperties.REGISTRY.hasType(aerialRootsId)) {
-            SoilProperties.REGISTRY.registerType(aerialRootsId, AerialRootsFluidSoilProperties.TFC_TYPE);
+        @SuppressWarnings("unchecked")
+        final TypeRegistryEvent<SoilProperties> soilEvent = (TypeRegistryEvent<SoilProperties>) event;
+
+        soilEvent.registerType(DTTFC.identifier("grass"), GrassSoilProperties.TYPE);
+        soilEvent.registerType(DTTFC.identifier("fluid"), FluidSoilProperties.TYPE);
+        soilEvent.registerType(DTTFC.identifier("aerial_roots"), AerialRootsFluidSoilProperties.TFC_TYPE);
+    }
+
+    public static void registerLeaves(TypeRegistryEvent<?> event)
+    {
+        if (!event.isEntryOfType(LeavesProperties.class))
+        {
+            return;
         }
 
-        final ResourceLocation saltWaterId = DTTFC.identifier("salt_water");
-        if (!SoilProperties.REGISTRY.has(saltWaterId)) {
-            SoilProperties.REGISTRY.register(new FluidSoilProperties(saltWaterId));
-        }
+        @SuppressWarnings("unchecked")
+        final TypeRegistryEvent<LeavesProperties> leavesEvent = (TypeRegistryEvent<LeavesProperties>) event;
 
-        final ResourceLocation mangroveAerialRootsId = DTTFC.identifier("mangrove_aerial_roots");
-        if (!SoilProperties.REGISTRY.has(mangroveAerialRootsId)) {
-            SoilProperties.REGISTRY.register(new AerialRootsFluidSoilProperties(mangroveAerialRootsId));
-        }
+        leavesEvent.registerType(DTTFC.identifier("palm"), PalmLeavesProperties.TYPE);
     }
 
 }

@@ -3,6 +3,7 @@ package org.labellum.mc.dttfc;
 import com.dtteam.dynamictrees.registry.NeoForgeRegistryHandler;
 import com.dtteam.dynamictrees.systems.season.SeasonCompatibilityHandler;
 
+import org.labellum.mc.dttfc.content.ModBlocks;
 import org.labellum.mc.dttfc.util.ModFeatures;
 import org.labellum.mc.dttfc.util.TFCSeasonManager;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,7 @@ public class DTTFC
         ForgeEvents.init(modEventBus);
         SeasonCompatibilityHandler.registerSeasonManager(MOD_ID, TFCSeasonManager::new);
 
+        ModBlocks.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
 
         if (FMLEnvironment.dist == Dist.CLIENT)

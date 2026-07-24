@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "dttfc:mangrove",
+  "common_species": "dttfc:mangrove",
+  "common_leaves": "dttfc:mangrove",
+  "primitive_log": "tfc:wood/log/mangrove",
+  "primitive_stripped_log": "tfc:wood/stripped_log/mangrove",
+  "max_branch_radius": 8,
+  "default_soil": "dttfc:mangrove_aerial_roots",
+  "primitive_root": "tfc:tree_roots",
+  "primitive_filled_root": "tfc:muddy_roots/mollisol",
+  "primitive_covered_root": "tfc:mud/mollisol",
+  "root_system_acceptable_soils": [
+    "dirt_like",
+    "mud_like",
+    "sand_like"
+  ]
+}

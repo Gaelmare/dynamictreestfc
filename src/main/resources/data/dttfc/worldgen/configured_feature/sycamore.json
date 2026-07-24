@@ -4,10 +4,13 @@
   "config": {
     "entry": {
       "climate": {
-        "min_rainfall": 230,
-        "max_rainfall": 480,
-        "min_temperature": 15,
-        "max_temperature": 29
+        "min_temperature": -4,
+        "max_temperature": 17.6,
+        "min_groundwater": 330,
+        "max_groundwater": 500,
+        "min_rain_variance": -0.15,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": false
       },
       "groundcover": [
         {
@@ -17,11 +20,14 @@
           "block": "tfc:wood/fallen_leaves/sycamore"
         }
       ],
-      "normal_tree": "tfc:tree/sycamore",
-      "dead_tree": "tfc:tree/sycamore_dead",
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:alfisol_disc",
       "fallen_log": "tfc:wood/log/sycamore",
-      "old_growth_tree": "tfc:tree/sycamore_large"
+      "fallen_leaves": "tfc:wood/fallen_leaves/sycamore",
+      "old_growth_tree": "dttfc:noop"
     },
-    "species": "dttfc:sycamore"
+    "species": "dttfc:sycamore",
+    "dead_species": "dttfc:sycamore_dead"
   }
 }

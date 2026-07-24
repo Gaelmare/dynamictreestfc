@@ -1,23 +1,21 @@
 package org.labellum.mc.dttfc.util;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
-
-import com.dtteam.dynamictrees.api.worldgen.LevelContext;
-import com.dtteam.dynamictrees.api.worldgen.RandomXOR;
-import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties.RootSoilBlock;
+import com.dtteam.dynamictrees.tree.TreeHelper;
+import com.dtteam.dynamictrees.block.soil.SoilBlock;
 import com.dtteam.dynamictrees.systems.poissondisc.PoissonDisc;
 import com.dtteam.dynamictrees.systems.poissondisc.UniversalPoissonDiscProvider;
-import com.dtteam.dynamictrees.tree.TreeHelper;
 import com.dtteam.dynamictrees.tree.species.Species;
 import com.dtteam.dynamictrees.utility.CoordUtils;
-import com.dtteam.dynamictrees.worldgen.DynamicTreeGenerationContext;
+import com.dtteam.dynamictrees.api.worldgen.LevelContext;
+import com.dtteam.dynamictrees.api.worldgen.RandomXOR;
 import com.dtteam.dynamictrees.worldgen.feature.DynamicTreeFeature;
+import com.dtteam.dynamictrees.worldgen.DynamicTreeGenerationContext;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
@@ -27,14 +25,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-
 import org.jetbrains.annotations.Nullable;
 
+import net.dries007.tfc.client.overworld.SolarCalculator;
 import net.dries007.tfc.common.blocks.wood.FallenLeavesBlock;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.util.EnvironmentHelpers;
@@ -62,7 +59,6 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         final ForestConfig config = context.config();
         final ChunkData data = ChunkData.get(level, pos);
         final ForestType forestType = data.getForestType();
-        final float density = forestType.getDensity();
         final ChunkPos chunkPos = new ChunkPos(pos);
 
         if (rand.nextFloat() > forestType.getPerChunkChance())
@@ -74,17 +70,17 @@ public class DynamicForestFeature extends Feature<ForestConfig>
 
         final AtomicBoolean gen = new AtomicBoolean(false);
         DISC_PROVIDER.getPoissonDiscs(levelContext, chunkPos).forEach(disc -> {
-            if (trees.get() >= 0)
+            if (trees.get() > 0)
             {
-                gen.set(gen.get() | generateTrees(levelContext, level, disc, pos, trees, data, rand, config, DFEFeature.Entry::species));
+                gen.set(gen.get() | generateTrees(levelContext, level, disc, pos, trees, data, rand, config, speciesFinder()));
             }
         });
 
         if (gen.get())
         {
-            placeUndergrowth(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestType.sampleBushes(rand));
-            placeGroundcover(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestType.sampleGroundcover(rand));
-            placeLeafPile(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestType.sampleLeafPiles(rand));
+            placeUndergrowth(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestType, forestType.sampleBushes(rand));
+            placeGroundcover(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestType, forestType.sampleGroundcover(rand));
+            placeLeafPile(level, rand, pos, config, data, new BlockPos.MutableBlockPos(), forestType, forestType.sampleLeafPiles(rand));
         }
 
         return gen.get();
@@ -94,24 +90,34 @@ public class DynamicForestFeature extends Feature<ForestConfig>
     {
         boolean gen = false;
         final BlockPos pos = new BlockPos(disc.x, level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, disc.x, disc.z) - 1, disc.z);
-        if ((level instanceof WorldGenRegion region && !this.ensureCanWrite(region, pos)) || counter.decrementAndGet() <= 0)
+        if (level instanceof WorldGenRegion region && !this.ensureCanWrite(region, pos))
         {
             return false;
         }
-        if (generateTree(levelContext, disc, originPos, pos, data, random, config, speciesFinder) == DynamicTreeFeature.GeneratorResult.GENERATED)
+        if (counter.get() <= 0)
         {
+            return false;
+        }
+        if (generateTree(levelContext, level, disc, originPos, pos, data, random, config, speciesFinder) == DynamicTreeFeature.GeneratorResult.GENERATED)
+        {
+            counter.decrementAndGet();
             gen = true;
         }
         return gen;
     }
 
-    protected DynamicTreeFeature.GeneratorResult generateTree(LevelContext levelContext, PoissonDisc circle, BlockPos originPos, BlockPos groundPos, ChunkData data, RandomSource random, ForestConfig config, Function<DFEFeature.Entry, ResourceLocation> speciesFinder)
+    protected Function<DFEFeature.Entry, ResourceLocation> speciesFinder()
+    {
+        return DFEFeature.Entry::species;
+    }
+
+    protected DynamicTreeFeature.GeneratorResult generateTree(LevelContext levelContext, WorldGenLevel level, PoissonDisc circle, BlockPos originPos, BlockPos groundPos, ChunkData data, RandomSource random, ForestConfig config, Function<DFEFeature.Entry, ResourceLocation> speciesFinder)
     {
         if (groundPos == BlockPos.ZERO)
         {
             return DynamicTreeFeature.GeneratorResult.NO_GROUND;
         }
-        else if (levelContext.accessor().getBlockState(groundPos).getBlock() instanceof RootSoilBlock)
+        else if (levelContext.accessor().getBlockState(groundPos).getBlock() instanceof SoilBlock)
         {
             return DynamicTreeFeature.GeneratorResult.ALREADY_GENERATED;
         }
@@ -121,11 +127,11 @@ public class DynamicForestFeature extends Feature<ForestConfig>
             final BlockState dirtState = levelContext.accessor().getBlockState(groundPos);
             var result = DynamicTreeFeature.GeneratorResult.GENERATED;
 
-            final var entry = getTree(data, random, config, groundPos);
+            final var entry = getTree(level, data, random, config, groundPos, data.getForestType());
 
             if (entry != null)
             {
-                final ResourceLocation res = speciesFinder.apply(entry);
+                final ResourceLocation res = getSpeciesResource(entry, data.getForestType(), random, speciesFinder);
                 if (res == null) return DynamicTreeFeature.GeneratorResult.NO_TREE;
                 final var species = Species.REGISTRY.get(res);
                 if (species != null && species.isValid())
@@ -159,7 +165,22 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         }
     }
 
-    private void placeUndergrowth(WorldGenLevel level, RandomSource random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, int tries)
+    private static ResourceLocation getSpeciesResource(DFEFeature.Entry entry, ForestType forestType, RandomSource random, Function<DFEFeature.Entry, ResourceLocation> speciesFinder)
+    {
+        if (shouldGenerateDeadTree(entry.entry(), forestType, random))
+        {
+            return entry.deadSpecies().orElseGet(() -> speciesFinder.apply(entry));
+        }
+        return speciesFinder.apply(entry);
+    }
+
+    private static boolean shouldGenerateDeadTree(ForestConfig.Entry entry, ForestType forestType, RandomSource random)
+    {
+        final int deadChance = entry.deadChance();
+        return deadChance > 0 && (forestType.isDead() || random.nextInt(deadChance) == 0);
+    }
+
+    private void placeUndergrowth(WorldGenLevel level, RandomSource random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, ForestType forestType, int tries)
     {
         final int chunkX = chunkBlockPos.getX();
         final int chunkZ = chunkBlockPos.getZ();
@@ -167,7 +188,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         mutablePos.set(chunkX + random.nextInt(16), 0, chunkZ + random.nextInt(16));
         mutablePos.setY(level.getHeight(Heightmap.Types.OCEAN_FLOOR, mutablePos.getX(), mutablePos.getZ()));
 
-        final DFEFeature.Entry entry = getTree(data, random, config, mutablePos);
+        final DFEFeature.Entry entry = getTree(level, data, random, config, mutablePos, forestType);
         if (entry != null)
         {
             for (int j = 0; j < tries; ++j)
@@ -222,7 +243,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         return true;
     }
 
-    private void placeGroundcover(WorldGenLevel level, RandomSource random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, int tries)
+    private void placeGroundcover(WorldGenLevel level, RandomSource random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, ForestType forestType, int tries)
     {
         final int chunkX = chunkBlockPos.getX();
         final int chunkZ = chunkBlockPos.getZ();
@@ -230,7 +251,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         mutablePos.set(chunkX + random.nextInt(16), 0, chunkZ + random.nextInt(16));
         mutablePos.setY(level.getHeight(Heightmap.Types.OCEAN_FLOOR, mutablePos.getX(), mutablePos.getZ()));
 
-        final DFEFeature.Entry entry = getTree(data, random, config, mutablePos);
+        final DFEFeature.Entry entry = getTree(level, data, random, config, mutablePos, forestType);
         if (entry != null)
         {
             entry.entry().groundcover().ifPresent(groundcover -> {
@@ -252,7 +273,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
     }
 
 
-    private void placeLeafPile(WorldGenLevel level, RandomSource random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, int tries)
+    private void placeLeafPile(WorldGenLevel level, RandomSource random, BlockPos chunkBlockPos, ForestConfig config, ChunkData data, BlockPos.MutableBlockPos mutablePos, ForestType forestType, int tries)
     {
         final int chunkX = chunkBlockPos.getX();
         final int chunkZ = chunkBlockPos.getZ();
@@ -260,7 +281,7 @@ public class DynamicForestFeature extends Feature<ForestConfig>
         mutablePos.set(chunkX + random.nextInt(16), 0, chunkZ + random.nextInt(16));
         mutablePos.setY(level.getHeight(Heightmap.Types.OCEAN_FLOOR, mutablePos.getX(), mutablePos.getZ()));
 
-        final DFEFeature.Entry entry = getTree(data, random, config, mutablePos);
+        final DFEFeature.Entry entry = getTree(level, data, random, config, mutablePos, forestType);
         if (entry != null)
         {
             entry.entry().fallenLeaves().ifPresent(placementState -> {
@@ -285,28 +306,35 @@ public class DynamicForestFeature extends Feature<ForestConfig>
     }
 
     @Nullable
-    private DFEFeature.Entry getTree(ChunkData chunkData, RandomSource random, ForestConfig config, BlockPos pos)
+    private DFEFeature.Entry getTree(WorldGenLevel level, ChunkData chunkData, RandomSource random, ForestConfig config, BlockPos pos, ForestType forestType)
     {
-        List<DFEFeature.Entry> entries = new ArrayList<>(4);
-        float rainfall = chunkData.getAverageRainfall(pos);
-        float averageTemperature = chunkData.getAverageSeaLevelTemp(pos);
-        config.entries().stream().map(configuredFeature -> configuredFeature.value().config()).map(cfg -> (DFEFeature.Entry) cfg).forEach(entry -> {
-            float lastRain = entry.getAverageRain();
-            float lastTemp = entry.getAverageTemp();
-            if (entry.isValid(averageTemperature, rainfall))
-            {
-                if (entry.distanceFromMean(lastTemp, lastRain) < entry.distanceFromMean(averageTemperature, rainfall))
-                {
-                    entries.add(entry);
-                }
-                else
-                {
-                    entries.add(0, entry);
-                }
-            }
-        });
+        final List<DFEFeature.Entry> entries = new ArrayList<>(4);
+        final float groundwater = chunkData.getAverageGroundwater(pos);
+        final float rainVariance = chunkData.getRainVariance(pos) * (SolarCalculator.getInNorthernHemisphere(pos, level.getLevel()) ? 1f : -1f);
+        final float averageTemperature = EnvironmentHelpers.adjustAvgTempForElev(pos.getY(), chunkData.getAverageSeaLevelTemp(pos));
+        final int elevation = pos.getY();
+
+        config.entries().stream()
+            .map(configuredFeature -> configuredFeature.value().config())
+            .filter(DFEFeature.Entry.class::isInstance)
+            .map(DFEFeature.Entry.class::cast)
+            .filter(entry -> entry.entry().isValid(averageTemperature, groundwater, rainVariance, elevation))
+            .sorted(Comparator.comparingDouble(entry -> entry.entry().distanceFromMean(averageTemperature, groundwater, rainVariance, elevation)))
+            .forEach(entries::add);
 
         if (entries.isEmpty()) return null;
+
+        while (entries.size() > forestType.getMaxTreeTypes())
+        {
+            entries.remove(entries.size() - 1);
+        }
+
+        int alternateSize = forestType.getAlternateSize();
+        while (entries.size() > 1 && alternateSize > 0)
+        {
+            entries.remove(0);
+            alternateSize--;
+        }
 
         int index = 0;
         while (index < entries.size() - 1 && random.nextFloat() < 0.6f)

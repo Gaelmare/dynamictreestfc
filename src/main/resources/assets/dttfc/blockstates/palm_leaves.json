@@ -38,7 +38,7 @@
         ]
       },
       "apply": {
-        "model": "tfc:block/wood/leaves/palm"
+        "model": "dttfc:block/seasonal_leaves/palm"
       }
     }
   ]

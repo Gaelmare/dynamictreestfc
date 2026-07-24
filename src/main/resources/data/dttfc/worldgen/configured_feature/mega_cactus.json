@@ -11,6 +11,7 @@
       },
       "normal_tree": "dttfc:noop",
       "dead_tree": "dttfc:noop",
+      "dead_chance": 0,
       "fallen_tree_chance": 0
     },
     "species": "dttfc:mega_cactus",

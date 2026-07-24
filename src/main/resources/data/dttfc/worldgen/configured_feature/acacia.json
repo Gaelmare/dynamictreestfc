@@ -4,10 +4,13 @@
   "config": {
     "entry": {
       "climate": {
-        "min_rainfall": 30,
-        "max_rainfall": 210,
-        "min_temperature": 17,
-        "max_temperature": 40
+        "min_temperature": 10.4,
+        "max_temperature": 40,
+        "min_groundwater": 90,
+        "max_groundwater": 500,
+        "min_rain_variance": 0.4,
+        "max_rain_variance": 0.85,
+        "rain_variance_absolute": true
       },
       "groundcover": [
         {
@@ -17,20 +20,22 @@
           "block": "tfc:wood/fallen_leaves/acacia"
         }
       ],
-      "normal_tree": "tfc:tree/acacia",
-      "dead_tree": "tfc:tree/acacia_dead",
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
       "fallen_tree_chance": 0,
       "bush_log": {
         "Name": "tfc:wood/wood/acacia",
         "Properties": {
-          "natural": "true",
+          "branch_direction": "down",
           "axis": "y"
         }
       },
       "bush_leaves": "tfc:wood/leaves/acacia",
-      "old_growth_tree": "tfc:tree/acacia_large"
+      "old_growth_tree": "dttfc:noop"
     },
     "species": "dttfc:acacia",
+    "dead_species": "dttfc:acacia_dead",
     "undergrowth_species": "dttfc:acacia_undergrowth"
   }
 }

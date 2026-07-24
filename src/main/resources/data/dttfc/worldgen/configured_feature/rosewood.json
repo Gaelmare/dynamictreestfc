@@ -4,10 +4,13 @@
   "config": {
     "entry": {
       "climate": {
-        "min_rainfall": 140,
-        "max_rainfall": 310,
-        "min_temperature": 8,
-        "max_temperature": 31
+        "min_temperature": 12.2,
+        "max_temperature": 40,
+        "min_groundwater": 200,
+        "max_groundwater": 500,
+        "min_rain_variance": 0.65,
+        "max_rain_variance": 1,
+        "rain_variance_absolute": true
       },
       "groundcover": [
         {
@@ -17,10 +20,14 @@
           "block": "tfc:wood/fallen_leaves/rosewood"
         }
       ],
-      "normal_tree": "tfc:tree/rosewood",
-      "dead_tree": "tfc:tree/rosewood_dead",
-      "fallen_log": "tfc:wood/log/rosewood"
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:duff_disc",
+      "fallen_log": "tfc:wood/log/rosewood",
+      "fallen_leaves": "tfc:wood/fallen_leaves/rosewood",
+      "old_growth_tree": "dttfc:noop"
     },
-    "species": "dttfc:rosewood"
+    "species": "dttfc:rosewood",
+    "dead_species": "dttfc:rosewood_dead"
   }
 }

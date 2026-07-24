@@ -3,7 +3,6 @@ package org.labellum.mc.dttfc.tree;
 import com.dtteam.dynamictrees.api.registry.TypedRegistry;
 import com.dtteam.dynamictrees.block.soil.SoilBlock;
 import com.dtteam.dynamictrees.block.soil.SoilProperties;
-
 import org.labellum.mc.dttfc.content.RootyGrassBlock;
 import javax.annotation.Nullable;
 import net.minecraft.resources.ResourceLocation;

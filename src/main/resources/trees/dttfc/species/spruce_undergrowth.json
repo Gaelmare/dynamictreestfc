@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "leaves_properties": "dttfc:spruce_undergrowth",
-  "family": "dttfc:tfc_spruce",
+  "family": "dttfc:spruce",
   "can_bone_meal_tree": false,
   "signal_energy": 2,
   "up_probability": 0,

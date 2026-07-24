@@ -4,7 +4,6 @@ import com.dtteam.dynamictrees.api.registry.TypedRegistry;
 import com.dtteam.dynamictrees.block.branch.BranchBlock;
 import com.dtteam.dynamictrees.tree.family.Family;
 import com.dtteam.dynamictrees.tree.family.UndergroundRootsFamily;
-
 import net.minecraft.resources.ResourceLocation;
 import org.labellum.mc.dttfc.content.TFCRootsBlock;
 

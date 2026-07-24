@@ -1,0 +1,8 @@
+﻿{
+  "__comment__": "This file was automatically created by mcresources",
+  "primitive_soil": "tfc:duff/alfisol",
+  "acceptable_soils": [
+    "dirt_like"
+  ],
+  "substitute_soil": "dttfc:silty_loam_dirt"
+}

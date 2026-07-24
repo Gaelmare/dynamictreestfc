@@ -4,10 +4,13 @@
   "config": {
     "entry": {
       "climate": {
-        "min_rainfall": 250,
-        "max_rainfall": 420,
-        "min_temperature": -14,
-        "max_temperature": 2
+        "min_temperature": 5,
+        "max_temperature": 14,
+        "min_groundwater": 215,
+        "max_groundwater": 500,
+        "min_rain_variance": -1,
+        "max_rain_variance": -0.4,
+        "rain_variance_absolute": false
       },
       "groundcover": [
         {
@@ -17,21 +20,24 @@
           "block": "tfc:wood/fallen_leaves/sequoia"
         }
       ],
-      "normal_tree": "tfc:tree/sequoia",
-      "dead_tree": "tfc:tree/sequoia_dead",
-      "old_growth_chance": 3,
+      "normal_tree": "dttfc:noop",
+      "dead_tree": "dttfc:noop",
+      "soil_disc": "tfc:podzol_disc",
       "fallen_log": "tfc:wood/log/sequoia",
+      "old_growth_chance": 3,
+      "fallen_leaves": "tfc:wood/fallen_leaves/sequoia",
       "bush_log": {
         "Name": "tfc:wood/wood/sequoia",
         "Properties": {
-          "natural": "true",
+          "branch_direction": "down",
           "axis": "y"
         }
       },
       "bush_leaves": "tfc:wood/leaves/sequoia",
-      "old_growth_tree": "tfc:tree/sequoia_large"
+      "old_growth_tree": "dttfc:noop"
     },
     "species": "dttfc:sequoia",
+    "dead_species": "dttfc:sequoia_dead",
     "undergrowth_species": "dttfc:sequoia_undergrowth"
   }
 }

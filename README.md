@@ -1,7 +1,7 @@
 # Dynamic Trees TFC
 At long last, someone's at least put some code out there!
 
-Compatibility with TFC and Dynamic Trees for 1.20/1.18/1.12.
+Compatibility with TFC and Dynamic Trees for 1.21/1.20/1.18/1.12.
 
 See the TFC discord #content forum for Dynamic Trees TFC for support: https://invite.gg/terrafirmacraft
 
@@ -11,7 +11,9 @@ Translations and textures welcome.
 
 ## Status
 
-Alpha release for 1.20, with some features / bugs. See the issues page for more info. PRs are welcome.
+Beta release for 1.21, with some features / bugs. See the issues page for more info. PRs are welcome.
+
+Thanks to m3t4f1v3 and XaramirV for the 1.21 port!
 
 ## License
 

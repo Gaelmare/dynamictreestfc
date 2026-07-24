@@ -1,25 +1,21 @@
 package org.labellum.mc.dttfc.tree;
 
 import com.dtteam.dynamictrees.api.registry.TypedRegistry;
-import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties;
 import com.dtteam.dynamictrees.block.soil.SoilBlock;
 import com.dtteam.dynamictrees.block.soil.SoilProperties;
-import com.dtteam.dynamictrees.data.generator.WaterRootSoilGenerator;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import org.labellum.mc.dttfc.content.RootyFluidBlock;
 
-public class FluidSoilProperties extends AerialRootsSoilProperties
+public class FluidSoilProperties extends SoilProperties
 {
     public static final TypedRegistry.EntryType<SoilProperties> TYPE = TypedRegistry.newType(FluidSoilProperties::new);
 
     public FluidSoilProperties(ResourceLocation registryName)
     {
-        super(registryName);
-        this.soilStateGenerator.reset(WaterRootSoilGenerator::new);
+        super(null, registryName);
     }
 
     @Override
@@ -35,6 +31,6 @@ public class FluidSoilProperties extends AerialRootsSoilProperties
     @Override
     public BlockBehaviour.Properties getDefaultBlockProperties(MapColor mapColor)
     {
-        return BlockBehaviour.Properties.of().mapColor(mapColor);
+        return BlockBehaviour.Properties.ofFullCopy(Blocks.WATER);
     }
 }

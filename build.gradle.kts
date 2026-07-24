@@ -47,7 +47,7 @@ dependencies {
     implementation("net.neoforged:neoforge:$neoForgeVersion")
     // TFC
     implementation("curse.maven:tfc-302973:${tfcVersion}")
-
+    // DT and DT+
 	implementation("curse.maven:dt-252818:7661136")
 	// implementation("curse.maven:dtplus-478155:7698617")
 
@@ -79,20 +79,6 @@ neoForge {
     }
 
     runs {
-        all {
-            args("-mixin.config=$modId.mixins.json")
-
-            property("forge.logging.console.level", "debug")
-
-            property("mixin.env.remapRefMap", "true")
-            property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
-
-            jvmArgs("-ea", "-Xmx4G", "-Xms4G")
-
-            mods.create(modId) {
-                source(sourceSets.main.get())
-            }
-        }
         create("client") {
             client()
         }

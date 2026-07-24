@@ -1,0 +1,55 @@
+[versions]
+#read more on this at https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#better-minecraft-parameter-names--javadoc-parchment
+# you can also find the latest versions at: https://parchmentmc.org/docs/getting-started
+# Mappings
+parchment = "2024.07.07"
+parchmentMinecraft = "1.21"
+# Plugins
+githubPackages = "1.2.2"
+modDevGradle = "2.0.78"
+# Dependencies
+minecraft = "1.21.1"
+# You can find the latest versions here: https://projects.neoforged.net/neoforged/neoforge
+# The Minecraft version must agree with the Neo version to get a valid artifact
+neoforge = "21.1.217"
+emi = "1.1.10+1.21"
+jei = "19.25.0.321"
+top = "1.21_neo-12.0.4-6"
+patchouli = "1.21.1-92-NEOFORGE"
+# IMPORTANT change both this and the tfc file id for things to update correclty
+tfc = "4.1.0"
+tfcFileId = "7875771"
+# cyanide!
+cyanide = "1.21.1-5.0.0"
+cyanId = "5782674"
+# Non standard version
+jadeFileId = "5591256"
+modernfixFileId = "6766126"
+# Test libs
+junit-jupiter = "5.21.1"
+junit-platform-launcher = "1.10.3"
+guava = "33.4.6-jre"
+
+[libraries]
+jei-common-api = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref = "jei" }
+jei-neoforge-api = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }
+jei = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
+cyanide = { group = "curse.maven", name = "cyanide-541676", version.ref = "cyanId" }
+emi = { group = "dev.emi", name = "emi-neoforge", version.ref = "emi" }
+top = { group = "mcjty.theoneprobe", name = "theoneprobe", version.ref = "top" }
+patchouli = { group = "vazkii.patchouli", name = "Patchouli", version.ref = "patchouli" }
+# Non standard maven
+jade = { group = "curse.maven", name = "jade-324717", version.ref = "jadeFileId" }
+modernfix = { group = "curse.maven", name = "modernfix-790626", version.ref = "modernfixFileId" }
+tfc = { group = "curse.maven", name = "TerraFirmaCraft-302973", version.ref = "tfcFileId" }
+# Test libs
+junit-platform = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junit-platform-launcher" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit-jupiter" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+
+[plugins]
+githubPackages = { id = "io.github.apdevteam.github-packages", version.ref = "githubPackages" }
+modDevGradle = { id = "net.neoforged.moddev", version.ref = "modDevGradle" }
+
+[bundles]
+jei-api = ["jei-common-api", "jei-neoforge-api"]

@@ -1,5 +1,7 @@
 package org.labellum.mc.dttfc.tree;
 
+import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties;
+import com.dtteam.dynamictrees.block.soil.SoilProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -13,15 +15,12 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
-import com.dtteam.dynamictrees.block.soil.AerialRootsSoilProperties.RootSoilBlock;
-import com.dtteam.dynamictrees.block.soil.SoilProperties;
-
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.fluids.FluidProperty;
 import net.dries007.tfc.common.fluids.IFluidLoggable;
 
-public class RootyRootFluidBlock extends RootSoilBlock implements IFluidLoggable
+public class RootyRootFluidBlock extends AerialRootsSoilProperties.RootSoilBlock implements IFluidLoggable
 {
     public static final FluidProperty FLUID = TFCBlockStateProperties.WATER;
 
