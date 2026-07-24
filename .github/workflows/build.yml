@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 env:
-  CF_ID: "354353"
+  CF_ID: "362368"
   MR_ID: "8u5EZQJb"
 
 permissions:
