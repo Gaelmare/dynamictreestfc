@@ -79,6 +79,20 @@ neoForge {
     }
 
     runs {
+        all {
+            args("-mixin.config=$modId.mixins.json")
+
+            property("forge.logging.console.level", "debug")
+
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
+
+            jvmArgs("-ea", "-Xmx4G", "-Xms4G")
+
+            mods.create(modId) {
+                source(sourceSets.main.get())
+            }
+        }
         create("client") {
             client()
         }
