@@ -1,5 +1,10 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "family": "dttfc:aspen",
-  "can_bone_meal_tree": false
+  "can_bone_meal_tree": false,
+  "tapering": 0.12,
+  "signal_energy": 14,
+  "up_probability": 4,
+  "lowest_branch_height": 4,
+  "growth_rate": 1.25
 }

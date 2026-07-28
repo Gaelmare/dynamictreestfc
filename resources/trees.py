@@ -5,6 +5,12 @@ import shutil
 
 JO_PATH = '../src/main/resources/trees/dttfc/jo_codes/'
 
+MEGA_SPRUCE_LOGIC_KIT = {
+		'name': 'conifer',
+		'properties': {
+			'energy_divisor': 5,
+		},
+	}
 
 def generate(rm: ResourceManager):
     for name in ALL_SPECIES:
@@ -12,6 +18,8 @@ def generate(rm: ResourceManager):
             species(rm, name, tapering=0.15, signal_energy=12, up_probability=0, lowest_branch_height=3, growth_rate=0.7)
         elif name == 'birch':
             species(rm, name, tapering=0.1, signal_energy=14, up_probability=4, lowest_branch_height=4, growth_rate=1.25),
+        elif name == 'aspen':
+            species(rm, name, tapering=0.12, signal_energy=14, up_probability=4, lowest_branch_height=4, growth_rate=1.25),
         elif name == 'sequoia':
             species(rm, name, tapering=0.25, signal_energy=24, up_probability=3, lowest_branch_height=4, growth_rate=1.2, growth_logic_kit='conifer')
         elif name == 'spruce':
@@ -22,12 +30,22 @@ def generate(rm: ResourceManager):
             species(rm, name, tapering=0.2, signal_energy=24, up_probability=3, lowest_branch_height=2, growth_rate=1, growth_logic_kit='jungle')
         elif name == 'mangrove':
             species(rm, name, tapering=0.25, signal_energy=20, up_probability=8, lowest_branch_height=2, growth_rate=0.6, spec_type='mangrove', soils=['dirt_like', 'mud_like', 'water_like'], extra_data={'root_tapering': 0.2, 'root_signal_energy': 20.0, 'roots_growth_logic_kit': 'mangrove_roots', 'primitive_sapling': 'mangrove_propagule', 'model_overrides': {'sapling': 'dynamictrees:block/smartmodel/water_sapling_thin'}, 'plantable_on_fluid': True})
+        elif name == 'douglas_fir':
+            species(rm, name, tapering=0.20, signal_energy=32, up_probability=9, lowest_branch_height=3, growth_rate=0.8, growth_logic_kit=MEGA_SPRUCE_LOGIC_KIT)
+        elif name == "rosewood":
+            species(rm, name, tapering=0.3, signal_energy=16, up_probability=0.0, lowest_branch_height=6, growth_rate=0.7, growth_logic_kit="dark_oak")
+        elif name in ["hickory", "chestnut", "blackwood"]:
+            species(rm, name, tapering=0.25, signal_energy=20, up_probability=0, lowest_branch_height=6, growth_rate=1, growth_logic_kit="dark_oak")
+        elif name == 'maple':
+            species(rm, name, tapering=0.25, signal_energy=15, up_probability=8, lowest_branch_height=7, growth_rate=1)
+        elif name == 'sycamore':
+            species(rm, name, tapering=0.1, signal_energy=12, up_probability=12, lowest_branch_height=3, growth_rate=1.2)
+        elif name == 'pine':
+            species(rm, name, tapering=0.20, signal_energy=20, up_probability=9, lowest_branch_height=5, growth_rate=1.1, growth_logic_kit=MEGA_SPRUCE_LOGIC_KIT)
         else:
             species(rm, name)
 
-        if name == 'birch':
-            family(rm, name, conifer_variants=True)
-        elif name == 'sequoia' or name == 'spruce':
+        if name == 'sequoia' or name == 'spruce':
             family(rm, name, max_branch_radius=24, conifer_variants=True)
         elif name == 'palm':
             family(rm, name, thickness1=3, thickness2=4, fam_type='dttfc:diagonal_palm')
@@ -35,19 +53,25 @@ def generate(rm: ResourceManager):
             family(rm, name, max_branch_radius=24, roots=True, max_signal=64)
         elif name == 'mangrove':
             family(rm, name, fam_type='dttfc:mangrove', max_branch_radius=8, extra_data={'default_soil': 'dttfc:mangrove_aerial_roots', 'primitive_root': 'tfc:tree_roots', 'primitive_filled_root': 'tfc:muddy_roots/loam', 'primitive_covered_root': 'tfc:mud/loam', 'root_system_acceptable_soils': ['dirt_like', 'mud_like', 'sand_like']})
+        elif name == 'pine':
+            family(rm, name, conifer_variants=True)
         else:
             family(rm, name)
 
         if name == 'acacia':
             leaves_properties(rm, name, cell_kit='dynamictrees:acacia', smother=2)
-        elif name == 'sequoia' or name == 'spruce':
-            leaves_properties(rm, name, cell_kit='dynamictrees:conifer', smother=3)
+        elif name  in ['douglas_fir', 'sequoia']:
+            leaves_properties(rm, name, cell_kit='dynamictrees:conifer', smother=3)    
+        elif name in ['spruce', 'pine']:
+            leaves_properties(rm, name, cell_kit='dynamictrees:conifer')
         elif name == 'palm':
             leaves_properties(rm, name, cell_kit='dttfc:palm', leaf_type='palm')
         elif name == 'kapok':
             leaves_properties(rm, name, light=12)
         elif name == 'mangrove':
             leaves_properties(rm, name, leaf_type='scruffy', smother=6)
+        elif name == "rosewood":
+            leaves_properties(rm, name, cell_kit='dynamictrees:acacia')
         else:
             leaves_properties(rm, name)
 

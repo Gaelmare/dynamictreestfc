@@ -3,6 +3,5 @@
   "common_species": "dttfc:birch",
   "common_leaves": "dttfc:birch",
   "primitive_log": "tfc:wood/log/birch",
-  "primitive_stripped_log": "tfc:wood/stripped_log/birch",
-  "conifer_variants": true
+  "primitive_stripped_log": "tfc:wood/stripped_log/birch"
 }

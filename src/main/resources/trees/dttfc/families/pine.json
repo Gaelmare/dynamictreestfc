@@ -3,5 +3,6 @@
   "common_species": "dttfc:pine",
   "common_leaves": "dttfc:pine",
   "primitive_log": "tfc:wood/log/pine",
-  "primitive_stripped_log": "tfc:wood/stripped_log/pine"
+  "primitive_stripped_log": "tfc:wood/stripped_log/pine",
+  "conifer_variants": true
 }

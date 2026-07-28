@@ -1,5 +1,10 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "family": "dttfc:sycamore",
-  "can_bone_meal_tree": false
+  "can_bone_meal_tree": false,
+  "tapering": 0.1,
+  "signal_energy": 12,
+  "up_probability": 12,
+  "lowest_branch_height": 3,
+  "growth_rate": 1.2
 }

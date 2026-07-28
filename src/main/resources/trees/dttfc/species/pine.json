@@ -1,5 +1,16 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "family": "dttfc:pine",
-  "can_bone_meal_tree": false
+  "can_bone_meal_tree": false,
+  "tapering": 0.2,
+  "signal_energy": 20,
+  "up_probability": 9,
+  "lowest_branch_height": 5,
+  "growth_rate": 1.1,
+  "growth_logic_kit": {
+    "name": "conifer",
+    "properties": {
+      "energy_divisor": 5
+    }
+  }
 }

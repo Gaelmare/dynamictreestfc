@@ -1,5 +1,10 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "family": "dttfc:maple",
-  "can_bone_meal_tree": false
+  "can_bone_meal_tree": false,
+  "tapering": 0.25,
+  "signal_energy": 15,
+  "up_probability": 8,
+  "lowest_branch_height": 7,
+  "growth_rate": 1
 }

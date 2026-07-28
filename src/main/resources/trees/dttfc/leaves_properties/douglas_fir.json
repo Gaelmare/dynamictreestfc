@@ -1,4 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "primitive_leaves": "tfc:wood/leaves/douglas_fir"
+  "primitive_leaves": "tfc:wood/leaves/douglas_fir",
+  "cell_kit": "dynamictrees:conifer",
+  "smother": 3
 }

@@ -1,4 +1,5 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "primitive_leaves": "tfc:wood/leaves/rosewood"
+  "primitive_leaves": "tfc:wood/leaves/rosewood",
+  "cell_kit": "dynamictrees:acacia"
 }
