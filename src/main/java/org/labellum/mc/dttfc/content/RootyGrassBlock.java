@@ -1,10 +1,12 @@
 package org.labellum.mc.dttfc.content;
 
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+
 import com.dtteam.dynamictrees.block.soil.SoilBlock;
 import com.dtteam.dynamictrees.block.soil.SoilProperties;
+import com.dtteam.dynamictrees.tree.ChunkTreeHelper;
 import com.google.common.collect.ImmutableMap;
+import net.dries007.tfc.util.calendar.Calendars;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -23,6 +25,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 import net.dries007.tfc.common.blocks.DirectionPropertyBlock;
 import net.dries007.tfc.common.blocks.soil.IGrassBlock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RootyGrassBlock extends SoilBlock implements IGrassBlock
 {
@@ -32,6 +36,9 @@ public class RootyGrassBlock extends SoilBlock implements IGrassBlock
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
 
     private static final Map<Direction, BooleanProperty> PROPERTIES = ImmutableMap.of(Direction.NORTH, NORTH, Direction.EAST, EAST, Direction.WEST, WEST, Direction.SOUTH, SOUTH);
+    private static final Logger log = LoggerFactory.getLogger(RootyGrassBlock.class);
+
+    public static final int GROW_EVERY_N_TICK = 200;
 
     public RootyGrassBlock(SoilProperties properties, Properties blockProperties)
     {
@@ -66,6 +73,12 @@ public class RootyGrassBlock extends SoilBlock implements IGrassBlock
         {
             level.scheduleTick(pos.relative(direction).above(), this, 0);
         }
+
+        if (level.getBlockEntity(pos) instanceof LastProcessedTick blockEntity) {
+            long oldValue = blockEntity.getLastProcessedTick();
+            blockEntity.setLastProcessedTick(Calendars.SERVER.getCalendarTicks());
+            log.info("place, {} -> {}", oldValue, blockEntity.getLastProcessedTick());
+        }
     }
 
     @Override
@@ -82,7 +95,28 @@ public class RootyGrassBlock extends SoilBlock implements IGrassBlock
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
-        super.randomTick(state, level, pos, random);
+        if (level.getBlockEntity(pos) instanceof LastProcessedTick blockEntity) {
+            long calendarTicks = Calendars.SERVER.getCalendarTicks();
+
+            if (!blockEntity.haveLastProcessedTick()) {
+                blockEntity.setLastProcessedTick(calendarTicks);
+                return;
+            }
+
+            long oldValue = blockEntity.getLastProcessedTick();
+            if (calendarTicks - oldValue > GROW_EVERY_N_TICK && ChunkTreeHelper.isSurroundedByLoadedChunks(level, pos)) {
+                blockEntity.setLastProcessedTick(calendarTicks);
+
+                double attempts = Math.ceil((double) (calendarTicks - oldValue) / GROW_EVERY_N_TICK);
+                for (int i = 0; i < attempts; ++i) {
+                    this.updateTree(state, level, pos, random, true);
+                }
+                log.info("grow tree {} times", attempts);
+            }
+            log.info("randomTick, {} -> {}", oldValue, blockEntity.getLastProcessedTick());
+        }
+
+        // super.randomTick(state, level, pos, random);
         // don't spread, the light level checks don't work here
     }
 
