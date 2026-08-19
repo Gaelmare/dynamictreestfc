@@ -38,7 +38,7 @@ public class RootyGrassBlock extends SoilBlock implements IGrassBlock
     private static final Map<Direction, BooleanProperty> PROPERTIES = ImmutableMap.of(Direction.NORTH, NORTH, Direction.EAST, EAST, Direction.WEST, WEST, Direction.SOUTH, SOUTH);
     private static final Logger log = LoggerFactory.getLogger(RootyGrassBlock.class);
 
-    public static final int GROW_EVERY_N_TICK = 200;
+    public static final int GROW_EVERY_N_TICK = 2000;
 
     public RootyGrassBlock(SoilProperties properties, Properties blockProperties)
     {
@@ -113,11 +113,8 @@ public class RootyGrassBlock extends SoilBlock implements IGrassBlock
                 }
                 log.info("grow tree {} times", attempts);
             }
-            log.info("randomTick, {} -> {}", oldValue, blockEntity.getLastProcessedTick());
+            //log.info("randomTick, {} -> {}", oldValue, blockEntity.getLastProcessedTick());
         }
-
-        // super.randomTick(state, level, pos, random);
-        // don't spread, the light level checks don't work here
     }
 
     @Override
