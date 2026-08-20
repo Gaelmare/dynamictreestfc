@@ -21,14 +21,11 @@ public class ConfigDTTFC {
                 .comment("Control tree growth using the global TerraFirmaCraft calendar instead of relying on random ticks.")
                 .define("useTfcCalendarGrowth", true);
         GROW_EVERY_N_TICKS = COMMON_BUILDER
-                .comment("Set a Dynamic Trees growth event to run for every Nth tick. This is tied to the global TerraFirmaCraft calendar, so trees will grow while you're away. A lower value will cause trees to grow faster. At 2000 it will take approximately  two year to grow from sapling to full size.")
+                .comment("Set a Dynamic Trees growth event to run for every Nth tick. This is tied to the global TerraFirmaCraft calendar, so trees will grow while you're away. A lower value will cause trees to grow faster. At 2000 it will take approximately  two year to grow from sapling to full size. This will be affected by the species growth rate and season.")
                 .defineInRange("growEveryNTicks", 2000, 20, Integer.MAX_VALUE);
         GROW_ON_CHUNK_LOAD = COMMON_BUILDER
                 .comment("Whether to calculate tree growth when a chunk is loaded. This is to prevent trees growing a lot on random ticks later. The processing itself is done when there is enough time in each tick and should not cause lag.")
                 .define("growOnChunkLoad", true);
-        ADD_BACKWARDS_COMPATIBILITY = COMMON_BUILDER
-                .comment("Add a BlockEntity to each tree if it doesn't have one. Without this enabled while using \"useTfcCalendarGrowth\", some trees on older saves would grow at all.")
-                .define("addBackwardsCompatibility", true);
 
         container.registerConfig(ModConfig.Type.COMMON, COMMON_BUILDER.build());
     }
