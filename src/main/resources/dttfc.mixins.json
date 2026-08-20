@@ -8,7 +8,9 @@
   },
   "mixins": [
     "SpeciesBlockEntityMixin",
-    "SpeciesMixin"
+    "SoilBlockMixin",
+    "SpeciesMixin",
+    "ChunkTreeHelperMixin"
   ],
   "client": [
   ],
