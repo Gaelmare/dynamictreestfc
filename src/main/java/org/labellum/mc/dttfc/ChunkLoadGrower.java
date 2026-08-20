@@ -2,6 +2,7 @@ package org.labellum.mc.dttfc;
 
 
 import com.dtteam.dynamictrees.block.soil.SoilBlock;
+import com.dtteam.dynamictrees.block.soil.SpeciesBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -15,7 +16,6 @@ import net.neoforged.neoforge.event.level.ChunkTicketLevelUpdatedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import org.labellum.mc.dttfc.util.GrowthHandler;
-import org.labellum.mc.dttfc.util.LastProcessedTick;
 import org.labellum.mc.dttfc.util.SynchronizedArrayQueue;
 import org.labellum.mc.dttfc.util.TFCChunkTreeHelper;
 import org.slf4j.Logger;
@@ -87,7 +87,7 @@ public class ChunkLoadGrower {
         Set<BlockPos> blockEntitiesPos = chunk.getBlockEntitiesPos();
 
         blockEntitiesPos.forEach(pos -> {
-            if (chunk.getBlockEntity(pos) instanceof LastProcessedTick) {
+            if (chunk.getBlockEntity(pos) instanceof SpeciesBlockEntity) {
                 processingQueue.add(pos);
             }
         });
@@ -110,7 +110,7 @@ public class ChunkLoadGrower {
                 continue;
             }
 
-            if (level.getBlockEntity(pos) instanceof LastProcessedTick blockEntity) {
+            if (level.getBlockEntity(pos) instanceof SpeciesBlockEntity blockEntity) {
                 GrowthHandler.processRandomTick(
                         level.getBlockState(pos),
                         level,

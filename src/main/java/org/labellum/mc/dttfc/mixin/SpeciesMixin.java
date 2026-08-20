@@ -12,10 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Species.class)
 public class SpeciesMixin {
 
-  @Inject(method = "doesRequireTileEntity", at=@At("HEAD"), cancellable = true)
-  public void doesRequireTileEntity(LevelAccessor level, BlockPos pos, CallbackInfoReturnable<Boolean> ci) {
-    ci.setReturnValue(true);
-  }
     @Inject(method = "doesRequireTileEntity", at=@At("HEAD"), cancellable = true)
     public void doesRequireTileEntity(LevelAccessor level, BlockPos pos, CallbackInfoReturnable<Boolean> ci) {
         if (ConfigDTTFC.USE_TFC_CALENDAR_GROWTH.isTrue()) {

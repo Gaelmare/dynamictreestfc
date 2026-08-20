@@ -1,13 +1,13 @@
 package org.labellum.mc.dttfc.mixin;
 
 import com.dtteam.dynamictrees.block.soil.SoilBlock;
+import com.dtteam.dynamictrees.block.soil.SpeciesBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import org.labellum.mc.dttfc.ConfigDTTFC;
 import org.labellum.mc.dttfc.util.GrowthHandler;
-import org.labellum.mc.dttfc.util.LastProcessedTick;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,12 +27,12 @@ public class SoilBlockMixin {
 
         SoilBlock soilBlock = (SoilBlock) (Object) this;
 
-        if (level.getBlockEntity(pos) instanceof LastProcessedTick blockEntity) {
+        if (level.getBlockEntity(pos) instanceof SpeciesBlockEntity blockEntity) {
             GrowthHandler.processRandomTick(state, level, pos, random, soilBlock, blockEntity);
             ci.cancel();
         } else {
             log.info(
-                    "TFC Dynamic Trees: {} is missing \"LastProcessedTick\" for its BlockEntity \"{}\" at pos {}",
+                    "TFC Dynamic Trees: {} is missing \"SpeciesBlockEntity\" for its BlockEntity \"{}\" at pos {}",
                     soilBlock.getClass(),
                     level.getBlockEntity(pos),
                     pos);
