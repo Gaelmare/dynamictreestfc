@@ -2,7 +2,6 @@ package org.labellum.mc.dttfc.content;
 
 import java.util.Map;
 import java.util.Random;
-
 import com.dtteam.dynamictrees.block.soil.SoilBlock;
 import com.dtteam.dynamictrees.block.soil.SoilProperties;
 import com.google.common.collect.ImmutableMap;
