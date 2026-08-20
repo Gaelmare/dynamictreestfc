@@ -9,7 +9,6 @@ public class ConfigDTTFC {
     public static ModConfigSpec.BooleanValue USE_TFC_CALENDAR_GROWTH;
     public static ModConfigSpec.IntValue GROW_EVERY_N_TICKS;
     public static ModConfigSpec.BooleanValue GROW_ON_CHUNK_LOAD;
-    public static ModConfigSpec.BooleanValue ADD_BACKWARDS_COMPATIBILITY;
 
     public static void register(ModContainer container) {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
