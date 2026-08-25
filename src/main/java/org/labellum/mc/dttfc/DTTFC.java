@@ -24,7 +24,7 @@ public class DTTFC
         ConfigDTTFC.register(container);
         ModEvents.init(modEventBus);
         ForgeEvents.init(modEventBus);
-        ChunkLoadGrower.init();
+        WorldEvents.init();
         SeasonCompatibilityHandler.registerSeasonManager(MOD_ID, TFCSeasonManager::new);
 
         ModBlocks.register(modEventBus);

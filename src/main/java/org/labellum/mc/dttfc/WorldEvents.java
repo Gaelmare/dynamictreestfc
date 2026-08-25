@@ -19,15 +19,15 @@ import java.util.*;
 
 import static org.labellum.mc.dttfc.util.TFCChunkTreeHelper.*;
 
-public class ChunkLoadGrower {
+public class WorldEvents {
 
     public static void init() {
         final IEventBus bus = NeoForge.EVENT_BUS;
 
-        bus.addListener(EventPriority.LOWEST, ChunkLoadGrower::onWorldTick);
-        bus.addListener(EventPriority.LOWEST, ChunkLoadGrower::onChunkLoad);
-        bus.addListener(ChunkLoadGrower::onServerStopped);
-        bus.addListener(EventPriority.LOWEST, ChunkLoadGrower::onTicketLevelUpdate);
+        bus.addListener(EventPriority.LOWEST, WorldEvents::onWorldTick);
+        bus.addListener(EventPriority.LOWEST, WorldEvents::onChunkLoad);
+        bus.addListener(WorldEvents::onServerStopped);
+        bus.addListener(EventPriority.LOWEST, WorldEvents::onTicketLevelUpdate);
     }
 
     public static void onServerStopped(ServerStoppedEvent event) {
