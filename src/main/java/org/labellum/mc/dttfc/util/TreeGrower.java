@@ -9,8 +9,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import org.labellum.mc.dttfc.ConfigDTTFC;
 
-public class GrowthHandler {
-    public static void processRandomTick(
+public class TreeGrower {
+    public static void attemptGrowth(
             BlockState state,
             ServerLevel level,
             BlockPos pos,

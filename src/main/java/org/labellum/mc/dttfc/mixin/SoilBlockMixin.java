@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import org.labellum.mc.dttfc.ConfigDTTFC;
-import org.labellum.mc.dttfc.util.GrowthHandler;
+import org.labellum.mc.dttfc.util.AsyncTreeGrower;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,10 +28,10 @@ public class SoilBlockMixin {
         SoilBlock soilBlock = (SoilBlock) (Object) this;
 
         if (level.getBlockEntity(pos) instanceof SpeciesBlockEntity blockEntity) {
-            GrowthHandler.processRandomTick(state, level, pos, random, soilBlock, blockEntity);
+            AsyncTreeGrower.addQueue(pos);
             ci.cancel();
         } else {
-            log.info(
+            log.warn(
                     "TFC Dynamic Trees: {} is missing \"SpeciesBlockEntity\" for its BlockEntity \"{}\" at pos {}",
                     soilBlock.getClass(),
                     level.getBlockEntity(pos),

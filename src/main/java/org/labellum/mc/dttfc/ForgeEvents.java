@@ -39,6 +39,7 @@ public final class ForgeEvents
             DTConfigs.SERVER.treeHarvestMultiplier.set(1.5d);
             DTConfigs.SERVER.leavesSeedDropRate.set(0.02d);
             DTConfigs.SERVER.axeDamageMode.set(DynamicTrees.AxeDamage.VOLUME);
+            DTConfigs.SERVER.treeGrowthMultiplier.set(1d);
         }
     }
 

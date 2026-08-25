@@ -43,7 +43,7 @@ public class AsyncTreeGrower {
             }
 
             if (level.getBlockEntity(pos) instanceof SpeciesBlockEntity blockEntity) {
-                GrowthHandler.processRandomTick(
+                TreeGrower.attemptGrowth(
                         level.getBlockState(pos),
                         level,
                         pos,
