@@ -81,7 +81,7 @@ public class SynchronizedArrayQueue<E> implements Queue<E> {
     @Override
     public void clear() {
         synchronized (instance) {
-            clear();
+            instance.clear();
         }
     }
 
