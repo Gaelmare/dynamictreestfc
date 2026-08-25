@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Queue;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BooleanSupplier;
 
 import static org.labellum.mc.dttfc.util.TFCChunkTreeHelper.TICKET_LEVEL_BORDER;
@@ -18,10 +19,21 @@ import static org.labellum.mc.dttfc.util.TFCChunkTreeHelper.TICKET_LEVEL_BORDER;
 public class AsyncTreeGrower {
     private static final Logger log = LoggerFactory.getLogger(AsyncTreeGrower.class);
 
+    private static final int QUEUE_MAX_SIZE = 20000;
+    private static final AtomicInteger nextQueueFullWarning = new AtomicInteger(0);
+
     private static final Queue<BlockPos> processingQueue = new SynchronizedArrayQueue<>();
     private static final Collection<BlockPos> processAgain = Collections.synchronizedList(new ArrayList<>());
 
     public static void addQueue(BlockPos pos) {
+        if (processingQueue.size() >= QUEUE_MAX_SIZE) {
+            if (nextQueueFullWarning.getAndDecrement() == 0) {
+                nextQueueFullWarning.set(1000);
+                log.warn("Dynamic Trees AsyncTreeGrower can't keep up. Ignoring new additions.");
+            }
+            return;
+        }
+
         processingQueue.add(pos);
     }
 
