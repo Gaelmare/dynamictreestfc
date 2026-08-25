@@ -9,6 +9,7 @@ public class ConfigDTTFC {
     public static ModConfigSpec.BooleanValue USE_TFC_CALENDAR_GROWTH;
     public static ModConfigSpec.IntValue GROW_EVERY_N_TICKS;
     public static ModConfigSpec.BooleanValue GROW_ON_CHUNK_LOAD;
+    public static ModConfigSpec.BooleanValue ASYNC_RANDOM_TICK_TREE_GROWTH;
 
     public static void register(ModContainer container) {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
@@ -25,6 +26,9 @@ public class ConfigDTTFC {
         GROW_ON_CHUNK_LOAD = COMMON_BUILDER
                 .comment("Whether to calculate tree growth when a chunk is loaded. This is to prevent trees growing a lot on random ticks later. The processing itself is done when there is enough time in each tick and should not cause lag.")
                 .define("growOnChunkLoad", true);
+        ASYNC_RANDOM_TICK_TREE_GROWTH = COMMON_BUILDER
+                .comment("If enabled, all tree growth calculations will happen at the end of the world tick instead inside randomTick. This run if there is enough time left to not cause any lag.")
+                .define("asyncRandomTickTreeGrowth", true);
 
         container.registerConfig(ModConfig.Type.COMMON, COMMON_BUILDER.build());
     }
