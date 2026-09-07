@@ -7,6 +7,10 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "SpeciesBlockEntityMixin",
+    "SoilBlockMixin",
+    "SpeciesMixin",
+    "ChunkTreeHelperMixin"
   ],
   "client": [
   ],
