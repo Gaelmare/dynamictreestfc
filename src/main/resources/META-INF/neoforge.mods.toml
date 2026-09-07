@@ -16,7 +16,7 @@ An addon for TFC and Dynamic Trees.
 [[dependencies.dttfc]]
 modId="neoforge"
 type="required"
-versionRange="[21.1.197,)"
+versionRange="[21.1.234,)"
 ordering="NONE"
 side="BOTH"
 
@@ -37,6 +37,6 @@ side="BOTH"
 [[dependencies.dttfc]]
 modId="tfc"
 type="required"
-versionRange="[3.2.10,)"
+versionRange="[4.2.8,)"
 ordering="AFTER"
 side="BOTH"

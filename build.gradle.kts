@@ -7,13 +7,13 @@ plugins {
 }
 
 val minecraftVersion: String = "1.21.1"
-val neoForgeVersion: String = "21.1.197"
+val neoForgeVersion: String = "21.1.234"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
 val jeiVersion: String = "19.25.0.321"
 val patchouliVersion: String = "7730942"
 val jadeVersion: String = "7545219"
 val topVersion: String = "7292875"
-val tfcVersion: String = "8333098"
+val tfcVersion: String = "8666972"
 
 val modId: String = "dttfc"
 

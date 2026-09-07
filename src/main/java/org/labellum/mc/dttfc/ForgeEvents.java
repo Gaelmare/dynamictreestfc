@@ -60,7 +60,7 @@ public final class ForgeEvents
 
     public static void onCreativeTabs(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTab() == TFCCreativeTabs.WOOD.tab().get())
+        if (event.getTab() == TFCCreativeTabs.TFC_NATURAL_BLOCKS.tab().get())
         {
             BuiltInRegistries.ITEM.entrySet().forEach((entry) -> {
                 if (entry.getKey().location().getNamespace().equals(DTTFC.MOD_ID))
